@@ -54,30 +54,6 @@ public class LoginController {
 //        return "redirect:/login?logout";
 //    }
 
-    /**
-     * This method handles Access-Denied redirect.
-     */
-    @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
-    public String accessDeniedPage(ModelMap model) {
-        model.addAttribute("userName", getPrincipal());
-        return "registration/accessDenied";
-    }
-
-    /**
-     * This method returns the principal[user-name] of logged-in user.
-     */
-    private String getPrincipal(){
-        String userName = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails) {
-            userName = ((UserDetails)principal).getUsername();
-        } else {
-            userName = principal.toString();
-        }
-        return userName;
-    }
-
     @Autowired
     AuthenticationTrustResolver authenticationTrustResolver;
     /**

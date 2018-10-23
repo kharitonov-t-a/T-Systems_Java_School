@@ -1,14 +1,18 @@
-$(document).ready(function(){
+$(document).ready(function () {
     $('.header').height($(window).height());
 
-    $.ajax({
-        url: "/delete-user-*",
-        success: function(data){
-            if($(data).find('table#user-list-table') != null){
-                alert( "Прибыли данные:");
-                $(this).find('table#user-list-table').html($(data).find('table#user-list-table'));
+    $(document).on('click', '.btndeleteuser', function(clickEvent) {
+        clickEvent.preventDefault();
+        $.ajax({
+            url: this.href,
+            type: 'GET',
+            success: function (data) {
+                if ($(data).find('table#user-list-table') != null) {
+                    // alert("Прибыли данные:");
+                    $('table#user-list-table').html($(data).find('table#user-list-table'));
+                }
             }
-        }
+        });
     });
 
 })

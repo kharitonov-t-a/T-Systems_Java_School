@@ -40,15 +40,22 @@ public class UserServiceImpl implements UserService{
     public void updateUser(User user) {
         User entity = dao.findById(user.getId());
         if(entity!=null){
-            entity.setUserProfiles(user.getUserProfiles());
-            entity.setEmail(user.getEmail());
-            if(!user.getPassword().equals(entity.getPassword())){
-                entity.setPassword(passwordEncoder.encode(user.getPassword()));
-            }
-            entity.setPassword(user.getPassword());
-            entity.setFirstName(user.getFirstName());
-            entity.setSurnName(user.getSurnName());
-            entity.setBirthday(user.getBirthday());
+//            if(user.getUserProfiles()!=null)
+//                entity.setUserProfiles(user.getUserProfiles());
+            if(user.getEmail()!=null)
+                entity.setEmail(user.getEmail());
+//            if(user.getPassword()!=null)
+//                if(!user.getPassword().equals(entity.getPassword())){
+//                    entity.setPassword(passwordEncoder.encode(user.getPassword()));
+//                }
+//            if(user.getPassword()!=null)
+//                entity.setPassword(user.getPassword());
+            if(user.getFirstName()!=null)
+                entity.setFirstName(user.getFirstName());
+            if(user.getSurnName()!=null)
+                entity.setSurnName(user.getSurnName());
+            if(user.getBirthday()!=null)
+                entity.setBirthday(user.getBirthday());
         }
     }
 

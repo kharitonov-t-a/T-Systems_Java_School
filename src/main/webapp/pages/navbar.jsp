@@ -19,7 +19,7 @@
         <sec:authorize access="!isAuthenticated()">
             <ul class="navbar-nav ml-md-auto first-nav-element-incollapse">
                 <li class="nav-item">
-                    <a class="btn btn-success nav-btn" href="/signup" role="button">SIGN UP</a>
+                    <a class="btn btn-success nav-btn" href="<c:url value="/signup" />" role="button">SIGN UP</a>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-success nav-btn" href="<c:url value="/login" />" role="button">LOG IN</a>
@@ -29,7 +29,7 @@
         <sec:authorize access="isAuthenticated()">
             <ul class="navbar-nav ml-md-auto first-nav-element-incollapse">
                 <li class="nav-item">
-                    <p>Ваш логин: <sec:authentication property="principal.username" /></p>
+                    <a class="btn btn-warning nav-btn" href="<c:url value="/profile" />" role="button">Ваш логин: <sec:authentication property="principal.username" /></a>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-warning nav-btn" href="<c:url value="/logout" />" role="button">Выйти</a>

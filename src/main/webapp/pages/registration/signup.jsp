@@ -23,7 +23,10 @@
             <h2 class="form-signin-heading">
                 Please sign up
             </h2>
-            <%--<form:input type="text" class="form-control" name="id" placeholder="ID" hidden="true"  value="0" path="id"/>--%>
+            <%--if we edit user we need id--%>
+            <c:if test="${edit}">
+                <form:input type="text" class="form-control" name="id" placeholder="ID" hidden="true" path="id"/>
+            </c:if>
             <%--<form:input type="text" class="form-control" name="userRoleID" placeholder="Role" hidden="true" value="2"--%>
                         <%--path="userRoleID"/>--%>
             <div class="row">
@@ -37,16 +40,18 @@
                     </div>
                 </div>
             </div>
+            <%--if we edit user we don't show password--%>
             <div class="row">
                 <div class="form-group col-md-12">
                     <form:input type="password" class="form-control" name="password" placeholder="Password"
                                 required="true"
-                                path="password"/>
+                                path="password" hidden="${edit}"/>
                     <div class="has-error">
                         <form:errors path="password" class="help-inline"></form:errors>
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="form-group col-md-12">
                     <form:input type="text" class="form-control" name="firstName" placeholder="First Name"

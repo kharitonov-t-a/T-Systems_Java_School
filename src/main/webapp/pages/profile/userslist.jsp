@@ -40,7 +40,7 @@
                                 <td><a href="<c:url value='/edit-user-${user.id}' />" class="btn btn-success custom-width">edit</a></td>
                             </sec:authorize>
                             <sec:authorize access="hasRole('ADMIN')">
-                                <td><a href="<c:url value='/delete-user-${user.id}' />" class="btn btn-danger custom-width">delete</a></td>
+                                <td><a href="<c:url value='/delete-user-${user.id}' />" class="btn btn-danger custom-width btndeleteuser">delete</a></td>
                             </sec:authorize>
                         </tr>
                     </c:forEach>
