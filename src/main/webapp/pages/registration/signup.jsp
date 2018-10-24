@@ -15,7 +15,7 @@
 <body>
 <%@ include file="/pages/navbar.jsp" %>
 <header class="header">
-    <div class="container" style="max-width: 800px;">
+    <div class="container" style="max-width: 800px;"  id="signup-user-box">
         <%--@elvariable id="user" type="com.web.shop.model.User"--%>
         <form:form modelAttribute="user" method="post" class="form-horizontal">
 

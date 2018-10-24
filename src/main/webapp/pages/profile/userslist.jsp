@@ -15,7 +15,7 @@
     <%@ include file="/pages/navbar.jsp"%>
     <header class="header">
         <div class="generic-container">
-            <div class="panel panel-default">
+            <div class="panel panel-default" id="users-list-box">
                 <!-- Default panel contents -->
                 <div class="panel-heading"><span class="lead">List of Users </span></div>
                 <table class="table table-hover" id="user-list-table">

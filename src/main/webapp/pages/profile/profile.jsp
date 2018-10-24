@@ -11,14 +11,15 @@
 <html>
 <head>
     <%@ include file="/pages/head.jsp"%>
+    <script src="<c:url value="/resources/js/profile.js" />"></script>
 </head>
 <body>
 <%@ include file="/pages/navbar.jsp"%>
 <header class="header">
         <div class="row">
             <div class="col-sm-4">
-                <div class="list-group">
-                    <a href="<c:url value="/profile" />" class="list-group-item list-group-item-action">
+                <div class="list-group" id="profile-menu">
+                    <a href="<c:url value="/editCurrentUser" />" class="list-group-item list-group-item-action active" id="edit-current-user">
                         Edit user
                     </a>
                     <a href="<c:url value="/profile" />" class="list-group-item list-group-item-action">
@@ -30,13 +31,13 @@
                     <a href="<c:url value="/profile" />" class="list-group-item list-group-item-action">
                         Админка
                     </a>
-                    <a href="<c:url value="/profile" />" class="list-group-item list-group-item-action active">
+                    <a href="<c:url value="/userslist" />" class="list-group-item list-group-item-action" id="get-users-list-box">
                         Users list for admin
                     </a>
                 </div>
             </div>
             <div class="col-sm-8">
-                <div class="container-fluid">
+                <div class="container" id="body-profile-user">
 
                 </div>
             </div>
