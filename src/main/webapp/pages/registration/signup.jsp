@@ -16,8 +16,8 @@
 <%@ include file="/pages/navbar.jsp" %>
 <header class="header">
     <div class="container" style="max-width: 800px;"  id="signup-user-box">
-        <%--@elvariable id="user" type="com.web.shop.model.User"--%>
-        <form:form modelAttribute="user" method="post" class="form-horizontal">
+        <%--@elvariable id="userDTO" type="com.web.shop.dto.UserDTO"--%>
+        <form:form modelAttribute="userDTO" method="post" class="form-horizontal">
 
 
             <h2 class="form-signin-heading">
@@ -51,6 +51,16 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <form:input type="password" class="form-control" name="confirmPassword" placeholder="Confirm password"
+                                required="true"
+                                path="confirmPassword" hidden="${edit}"/>
+                    <div class="has-error">
+                        <form:errors path="confirmPassword" class="help-inline"></form:errors>
+                    </div>
+                </div>
+            </div>
 
             <div class="row">
                 <div class="form-group col-md-12">
@@ -74,7 +84,7 @@
             <div class="row">
                 <div class="form-group col-md-12">
                     <form:input type="date" class="form-control" name="birthday" placeholder="Birthday" required="true"
-                                path="birthday"/>
+                                path="birthday" max="1999-12-31" value="1999-12-31" id="birthdayInput"/>
                     <div class="has-error">
                         <form:errors path="birthday" class="help-inline"></form:errors>
                     </div>

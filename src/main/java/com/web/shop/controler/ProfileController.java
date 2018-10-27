@@ -1,5 +1,6 @@
 package com.web.shop.controler;
 
+import com.web.shop.dto.UserDTO;
 import com.web.shop.model.User;
 import com.web.shop.model.enums.UserRoles;
 import com.web.shop.service.UserService;
@@ -9,6 +10,7 @@ import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -40,14 +42,14 @@ public class ProfileController {
     @RequestMapping(value = { "/userslist" }, method = RequestMethod.GET)
     public String listUsers(ModelMap model) {
 
-        List<User> users = userService.findAllUsers();
+        List<UserDTO> users = userService.findAllUsers();
         model.addAttribute("users", users);
         return "profile/userslist";
     }
 
     @RequestMapping(value = { "/editCurrentUser" }, method = RequestMethod.GET)
     public String editCurrentUser(ModelMap model){
-        User user = userService.findByEmail(getPrincipal());
+        UserDTO user = userService.findByEmail(getPrincipal());
         return editUser(String.valueOf(user.getId()), model);
     }
 
@@ -57,10 +59,10 @@ public class ProfileController {
     @RequestMapping(value = { "/edit-user-{id}" }, method = RequestMethod.GET)
     public String editUser(@PathVariable String id, ModelMap model) {
 
-        User user = userService.findById(Integer.parseInt(id));
+        UserDTO user = userService.findById(Integer.parseInt(id));
 
         //if current user is ADMIN or he is fixing his profile
-        if(!(isCurrentUserInRole(UserRoles.ADMIN.getUserRole()) || user.getEmail().equalsIgnoreCase(getPrincipal()))){
+        if(!(isCurrentUserInRole(UserRoles.ADMIN.name()) || user.getEmail().equalsIgnoreCase(getPrincipal()))){
             model.addAttribute("userName", getPrincipal());
             return "accessDenied";
         }
@@ -72,7 +74,7 @@ public class ProfileController {
 
 
     @RequestMapping(value = { "/edit-user-{id}" }, method = RequestMethod.POST)
-    public String editUserByID(@Valid User user, BindingResult result, ModelMap model){
+    public String editUserByID(@Valid UserDTO user, BindingResult result, ModelMap model){
         String returnPage = editUser(user, result, model);
         if(returnPage.equalsIgnoreCase("done"))
             return "redirect:/userslist";
@@ -81,18 +83,18 @@ public class ProfileController {
     }
 
     @RequestMapping(value = { "/editCurrentUser" }, method = RequestMethod.POST)
-    public String editCurrentUser(@Valid User user, BindingResult result, ModelMap model){
+    public String editCurrentUser(@Valid UserDTO user, BindingResult result, ModelMap model){
         String returnPage = editUser(user, result, model);
-        if(returnPage.equalsIgnoreCase("done")){
+        if (returnPage.equalsIgnoreCase("done")){
             model.addAttribute("done", true);
             return "redirect:/editCurrentUser";
-        }
-        else
+        } else {
             return returnPage;
+        }
     }
 
 //    @RequestMapping(value = { "/edit-user-{id}", "/profile" }, method = RequestMethod.POST)
-    public String editUser(@Valid User user, BindingResult result, ModelMap model){
+    public String editUser(@Valid UserDTO user, BindingResult result, ModelMap model){
 
         model.addAttribute("Title", "Edit User");
 
@@ -101,7 +103,7 @@ public class ProfileController {
             return "registration/signup";
         }
 
-        User oldUser = userService.findById(user.getId());
+        UserDTO oldUser = userService.findById(user.getId());
 
         //if current user is ADMIN or he is fixing his profile
         if(!(isCurrentUserInRole(UserRoles.ADMIN.getUserRole()) || oldUser.getEmail().equalsIgnoreCase(getPrincipal()))){

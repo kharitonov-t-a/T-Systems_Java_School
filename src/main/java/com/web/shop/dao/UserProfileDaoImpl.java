@@ -1,5 +1,6 @@
 package com.web.shop.dao;
 
+import com.web.shop.model.User;
 import com.web.shop.model.UserProfile;
 import org.springframework.stereotype.Repository;
 
@@ -7,10 +8,10 @@ import javax.persistence.NoResultException;
 import java.util.List;
 
 @Repository("userProfileDao")
-public class UserProfileDaoImpl extends AbstractDao<Integer, UserProfile>implements UserProfileDao{
+public class UserProfileDaoImpl  extends GenericDaoImpl<UserProfile, Integer> implements UserProfileDao{
 
-    public UserProfile findById(int id) {
-        return getByKey(id);
+    public UserProfileDaoImpl(){
+        setPersistentClass(UserProfile.class);
     }
 
     public UserProfile findByRole(String role) {
@@ -26,12 +27,10 @@ public class UserProfileDaoImpl extends AbstractDao<Integer, UserProfile>impleme
         }
     }
 
-    @SuppressWarnings("unchecked")
-    public List<UserProfile> findAll(){
-        List<UserProfile> userProfiles = getEntityManager()
-                .createQuery("SELECT p FROM UserProfile p  ORDER BY p.role ASC")
-                .getResultList();
-        return userProfiles;
-    }
+//    public List<UserProfile> findAll(){
+//        return (List<UserProfile>) getEntityManager()
+//                .createQuery("SELECT p FROM UserProfile p  ORDER BY p.role ASC")
+//                .getResultList();
+//    }
 
 }

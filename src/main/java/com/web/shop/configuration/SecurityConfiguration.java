@@ -14,8 +14,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -71,7 +69,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 //                /*.rememberMe().rememberMeParameter("remember-me").tokenRepository(tokenRepository)
 //                .tokenValiditySeconds(86400).and()*/.csrf().and().exceptionHandling().accessDeniedPage("/Access_Denied");
 
-                // включаем защиту от CSRF атак
+        // включаем защиту от CSRF атак
         http.csrf()
                 .disable()
                 // указываем правила запросов
@@ -82,7 +80,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         //access("hasRole('USER') or hasRole('ADMIN') or hasRole('DBA')")
 //                .antMatchers("/resources/**", "/**").permitAll()
 //                .anyRequest().permitAll()
-                /*.and()*/;
+        /*.and()*/;
 
         http.formLogin()
                 // указываем страницу с формой логина
@@ -106,7 +104,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login?logout")
                 // делаем не валидной текущую сессию
                 .invalidateHttpSession(true);
-http.exceptionHandling().accessDeniedPage("/Access_Denied");
+        http.exceptionHandling().accessDeniedPage("/Access_Denied");
 
 
     }

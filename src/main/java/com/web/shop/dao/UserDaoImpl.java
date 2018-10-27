@@ -11,16 +11,10 @@ import org.springframework.stereotype.Repository;
 
 
 @Repository("userDao")
-public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
+public class UserDaoImpl extends GenericDaoImpl<User, Integer> implements UserDao {
 
-    public User findById(int id) {
-        User user = getByKey(id);
-        return user;
-    }
-
-    public void deleteById(int id) {
-        User user = getByKey(id);
-        delete(user);
+    public UserDaoImpl(){
+        setPersistentClass(User.class);
     }
 
     public User findByEmail(String email) {
@@ -40,33 +34,18 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
         }
     }
 
-    @Override
     public void deleteByEmail(String email) {
         User user = findByEmail(email);
         if (user != null)
-            deleteById(user.getId());
+            delete(user);
     }
 
-//
-//    public void deleteBySSO(String sso) {
-//        User user = (User) getEntityManager()
-//                .createQuery("SELECT u FROM User u WHERE u.ssoId LIKE :ssoId")
-//                .setParameter("ssoId", sso)
-//                .getSingleResult();
-//        delete(user);
+//    public List<User> findAllUsers() {
+//        List<User> users = getEntityManager()
+//                .createQuery("SELECT u FROM User u ORDER BY u.id ASC")
+//                .getResultList();
+//        return users;
 //    }
-
-    @SuppressWarnings("unchecked")
-    public List<User> findAllUsers() {
-        List<User> users = getEntityManager()
-                .createQuery("SELECT u FROM User u ORDER BY u.id ASC")
-                .getResultList();
-        return users;
-    }
-
-    public void saveUser(User user) {
-        persist(user);
-    }
 
     //An alternative to Hibernate.initialize()
     protected void initializeCollection(Collection<?> collection) {
@@ -75,5 +54,4 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
         }
         collection.iterator().hasNext();
     }
-
 }

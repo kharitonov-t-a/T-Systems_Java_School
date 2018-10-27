@@ -1,15 +1,16 @@
 package com.web.shop.service;
 
+import com.web.shop.dto.UserProfileDTO;
 import com.web.shop.model.UserProfile;
 
 import java.util.List;
 
 public interface UserProfileService {
 
-    UserProfile findById(int id);
+    UserProfileDTO findById(int id);
 
-    UserProfile findByRole(String role);
+    UserProfileDTO findByRole(String role);
 
-    List<UserProfile> findAll();
+    List<UserProfileDTO> findAll();
 
 }

@@ -1,23 +1,24 @@
 package com.web.shop.service;
 
+import com.web.shop.dto.UserDTO;
 import com.web.shop.model.User;
 
 import java.util.List;
 
 public interface UserService {
 
-    User findById(int id);
+    UserDTO findById(int id);
 
     void deleteUserById(int id);
 
-    void saveUser(User user);
+    void saveUser(UserDTO user);
 
-    void updateUser(User user);
+    void updateUser(UserDTO user);
 
-    User findByEmail(String eMail);
+    UserDTO findByEmail(String eMail);
 
 
 
-    List<User> findAllUsers();
+    List<UserDTO> findAllUsers();
 
 }

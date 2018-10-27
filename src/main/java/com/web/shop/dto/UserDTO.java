@@ -1,63 +1,54 @@
-package com.web.shop.model;
+package com.web.shop.dto;
 
+import com.web.shop.model.UserProfile;
+import com.web.shop.validator.EnableMatchConstraint;
+import com.web.shop.validator.Match;
+import com.web.shop.validator.UniqueEmail;
 import com.web.shop.validator.Year;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
+import javax.persistence.GeneratedValue;
 import javax.validation.constraints.*;
-import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@Table(name = "Users")
-//@NamedQuery(name = "User.getAll", query = "SELECT c from User c")
-public class User implements Serializable {
+@EnableMatchConstraint
+public class UserDTO {
 
-    @Id
-    @GeneratedValue(generator = "increment")
-    @GenericGenerator(name = "increment", strategy = "increment")
-    @Column(name = "ID", nullable = false, length = 6)
     private Integer id;
 
 //    @Enumerated(EnumType.STRING)
 //    @Column(name="UserRole", length=15, unique=true, nullable=false)
 //    private UserRole userRole = UserRole.USER;
 
-    @Column(name = "FirstName", length = 30)
     @Size(min = 3, max = 30)
     @NotBlank
     private String firstName;
 
-    @Column(name = "SurnName", length = 30)
     @Size(min = 3, max = 30)
     private String surnName;
 
-    @Column(name = "Birthday")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Past
-    @NotNull
     @Year(value=2000/*, message ="Date must be before 2000 year"*/)
+    @NotNull
     private Date birthday;
 
-    @Column(name = "Email", nullable = false, length = 120, unique = true)
-    @Email
     @NotBlank
+    @Email
+    @UniqueEmail
     private String email;
 
-    @Column(name = "Password", nullable = false, length = 120)
     @NotBlank
     @Size(min = 4)
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "appuserroles",
-            joinColumns = { @JoinColumn(name = "userid") },
-            inverseJoinColumns = { @JoinColumn(name = "roleid") })
-    private Set<UserProfile> userProfiles = new HashSet<UserProfile>();
+    @Match(field = "password")
+    private String confirmPassword;
+
+    private Set<UserProfileDTO> userProfiles = new HashSet<UserProfileDTO>();
 
 //    public User(UserRole userRoleID, String firstName, String surnName, Date birthDay, String eMail, String password){
 //        this.userRole = userRoleID;
@@ -68,9 +59,6 @@ public class User implements Serializable {
 //        this.password = password;
 //    }
 
-    public User() {
-
-    }
 
     public Integer getId() {
         return id;
@@ -79,14 +67,6 @@ public class User implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-
-//    public UserRole getUserRole() {
-//        return userRole;
-//    }
-//
-//    public void setUserRole(UserRole userRole) {
-//        this.userRole = userRole;
-//    }
 
     public String getFirstName() {
         return firstName;
@@ -128,18 +108,19 @@ public class User implements Serializable {
         this.password = password;
     }
 
-    public Set<UserProfile> getUserProfiles() {
+    public Set<UserProfileDTO> getUserProfiles() {
         return userProfiles;
     }
 
-    public void setUserProfiles(Set<UserProfile> userProfiles) {
+    public void setUserProfiles(Set<UserProfileDTO> userProfiles) {
         this.userProfiles = userProfiles;
     }
 
-//    @Override
-//    public String toString() {
-//        return "User [id=" + id + ", userRoleID=" + userRoleID + ", firstName=" + firstName +
-//                ", surnName=" + surnName + ", birthday=" + birthday + ", eMail=" + eMail +
-//                ", password=" + password + "]";
-//    }
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
 }

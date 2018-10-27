@@ -4,18 +4,12 @@ import com.web.shop.model.User;
 
 import java.util.List;
 
-public interface UserDao {
-
-    User findById(int id);
-
-    void deleteById(int id);
-
-    void saveUser(User user);
+public interface UserDao extends GenericDao<User, Integer>{
 
     User findByEmail(String eMail);
 
     void deleteByEmail(String eMail);
 
-    List<User> findAllUsers();
+//    List<User> findAllUsers();
 
 }

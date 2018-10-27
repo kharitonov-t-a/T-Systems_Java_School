@@ -1,7 +1,6 @@
 $(document).ready(function () {
     $('.header').height($(window).height());
 
-
     /*------------------------------------- userslist.jsp -----------------------------------------------------*/
 
     $(document).on('click', '.btndeleteuser', function(clickEvent) {

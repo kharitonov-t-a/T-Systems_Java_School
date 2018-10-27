@@ -6,6 +6,7 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.ViewResolver;
@@ -17,7 +18,7 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 @Configuration
-//@EnableWebMvc
+@EnableAspectJAutoProxy
 @ComponentScan(basePackages = "com.web.shop")
 public class AppConfiguration extends WebMvcConfigurationSupport{
 
@@ -39,9 +40,9 @@ public class AppConfiguration extends WebMvcConfigurationSupport{
         return viewResolver;
     }
 
-    public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(userRoleToUserProfileConverter);
-    }
+//    public void addFormatters(FormatterRegistry registry) {
+//        registry.addConverter(userRoleToUserProfileConverter);
+//    }
 
     @Bean
     /**

@@ -3,6 +3,8 @@ package com.web.shop.security;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.web.shop.dto.UserDTO;
+import com.web.shop.dto.UserProfileDTO;
 import com.web.shop.model.User;
 import com.web.shop.model.UserProfile;
 import com.web.shop.model.enums.UserRoles;
@@ -30,7 +32,7 @@ public class CustomUserDetailsService implements UserDetailsService{
     @Transactional(readOnly=true)
     public UserDetails loadUserByUsername(String eMail)
             throws UsernameNotFoundException {
-        User user = userService.findByEmail(eMail);
+        UserDTO user = userService.findByEmail(eMail);
         logger.info("User : {}", user);
         if(user==null){
             logger.info("User not found");
@@ -40,10 +42,10 @@ public class CustomUserDetailsService implements UserDetailsService{
                 true, true, true, true, getGrantedAuthorities(user));
     }
 
-    private List<GrantedAuthority> getGrantedAuthorities(User user){
+    private List<GrantedAuthority> getGrantedAuthorities(UserDTO user){
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
-        for(UserProfile userProfile : user.getUserProfiles()){
+        for(UserProfileDTO userProfile : user.getUserProfiles()){
             logger.info("UserProfile : {}", userProfile);
             authorities.add(new SimpleGrantedAuthority("ROLE_"+userProfile.getRole()));
         }
