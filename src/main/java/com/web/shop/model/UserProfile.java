@@ -38,4 +38,9 @@ public class UserProfile implements Serializable {
         this.role = role;
     }
 
+    @Override
+    public String toString() {
+        return "UserProfile [id=" + id + ", type=" + role + "]";
+    }
+
 }

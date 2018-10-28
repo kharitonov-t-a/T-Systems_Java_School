@@ -136,10 +136,12 @@ public class User implements Serializable {
         this.userProfiles = userProfiles;
     }
 
-//    @Override
-//    public String toString() {
-//        return "User [id=" + id + ", userRoleID=" + userRoleID + ", firstName=" + firstName +
-//                ", surnName=" + surnName + ", birthday=" + birthday + ", eMail=" + eMail +
-//                ", password=" + password + "]";
-//    }
+    @Override
+    public String toString() {
+        StringBuilder userProfilesString = new StringBuilder();
+        userProfiles.parallelStream().forEach(e -> userProfilesString.append(e.getRole() + ", "));
+        return "User [id=" + id + ", firstName=" + firstName +
+                ", surnName=" + surnName + ", birthday=" + birthday + ", eMail=" + email +
+                ", password=" + password + ", roles:" + userProfilesString + "]";
+    }
 }

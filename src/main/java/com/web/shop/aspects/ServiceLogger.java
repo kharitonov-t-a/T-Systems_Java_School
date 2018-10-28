@@ -9,11 +9,13 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.stereotype.Component;
 import org.testng.log4testng.Logger;
 
+import java.util.Arrays;
+
+@Component
 @Aspect
 public class ServiceLogger {
-//    private final static Logger LOG =
-//            Logger.getLogger(ServiceLogger.class);
-    private final Log LOG = LogFactory.getLog(this.getClass());
+
+    static Log  LOG  = LogFactory.getLog(ServiceLogger.class.getName());
 
     @Pointcut("execution(* com.web.shop.service..*.*(..))")
     public void serviceMethod() { }
@@ -23,11 +25,12 @@ public class ServiceLogger {
         String methodName = thisJoinPoint.getSignature().getName();
         Object[] methodArgs = thisJoinPoint.getArgs();
 
-        LOG.debug("Call method " + methodName + " with args " + methodArgs);
+        LOG.info("Call method " + methodName + " with args:");
+        Arrays.stream(methodArgs).forEach(e -> LOG.info("ARGUMENT: " + e));
 
         Object result = thisJoinPoint.proceed();
 
-        LOG.debug("Method " + methodName + " returns " + result);
+        LOG.info("Method " + methodName + " returns " + result);
 
         return result;
     }

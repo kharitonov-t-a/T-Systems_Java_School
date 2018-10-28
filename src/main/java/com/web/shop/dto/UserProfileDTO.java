@@ -29,4 +29,9 @@ public class UserProfileDTO {
         this.role = role;
     }
 
+    @Override
+    public String toString() {
+        return "UserProfile [id=" + id + ", type=" + role + "]";
+    }
+
 }

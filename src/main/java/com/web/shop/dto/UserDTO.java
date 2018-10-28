@@ -123,4 +123,13 @@ public class UserDTO {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
+
+    @Override
+    public String toString() {
+        StringBuilder userProfilesString = new StringBuilder();
+        userProfiles.parallelStream().forEach(e -> userProfilesString.append(e.getRole() + ", "));
+        return "User [id=" + id + ", firstName=" + firstName +
+                ", surnName=" + surnName + ", birthday=" + birthday + ", eMail=" + email +
+                ", password=" + password + ", roles:" + userProfilesString + "]";
+    }
 }
