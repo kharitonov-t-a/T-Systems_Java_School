@@ -1,7 +1,7 @@
 package com.web.shop.service;
 
 import com.web.shop.dto.UserDTO;
-import com.web.shop.model.User;
+import com.web.shop.model.enums.UserRoles;
 
 import java.util.List;
 
@@ -17,8 +17,11 @@ public interface UserService {
 
     UserDTO findByEmail(String eMail);
 
-
-
     List<UserDTO> findAllUsers();
+
+    // ????????????????????????????????????
+
+    void saveUser(UserDTO user, UserRoles user1);
+
 
 }

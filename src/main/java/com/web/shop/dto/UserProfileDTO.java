@@ -11,7 +11,7 @@ public class UserProfileDTO {
 
     private Integer id;
 
-    private String role = UserRoles.USER.getUserRole();
+    private String role = UserRoles.USER.toString();
 
     public Integer getId() {
         return id;

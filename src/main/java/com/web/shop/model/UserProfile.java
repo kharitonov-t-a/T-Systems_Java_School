@@ -20,7 +20,7 @@ public class UserProfile implements Serializable {
     private Integer id;
 
     @Column(name = "Role", length = 15, unique = true, nullable = false)
-    private String role = UserRoles.USER.getUserRole();
+    private String role = UserRoles.USER.toString();
 
     public Integer getId() {
         return id;

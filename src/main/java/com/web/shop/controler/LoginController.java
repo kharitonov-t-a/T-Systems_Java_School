@@ -1,5 +1,6 @@
 package com.web.shop.controler;
 
+import com.web.shop.Constants.MessageConstants;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.core.Authentication;
@@ -9,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Controller
 @RequestMapping("/")
@@ -21,10 +25,10 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage(ModelMap model) {
         if (isCurrentAuthenticationAnonymous()) {
-            model.addAttribute("message", "Войдите.");
+            model.addAttribute("message", MessageConstants.MESSAGE_LOGIN_PAGE);
             return "registration/login";
         } else {
-            return "redirect:/list";
+            return "redirect:/profile";
         }
     }
 
@@ -37,12 +41,12 @@ public class LoginController {
 ////            return "redirect:/list";
 ////        }
 //    }
-
-
-    /**
-     * This method handles logout requests.
-     * Toggle the handlers if you are RememberMe functionality is useless in your app.
-     */
+//
+//
+//    /**
+//     * This method handles logout requests.
+//     * Toggle the handlers if you are RememberMe functionality is useless in your app.
+//     */
 //    @RequestMapping(value="/logout", method = RequestMethod.GET)
 //    public String logoutPage (HttpServletRequest request, HttpServletResponse response){
 //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();

@@ -12,8 +12,4 @@ public enum UserRoles {
         this.userRole = userType;
     }
 
-    public String getUserRole(){
-        return userRole;
-    }
-
 }

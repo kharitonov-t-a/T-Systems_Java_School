@@ -1,8 +1,11 @@
 package com.web.shop.service;
 
+import com.web.shop.converter.UserRoleToUserProfileConverter;
 import com.web.shop.dao.UserDao;
 import com.web.shop.dto.UserDTO;
+import com.web.shop.dto.UserProfileDTO;
 import com.web.shop.model.User;
+import com.web.shop.model.enums.UserRoles;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -10,7 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service("userService")
 @Transactional
@@ -24,12 +29,22 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao dao;
 
+    @Autowired
+    UserRoleToUserProfileConverter userRoleToUserProfileConverter;
+
     public UserDTO findById(int id) {
         return modelMapper.map(dao.findById(id), UserDTO.class);
     }
 
     public void deleteUserById(int id) {
         dao.deleteById(id);
+    }
+
+    public void saveUser(UserDTO user, UserRoles role) {
+        Set<UserProfileDTO> usrProf = new HashSet<>();
+        usrProf.add(userRoleToUserProfileConverter.convert(role.toString()));
+        user.setUserProfiles(usrProf);
+        saveUser(user);
     }
 
     public void saveUser(UserDTO user) {

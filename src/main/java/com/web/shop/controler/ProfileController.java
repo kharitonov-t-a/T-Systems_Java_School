@@ -1,8 +1,10 @@
 package com.web.shop.controler;
 
+import com.web.shop.Constants.MessageConstants;
 import com.web.shop.dto.UserDTO;
 import com.web.shop.model.User;
 import com.web.shop.model.enums.UserRoles;
+import com.web.shop.security.CustomUserDetailsService;
 import com.web.shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,6 +28,11 @@ import java.util.List;
 @RequestMapping("/")
 public class ProfileController {
 
+    @ModelAttribute("Title")
+    public String getTitle() {
+        return MessageConstants.TITLE_PROFILE_PAGE;
+    }
+
     @Autowired
     UserService userService;
 
@@ -35,6 +43,8 @@ public class ProfileController {
     public String getProfile(ModelMap model) {
         return "profile/profile";
     }
+
+
 
     /**
      * This method will list all existing users.
@@ -49,25 +59,35 @@ public class ProfileController {
 
     @RequestMapping(value = { "/editCurrentUser" }, method = RequestMethod.GET)
     public String editCurrentUser(ModelMap model){
-        UserDTO user = userService.findByEmail(getPrincipal());
-        return editUser(String.valueOf(user.getId()), model);
+        UserDTO user = userService.findByEmail(CustomUserDetailsService.getPrincipal());
+        return getEditUserPage(user, model);
     }
 
     /**
      * This method will provide the medium to update an existing user.
      */
     @RequestMapping(value = { "/edit-user-{id}" }, method = RequestMethod.GET)
-    public String editUser(@PathVariable String id, ModelMap model) {
+    public String editUserByID(@PathVariable String id, ModelMap model) {
 
         UserDTO user = userService.findById(Integer.parseInt(id));
 
         //if current user is ADMIN or he is fixing his profile
-        if(!(isCurrentUserInRole(UserRoles.ADMIN.name()) || user.getEmail().equalsIgnoreCase(getPrincipal()))){
-            model.addAttribute("userName", getPrincipal());
+        if(!(CustomUserDetailsService.isCurrentUserInRole(UserRoles.ADMIN) ||
+                user.getEmail().equalsIgnoreCase(CustomUserDetailsService.getPrincipal()))){
+
+            model.addAttribute("message", String.format(
+                    MessageConstants.MESSAGE_EDIT_USER_ACCESS_DENIED,
+                    user.getFirstName()));
             return "accessDenied";
+
         }
 
-        model.addAttribute("user", user);
+        return getEditUserPage(user, model);
+
+    }
+
+    public String getEditUserPage(UserDTO user, ModelMap model){
+        model.addAttribute("userDTO", user);
         model.addAttribute("edit", true);
         return "registration/signup";
     }
@@ -75,16 +95,16 @@ public class ProfileController {
 
     @RequestMapping(value = { "/edit-user-{id}" }, method = RequestMethod.POST)
     public String editUserByID(@Valid UserDTO user, BindingResult result, ModelMap model){
-        String returnPage = editUser(user, result, model);
+        String returnPage = getEditUserPostPage(user, result, model);
         if(returnPage.equalsIgnoreCase("done"))
-            return "redirect:/userslist";
+            return "profile/userslist";
         else
             return returnPage;
     }
 
     @RequestMapping(value = { "/editCurrentUser" }, method = RequestMethod.POST)
     public String editCurrentUser(@Valid UserDTO user, BindingResult result, ModelMap model){
-        String returnPage = editUser(user, result, model);
+        String returnPage = getEditUserPostPage(user, result, model);
         if (returnPage.equalsIgnoreCase("done")){
             model.addAttribute("done", true);
             return "redirect:/editCurrentUser";
@@ -93,10 +113,7 @@ public class ProfileController {
         }
     }
 
-//    @RequestMapping(value = { "/edit-user-{id}", "/profile" }, method = RequestMethod.POST)
-    public String editUser(@Valid UserDTO user, BindingResult result, ModelMap model){
-
-        model.addAttribute("Title", "Edit User");
+    public String getEditUserPostPage(@Valid UserDTO user, BindingResult result, ModelMap model){
 
         if(result.hasErrors()) {
             model.addAttribute("edit", true);
@@ -106,58 +123,35 @@ public class ProfileController {
         UserDTO oldUser = userService.findById(user.getId());
 
         //if current user is ADMIN or he is fixing his profile
-        if(!(isCurrentUserInRole(UserRoles.ADMIN.getUserRole()) || oldUser.getEmail().equalsIgnoreCase(getPrincipal()))){
-            model.addAttribute("userName", getPrincipal());
+        if(!(CustomUserDetailsService.isCurrentUserInRole(UserRoles.ADMIN) ||
+                oldUser.getEmail().equalsIgnoreCase(CustomUserDetailsService.getPrincipal()))){
+            model.addAttribute("message", String.format(
+                    MessageConstants.MESSAGE_EDIT_USER_ACCESS_DENIED,
+                    oldUser.getFirstName()));
             return "accessDenied";
         }
 
         //if Email is changed
         if(!oldUser.getEmail().equalsIgnoreCase(user.getEmail()))
             if(userService.findByEmail(user.getEmail()) != null){
-                result.addError(new ObjectError("user", "That Email already exist"));
                 model.addAttribute("edit", true);
                 return "registration/signup";
             }
 
         userService.updateUser(user);
 
-        model.addAttribute("Title", "List users");
         return "done";
     }
 
-    public static boolean isCurrentUserInRole(String authority) {
-        SecurityContext securityContext = SecurityContextHolder.getContext();
-        Authentication authentication = securityContext.getAuthentication();
-        if (authentication != null) {
-            return authentication.getAuthorities().stream()
-                    .anyMatch(grantedAuthority -> grantedAuthority.getAuthority().equals("ROLE_"+authority));
-        }
-        return false;
-    }
-
-    /**
-     * This method returns the principal[user-name] of logged-in user.
-     */
-    private String getPrincipal(){
-        String userName = null;
-        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
-        if (principal instanceof UserDetails) {
-            userName = ((UserDetails)principal).getUsername();
-        } else {
-            userName = principal.toString();
-        }
-        return userName;
-    }
 
 
     /**
      * Delete user by ID
      */
-    @RequestMapping(value = { "/delete-user-{id}" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/delete-user-{id}" }, method = RequestMethod.DELETE)
     public String deleteUser(@PathVariable String id, ModelMap model) {
         userService.deleteUserById(Integer.parseInt(id));
-        return "redirect:/userslist";
+        return "profile/userslist";
     }
 
     //    /**

@@ -84,7 +84,7 @@
             <div class="row">
                 <div class="form-group col-md-12">
                     <form:input type="date" class="form-control" name="birthday" placeholder="Birthday" required="true"
-                                path="birthday" max="1999-12-31" value="1999-12-31" id="birthdayInput"/>
+                                path="birthday" max="1999-12-31" id="birthdayInput"/>
                     <div class="has-error">
                         <form:errors path="birthday" class="help-inline"></form:errors>
                     </div>

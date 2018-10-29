@@ -1,5 +1,6 @@
 package com.web.shop.controler;
 
+import com.web.shop.Constants.MessageConstants;
 import com.web.shop.converter.UserRoleToUserProfileConverter;
 import com.web.shop.dto.UserDTO;
 import com.web.shop.dto.UserProfileDTO;
@@ -8,6 +9,7 @@ import com.web.shop.model.UserProfile;
 import com.web.shop.model.enums.UserRoles;
 import com.web.shop.service.UserService;
 import com.web.shop.service.UserProfileService;
+import com.web.shop.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.ComponentScan;
@@ -36,11 +38,15 @@ import java.util.Set;
 @RequestMapping(/*"/signup"*/)
 public class RegistrationController {
 
+    @ModelAttribute("Title")
+    public String getTitle() {
+        return MessageConstants.TITLE_REGISTRATION_PAGE;
+    }
+
     @Autowired
     UserService userService;
 
-    @Autowired
-    UserRoleToUserProfileConverter userRoleToUserProfileConverter;
+
 
     @Autowired
     MessageSource messageSource;
@@ -53,7 +59,6 @@ public class RegistrationController {
     public String signUpPage(ModelMap model) {
         UserDTO user = new UserDTO();
         model.addAttribute("userDTO", user);
-        model.addAttribute("Title", "Sign UP!");
         return "registration/signup";
     }
 
@@ -64,18 +69,16 @@ public class RegistrationController {
     @RequestMapping(value = { "/signup" }, method = RequestMethod.POST)
     public String saveUser(@Valid UserDTO user, BindingResult result, ModelMap model){
 
-        model.addAttribute("Title", "Регистрация");
         if(result.hasErrors()) {
             return "registration/signup";
         }
 
-        Set<UserProfileDTO> usrProf = new HashSet<>();
-        usrProf.add(userRoleToUserProfileConverter.convert(UserRoles.USER.getUserRole()));
-        user.setUserProfiles(usrProf);
-        userService.saveUser(user);
+        userService.saveUser(user, UserRoles.USER);
 
-        model.addAttribute("Title", "Вход");
-        model.addAttribute("message", String.format("Вы зарегистрированы,%s</br>Теперь войдите.", user.getFirstName()));
+        model.addAttribute("Title", MessageConstants.TITLE_LOGIN_PAGE);
+        model.addAttribute("message", String.format(
+                MessageConstants.MESSAGE_LOGIN_PAGE_AFTER_REG,
+                user.getFirstName()));
         return "registration/login";
     }
 

@@ -16,8 +16,7 @@
 <header class="header">
     <div class="container accessDenied" style="">
         <div class="alert alert-danger">
-            <p>${userName}, не хватает прав доступа!!!</p>
-            <p>Обратитесь в администрацию.</p>
+            <p>${message}</p>
         </div>
     </div>
 </header>

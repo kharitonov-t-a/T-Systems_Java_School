@@ -8,7 +8,9 @@ import com.web.shop.validator.Year;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.HashSet;
@@ -18,10 +20,6 @@ import java.util.Set;
 public class UserDTO {
 
     private Integer id;
-
-//    @Enumerated(EnumType.STRING)
-//    @Column(name="UserRole", length=15, unique=true, nullable=false)
-//    private UserRole userRole = UserRole.USER;
 
     @Size(min = 3, max = 30)
     @NotBlank
