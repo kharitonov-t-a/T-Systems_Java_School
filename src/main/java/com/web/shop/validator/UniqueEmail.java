@@ -5,13 +5,13 @@ import javax.validation.Payload;
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = UniqueEmailValidator.class)
-@Target( { ElementType.METHOD, ElementType.FIELD })
+//@Constraint(validatedBy = UniqueEmailValidator.class)
+@Target( { ElementType.FIELD })
 @Retention(RetentionPolicy.RUNTIME)
 public @interface UniqueEmail {
 
     String message() default "{UniqueEmail}";
-    Class<?>[] groups() default {};
-    Class<? extends Payload>[] payload() default {};
+//    Class<?>[] groups() default {};
+//    Class<? extends Payload>[] payload() default {};
 
 }

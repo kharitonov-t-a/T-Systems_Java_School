@@ -1,46 +1,53 @@
 package com.web.shop.dto;
 
 import com.web.shop.model.UserProfile;
-import com.web.shop.validator.EnableMatchConstraint;
-import com.web.shop.validator.Match;
-import com.web.shop.validator.UniqueEmail;
-import com.web.shop.validator.Year;
+import com.web.shop.validator.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.Valid;
 import javax.validation.constraints.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-@EnableMatchConstraint
+@EnableMatchConstraint(groups = {UserDTO.ValidationPassword.class})
+@EnableUniqueEmailConstraint(groups = {UserDTO.ValidationInfo.class})
 public class UserDTO {
+
+    public interface ValidationPassword {
+    }
+
+    public interface ValidationInfo {
+    }
 
     private Integer id;
 
-    @Size(min = 3, max = 30)
-    @NotBlank
+    @Size(min = 3, max = 30, groups = {ValidationInfo.class})
+    @NotBlank(groups = {ValidationInfo.class})
     private String firstName;
 
-    @Size(min = 3, max = 30)
+    @Size(min = 3, max = 30, groups = {ValidationInfo.class})
     private String surnName;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Past
-    @Year(value=2000/*, message ="Date must be before 2000 year"*/)
-    @NotNull
+    @DateTimeFormat(pattern = "yyyy-MM-dd"/*, groups = {ValidationInfo.class}*/)
+    @Past(groups = {ValidationInfo.class})
+    @Year(value=2000, groups = {ValidationInfo.class})
+    @NotNull(groups = {ValidationInfo.class})
     private Date birthday;
 
-    @NotBlank
-    @Email
+    @NotBlank(groups = {ValidationInfo.class})
+    @Email(groups = {ValidationInfo.class})
     @UniqueEmail
     private String email;
 
-    @NotBlank
-    @Size(min = 4)
+    @NotBlank(groups = {ValidationPassword.class})
+    @Size(min = 4, groups = {ValidationPassword.class})
     private String password;
 
     @Match(field = "password")
@@ -130,4 +137,70 @@ public class UserDTO {
                 ", surnName=" + surnName + ", birthday=" + birthday + ", eMail=" + email +
                 ", password=" + password + ", roles:" + userProfilesString + "]";
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//    public UserPasswordDTO getUserPasswordDTO() {
+//        return userPasswordDTO;
+//    }
+//
+//    public void setUserPasswordDTO(UserPasswordDTO userPasswordDTO) {
+//        this.userPasswordDTO = userPasswordDTO;
+//    }
+//
+//    @Embedded
+//    private UserPasswordDTO userPasswordDTO;
+//
+//    public UserInfoDTO getUserInfoDTO() {
+//        return userInfoDTO;
+//    }
+//
+//    public void setUserInfoDTO(UserInfoDTO userInfoDTO) {
+//        this.userInfoDTO = userInfoDTO;
+//    }
+//
+//    @Embedded
+//    private UserInfoDTO userInfoDTO;
+//
+//
+//
+////    public User(UserRole userRoleID, String firstName, String surnName, Date birthDay, String eMail, String password){
+////        this.userRole = userRoleID;
+////        this.firstName = firstName;
+////        this.surnName = surnName;
+////        this.birthday = birthDay;
+////        this.eMail = eMail;
+////        this.password = password;
+////    }
+//
+//
+//
+//
+//
+//
+//    @Override
+//    public String toString() {
+//        return "User [" + userInfoDTO + ", password=" + userPasswordDTO + "]";
+//    }
 }

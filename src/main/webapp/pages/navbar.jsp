@@ -29,10 +29,10 @@
         <sec:authorize access="isAuthenticated()">
             <ul class="navbar-nav ml-md-auto first-nav-element-incollapse">
                 <li class="nav-item">
-                    <a class="btn btn-warning nav-btn" href="<c:url value="/profile" />" role="button">Ваш логин: <sec:authentication property="principal.username" /></a>
+                    <a class="btn btn-warning nav-btn" href="<c:url value="/profile" />" role="button">User profile: <sec:authentication property="principal.username" /></a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-warning nav-btn" href="<c:url value="/logout" />" role="button">Выйти</a>
+                    <a class="btn btn-warning nav-btn" href="<c:url value="/logout" />" role="button">Exit</a>
                 </li>
             </ul>
         </sec:authorize>

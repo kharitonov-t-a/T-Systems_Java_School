@@ -15,9 +15,9 @@
     <%@ include file="/pages/navbar.jsp"%>
     <header class="header">
         <div class="generic-container">
-            <div class="panel panel-default" id="users-list-box">
+            <div class="panel panel-default" id="content-profile-box">
                 <!-- Default panel contents -->
-                <div class="panel-heading"><span class="lead">List of Users </span></div>
+                <div class="panel-heading"><span class="lead">${message}</span></div>
                 <table class="table table-hover" id="user-list-table">
                     <thead>
                     <tr>
@@ -37,10 +37,10 @@
                             <td>${user.email}</td>
                             <td>${user.birthday}</td>
                             <sec:authorize access="hasRole('ADMIN') or hasRole('MANAGER')">
-                                <td><a href="<c:url value='/edit-user-${user.id}' />" class="btn btn-success custom-width">edit</a></td>
+                                <td><a href="<c:url value='/edit-user-${user.id}' />" class="btn btn-success custom-width btn-edit-user">edit</a></td>
                             </sec:authorize>
                             <sec:authorize access="hasRole('ADMIN')">
-                                <td><a href="<c:url value='/delete-user-${user.id}' />" class="btn btn-danger custom-width btndeleteuser">delete</a></td>
+                                <td><a href="<c:url value='/delete-user-${user.id}' />" class="btn btn-danger custom-width btn-delete-user">delete</a></td>
                             </sec:authorize>
                         </tr>
                     </c:forEach>

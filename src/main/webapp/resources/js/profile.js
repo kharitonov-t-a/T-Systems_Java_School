@@ -1,62 +1,73 @@
 $(document).ready(function () {
 
-    getEditCurrentUserForm();
+    getAjax("/editCurrentUser", 'div#content-profile-box');
 
     $(document).on('click', '#profile-menu a', function(clickEvent) {
+        clickEvent.preventDefault();
         $('#profile-menu a').removeClass("active");
         $(this).addClass("active");
-    });
 
-    $(document).on('submit', 'div#signup-user-box form', function(clickEvent) {
-        var form_data = $(this).serializeArray();
+        getAjax($(this).attr("href"), 'div#content-profile-box');
+    })
+
+    $(document).on('click', 'a.btn-edit-user', function(clickEvent) {
         clickEvent.preventDefault();
-        $.ajax({
-            url: "/editCurrentUser",
-            type: 'POST',
-            data: form_data,
-            success: function (data) {
-                if ($(data).find('div#signup-user-box') != null) {
-                    $('div#body-profile-user').html($(data).find('div#signup-user-box'));
-                }
-            }
-        });
+        getAjax($(this).attr("href"), 'div#content-profile-box')
     });
 
-    $(document).on('click', '#edit-current-user', function(clickEvent) {
+    $(document).on('click', 'a.btn-delete-user', function(clickEvent) {
         clickEvent.preventDefault();
-        getEditCurrentUserForm();
+        deleteAjax($(this).attr("href"), 'div#content-profile-box');
     });
 
-    $(document).on('click', '#get-users-list-box', function(clickEvent) {
+    $(document).on('submit', 'div#content-profile-box form', function(clickEvent) {
+        // var form_data = $(this).serializeArray();
         clickEvent.preventDefault();
-        getUsersListBox();
+        var action = $(this).attr("action");
+        postAjax(action, 'div#content-profile-box', $(this).serializeArray());
     });
-
-
-
 
 })
 
-function getEditCurrentUserForm() {
+function getAjax(url, attr) {
     $.ajax({
-        url: "/editCurrentUser",
+        url: url,
         type: 'GET',
         success: function (data) {
-            if ($(data).find('div#signup-user-box') != null) {
-                // alert("Прибыли данные:");
-                $('div#body-profile-user').html($(data).find('div#signup-user-box'));
+            if ($(data).find(attr) != null) {
+                $('div#body-profile-user').html($(data).find(attr));
+            }
+        },
+        error: function(data){
+            if ($(data.responseText).find(attr) != null) {
+                $('div#body-profile-user').html($(data.responseText).find(attr));
             }
         }
     });
 }
-function getUsersListBox() {
+
+function deleteAjax(url, attr) {
+    var request = $.ajax({
+        url: url,
+        type: 'DELETE',
+        data: {_method: 'delete'},
+        success: function(data){
+            getAjax("/userslist", attr);
+        },
+        error: function (data) {
+            console.log('Error:', data);
+        }
+    });
+}
+
+function postAjax(url, attr, form_data) {
     $.ajax({
-        url: "/userslist",
-        type: 'GET',
+        url: url,
+        type: 'POST',
+        data: form_data,
         success: function (data) {
-            if ($(data).find('div#users-list-box') != null) {
-                // alert("Прибыли данные:");
-                $('div#body-profile-user').html($(data).find('div#users-list-box'));
+            if ($(data).find(attr) != null) {
+                $('div#body-profile-user').html($(data).find(attr));
             }
         }
     });

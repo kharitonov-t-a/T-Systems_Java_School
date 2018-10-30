@@ -64,10 +64,10 @@ public class UserServiceImpl implements UserService {
 //                entity.setUserProfiles(user.getUserProfiles());
             if (user.getEmail() != null)
                 entity.setEmail(user.getEmail());
-//            if(user.getPassword()!=null)
-//                if(!user.getPassword().equals(entity.getPassword())){
-//                    entity.setPassword(passwordEncoder.encode(user.getPassword()));
-//                }
+            if(user.getPassword()!=null && user.getConfirmPassword()!=null)
+                if(!(passwordEncoder.encode(user.getPassword())).equalsIgnoreCase(entity.getPassword())){
+                    entity.setPassword(passwordEncoder.encode(user.getPassword()));
+                }
 //            if(user.getPassword()!=null)
 //                entity.setPassword(user.getPassword());
             if (user.getFirstName() != null)

@@ -15,20 +15,22 @@
 <body>
 <%@ include file="/pages/navbar.jsp" %>
 <header class="header">
-    <div class="container" style="max-width: 800px;"  id="signup-user-box">
+    <div class="container" style="max-width: 800px;"  id="content-profile-box">
         <%--@elvariable id="userDTO" type="com.web.shop.dto.UserDTO"--%>
         <form:form modelAttribute="userDTO" method="post" class="form-horizontal">
 
 
             <h2 class="form-signin-heading">
-                Please sign up
+                ${message}
             </h2>
+
             <%--if we edit user we need id--%>
-            <c:if test="${edit}">
+            <c:if test="${edit == true}">
                 <form:input type="text" class="form-control" name="id" placeholder="ID" hidden="true" path="id"/>
             </c:if>
-            <%--<form:input type="text" class="form-control" name="userRoleID" placeholder="Role" hidden="true" value="2"--%>
-                        <%--path="userRoleID"/>--%>
+
+            <%--if we edit password we don't show info user--%>
+            <c:if test="${notEditInfoUser == null || notEditInfoUser == false}">
             <div class="row">
                 <div class="form-group col-md-12">
                     <form:input type="text" class="form-control" name="email" placeholder="Email address"
@@ -40,12 +42,15 @@
                     </div>
                 </div>
             </div>
+            </c:if>
+
             <%--if we edit user we don't show password--%>
+            <c:if test="${notEditPassword == null || notEditPassword == false}">
             <div class="row">
                 <div class="form-group col-md-12">
                     <form:input type="password" class="form-control" name="password" placeholder="Password"
                                 required="true"
-                                path="password" hidden="${edit}"/>
+                                path="password"/>
                     <div class="has-error">
                         <form:errors path="password" class="help-inline"></form:errors>
                     </div>
@@ -55,13 +60,16 @@
                 <div class="form-group col-md-12">
                     <form:input type="password" class="form-control" name="confirmPassword" placeholder="Confirm password"
                                 required="true"
-                                path="confirmPassword" hidden="${edit}"/>
+                                path="confirmPassword"/>
                     <div class="has-error">
                         <form:errors path="confirmPassword" class="help-inline"></form:errors>
                     </div>
                 </div>
             </div>
+            </c:if>
 
+            <%--if we edit password we don't show info user--%>
+            <c:if test="${notEditInfoUser == null ||notEditInfoUser == false}">
             <div class="row">
                 <div class="form-group col-md-12">
                     <form:input type="text" class="form-control" name="firstName" placeholder="First Name"
@@ -103,8 +111,11 @@
                     <%--</div>--%>
                 <%--</div>--%>
             <%--</div>--%>
+
+            </c:if>
+
             <button class="btn btn-lg btn-primary btn-block" type="submit">
-                Зарегистрировать!
+                ${button}
             </button>
             <%--<form:hidden  class="form-control" name="id" placeholder="ID" value="0" path="id"/>--%>
             <%--<form:hidden  class="form-control" name="UserRoleID" placeholder="Role" value="2" path="userRoleID" />--%>

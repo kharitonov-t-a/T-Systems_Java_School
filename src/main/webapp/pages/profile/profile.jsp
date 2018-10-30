@@ -22,7 +22,7 @@
                     <a href="<c:url value="/editCurrentUser" />" class="list-group-item list-group-item-action active" id="edit-current-user">
                         Edit user
                     </a>
-                    <a href="<c:url value="/profile" />" class="list-group-item list-group-item-action">
+                    <a href="<c:url value="/editPassword" />" class="list-group-item list-group-item-action" id="edit-password">
                         Edit password
                     </a>
                     <a href="<c:url value="/profile" />" class="list-group-item list-group-item-action">

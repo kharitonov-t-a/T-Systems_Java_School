@@ -75,8 +75,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // указываем правила запросов
                 // по которым будет определятся доступ к ресурсам и остальным данным
                 .authorizeRequests()
-                .antMatchers("/list").access("hasRole('ADMIN') or hasRole('MANAGER')")
-                .antMatchers("/delete-user-*").access("hasRole('ADMIN') or hasRole('MANAGER')")
+                .antMatchers("/userslist").access("hasRole('ADMIN') or hasRole('MANAGER')")
+                .antMatchers("/delete-user-*").access("hasRole('ADMIN')")
+                .antMatchers("/edit-user-*").access("hasRole('ADMIN') or hasRole('MANAGER')")
+                .antMatchers("/profile").authenticated()
         //access("hasRole('USER') or hasRole('ADMIN') or hasRole('DBA')")
 //                .antMatchers("/resources/**", "/**").permitAll()
 //                .anyRequest().permitAll()

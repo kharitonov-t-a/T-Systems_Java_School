@@ -23,6 +23,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -59,6 +60,8 @@ public class RegistrationController {
     public String signUpPage(ModelMap model) {
         UserDTO user = new UserDTO();
         model.addAttribute("userDTO", user);
+        model.addAttribute("message", MessageConstants.MESSAGE_REGISTRATION_PAGE);
+        model.addAttribute("button", MessageConstants.BUTTON_REGISTRATION_PAGE);
         return "registration/signup";
     }
 
@@ -67,7 +70,7 @@ public class RegistrationController {
      * It also validates the user input
      */
     @RequestMapping(value = { "/signup" }, method = RequestMethod.POST)
-    public String saveUser(@Valid UserDTO user, BindingResult result, ModelMap model){
+    public String saveUser(@Validated({UserDTO.ValidationInfo.class, UserDTO.ValidationPassword.class}) UserDTO user, BindingResult result, ModelMap model){
 
         if(result.hasErrors()) {
             return "registration/signup";

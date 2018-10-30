@@ -14,7 +14,7 @@
 <body>
 <%@ include file="/pages/navbar.jsp" %>
 <header class="header">
-    <div class="container accessDenied" style="">
+    <div class="container" style="" id="content-profile-box">
         <div class="alert alert-danger">
             <p>${message}</p>
         </div>
