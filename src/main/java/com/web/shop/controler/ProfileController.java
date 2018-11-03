@@ -3,7 +3,7 @@ package com.web.shop.controler;
 import com.web.shop.Constants.MessageConstants;
 import com.web.shop.dto.UserDTO;
 import com.web.shop.security.UserSecurityService;
-import com.web.shop.service.UserService;
+import com.web.shop.service.transact.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

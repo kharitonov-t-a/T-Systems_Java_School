@@ -1,15 +1,17 @@
-package com.web.shop.service;
+package com.web.shop.service.transact;
 
 import com.web.shop.converter.UserRoleToUserProfileConverter;
 import com.web.shop.dao.UserDao;
 import com.web.shop.dto.UserDTO;
 import com.web.shop.dto.UserProfileDTO;
+import com.web.shop.exceptions.SaveUserException;
 import com.web.shop.model.User;
 import com.web.shop.model.enums.UserRoles;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -17,8 +19,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Service("userService")
-@Transactional
+@Service("userServiceTransact")
 public class UserServiceImpl implements UserService {
 
     ModelMapper modelMapper = new ModelMapper();
@@ -32,14 +33,17 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRoleToUserProfileConverter userRoleToUserProfileConverter;
 
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public UserDTO findById(int id) {
         return modelMapper.map(dao.findById(id), UserDTO.class);
     }
 
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void deleteUserById(int id) {
         dao.deleteById(id);
     }
 
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void saveUser(UserDTO user, UserRoles role) {
         Set<UserProfileDTO> usrProf = new HashSet<>();
         usrProf.add(userRoleToUserProfileConverter.convert(role.toString()));
@@ -47,6 +51,7 @@ public class UserServiceImpl implements UserService {
         saveUser(user);
     }
 
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void saveUser(UserDTO user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         dao.create(modelMapper.map(user, User.class));
@@ -57,6 +62,7 @@ public class UserServiceImpl implements UserService {
      * Just fetch the entity from db and update it with proper values within transaction.
      * It will be updated in db once transaction ends.
      */
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void updateUser(UserDTO user) {
         User entity = dao.findById(user.getId());
         if (entity != null) {
@@ -80,6 +86,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public UserDTO findByEmail(String eMail) {
         User user = dao.findByEmail(eMail);
         if (user != null)
@@ -88,6 +95,7 @@ public class UserServiceImpl implements UserService {
             return null;
     }
 
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public List<UserDTO> findAllUsers() {
         List<User> listUser = dao.findAll();
         List<UserDTO> listUserDTO = new ArrayList<>();

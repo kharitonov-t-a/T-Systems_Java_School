@@ -1,5 +1,6 @@
 package com.web.shop.dao;
 
+import com.web.shop.exceptions.SaveUserException;
 import com.web.shop.model.User;
 
 import java.io.Serializable;

@@ -1,6 +1,7 @@
-package com.web.shop.service;
+package com.web.shop.service.transact;
 
 import com.web.shop.dto.UserDTO;
+import com.web.shop.exceptions.SaveUserException;
 import com.web.shop.model.enums.UserRoles;
 
 import java.util.List;
@@ -11,7 +12,7 @@ public interface UserService {
 
     void deleteUserById(int id);
 
-    void saveUser(UserDTO user);
+    void saveUser(UserDTO user) throws SaveUserException;
 
     void updateUser(UserDTO user);
 
@@ -21,7 +22,7 @@ public interface UserService {
 
     // ????????????????????????????????????
 
-    void saveUser(UserDTO user, UserRoles user1);
+    void saveUser(UserDTO user, UserRoles role) throws SaveUserException;
 
 
 }

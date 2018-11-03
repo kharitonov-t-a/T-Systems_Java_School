@@ -1,39 +1,19 @@
 package com.web.shop.controler;
 
 import com.web.shop.Constants.MessageConstants;
-import com.web.shop.converter.UserRoleToUserProfileConverter;
 import com.web.shop.dto.UserDTO;
-import com.web.shop.dto.UserProfileDTO;
-import com.web.shop.model.User;
-import com.web.shop.model.UserProfile;
+import com.web.shop.exceptions.SaveUserException;
 import com.web.shop.model.enums.UserRoles;
-import com.web.shop.service.UserService;
-import com.web.shop.service.UserProfileService;
-import com.web.shop.service.UserServiceImpl;
+import com.web.shop.service.transact.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import javax.validation.Valid;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
 
 @Controller
 @RequestMapping(/*"/signup"*/)
@@ -70,13 +50,21 @@ public class RegistrationController {
      * It also validates the user input
      */
     @RequestMapping(value = { "/signup" }, method = RequestMethod.POST)
-    public String saveUser(@Validated({UserDTO.ValidationInfo.class, UserDTO.ValidationPassword.class}) UserDTO user, BindingResult result, ModelMap model){
+    public String saveUser(@Validated({UserDTO.ValidationInfo.class, UserDTO.ValidationPassword.class}) UserDTO user, BindingResult result, ModelMap model) throws SaveUserException {
 
         if(result.hasErrors()) {
             return "registration/signup";
         }
+//        try {
+            userService.saveUser(user, UserRoles.USER);
+//        }catch (SaveUserException e){
+//            throw new SaveUserException();
+//        }catch (Exception e){
+//            throw new SaveUserException();
+//        }
 
-        userService.saveUser(user, UserRoles.USER);
+//InvocationTargetException
+
 
         model.addAttribute("Title", MessageConstants.TITLE_LOGIN_PAGE);
         model.addAttribute("message", String.format(

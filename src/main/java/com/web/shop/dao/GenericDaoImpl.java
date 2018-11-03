@@ -1,5 +1,10 @@
 package com.web.shop.dao;
 
+import com.web.shop.exceptions.SaveUserException;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
+
+import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.io.Serializable;
@@ -30,7 +35,7 @@ public class GenericDaoImpl <T, PK extends Serializable> implements GenericDao<T
         return (T) entityManager.find(persistentClass, key);
     }
 
-    public void create(T entity) {
+    public void create(T entity){
         entityManager.persist(entity);
     }
 

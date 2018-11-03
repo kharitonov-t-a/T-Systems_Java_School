@@ -23,14 +23,15 @@ public class ServiceLogger {
     @Around("serviceMethod()")
     public Object logServiceCall(ProceedingJoinPoint thisJoinPoint) throws Throwable {
         String methodName = thisJoinPoint.getSignature().getName();
+        String classsName = thisJoinPoint.getSignature().getDeclaringTypeName();
         Object[] methodArgs = thisJoinPoint.getArgs();
 
-        LOG.info("Call method " + methodName + " with args:");
+        LOG.info("Call method " + classsName + "." + methodName + " with args:");
         Arrays.stream(methodArgs).forEach(e -> LOG.info("ARGUMENT: " + e));
 
         Object result = thisJoinPoint.proceed();
 
-        LOG.info("Method " + methodName + " returns " + result);
+        LOG.info("Method " + classsName + "." + methodName + " returns " + result);
 
         return result;
     }

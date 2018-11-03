@@ -1,4 +1,4 @@
-package com.web.shop.service;
+package com.web.shop.service.transact;
 
 import com.web.shop.dto.UserProfileDTO;
 import com.web.shop.model.UserProfile;

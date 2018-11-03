@@ -1,4 +1,4 @@
-package com.web.shop.service;
+package com.web.shop.service.transact;
 
 import com.web.shop.dao.UserProfileDao;
 import com.web.shop.dto.UserProfileDTO;
@@ -6,12 +6,13 @@ import com.web.shop.model.UserProfile;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Service("userProfileService")
+@Service("userProfileServiceTransact")
 @Transactional
 public class UserProfileServiceImpl implements UserProfileService{
 
@@ -20,15 +21,18 @@ public class UserProfileServiceImpl implements UserProfileService{
     @Autowired
     UserProfileDao dao;
 
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public UserProfileDTO findById(int id) {
         return modelMapper.map(dao.findById(id), UserProfileDTO.class) ;
     }
 
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public UserProfileDTO findByRole(String type){
 
         return modelMapper.map( dao.findByRole(type), UserProfileDTO.class) ;
     }
 
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public List<UserProfileDTO> findAll() {
         List<UserProfile> listUserProfile = dao.findAll();
         List<UserProfileDTO> listUserProfileDTO= new ArrayList<>();

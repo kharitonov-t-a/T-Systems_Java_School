@@ -9,6 +9,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.web.servlet.HandlerExceptionResolver;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -17,10 +19,29 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 @Configuration
 @EnableAspectJAutoProxy
 @ComponentScan(basePackages = "com.web.shop")
 public class AppConfiguration extends WebMvcConfigurationSupport{
+
+//    @Bean
+//    HandlerExceptionResolver errorHandler () {
+//        return new HandlerExceptionResolver() {
+//            @Override
+//            public ModelAndView resolveException (HttpServletRequest request,
+//                                                  HttpServletResponse response,
+//                                                  Object handler,
+//                                                  Exception ex) {
+//                ModelAndView model = new ModelAndView("error-page");
+//                model.addObject("exceptionType", ex);
+//                model.addObject("handlerMethod", handler);
+//                return model;
+//            }
+//        };
+//    }
 
     @Autowired
     private UserRoleToUserProfileConverter userRoleToUserProfileConverter;

@@ -1,20 +1,14 @@
 package com.web.shop.validator;
 
 import com.web.shop.dto.UserDTO;
-import com.web.shop.security.CustomUserDetailsService;
 import com.web.shop.security.UserSecurityService;
-import com.web.shop.service.UserService;
+import com.web.shop.service.transact.UserService;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.FieldError;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class UniqueEmailValidator  implements ConstraintValidator<EnableUniqueEmailConstraint, Object>{
 

@@ -4,4 +4,16 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+
+    <!-- HTTP-error -->
+    <error-page>
+        <error-code>404</error-code>
+        <location>/pages/error/notfound.jsp</location>
+    </error-page>
+
+    <!--&lt;!&ndash; Exception &ndash;&gt;-->
+    <!--<error-page>-->
+        <!--<exception-type>java.lang.Exception</exception-type>-->
+        <!--<location>uncaught-error.jsp</location>-->
+    <!--</error-page>-->
 </web-app>

@@ -1,12 +1,9 @@
 package com.web.shop.controler;
 
 import com.web.shop.Constants.MessageConstants;
-import com.web.shop.security.CustomUserDetailsService;
 import com.web.shop.security.UserSecurityService;
-import com.web.shop.service.UserService;
+import com.web.shop.service.transact.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
