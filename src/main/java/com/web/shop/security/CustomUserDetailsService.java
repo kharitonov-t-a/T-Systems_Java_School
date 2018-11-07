@@ -3,10 +3,9 @@ package com.web.shop.security;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.web.shop.dto.UserDTO;
-import com.web.shop.dto.UserProfileDTO;
-import com.web.shop.service.front.UserServiceFront;
-import com.web.shop.service.transact.UserService;
+import com.web.shop.dto.Users.UserDTO;
+import com.web.shop.dto.Users.UserProfileDTO;
+import com.web.shop.service.transact.Users.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

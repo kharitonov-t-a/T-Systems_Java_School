@@ -1,5 +1,6 @@
 package com.web.shop.configuration;
 
+import com.web.shop.controler.GlobalExceptionHandler;
 import com.web.shop.converter.UserRoleToUserProfileConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -12,21 +13,27 @@ import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
+import org.springframework.web.servlet.config.annotation.*;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 @Configuration
 @EnableAspectJAutoProxy
 @ComponentScan(basePackages = "com.web.shop")
 public class AppConfiguration extends WebMvcConfigurationSupport{
 
+//    @Bean
+//    public WebMvcConfigurer adapter() {
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void configureHandlerExceptionResolvers(List<HandlerExceptionResolver> exceptionResolvers) {
+//                exceptionResolvers.add(new GlobalExceptionHandler());
+//            }
 //    @Bean
 //    HandlerExceptionResolver errorHandler () {
 //        return new HandlerExceptionResolver() {
@@ -35,7 +42,7 @@ public class AppConfiguration extends WebMvcConfigurationSupport{
 //                                                  HttpServletResponse response,
 //                                                  Object handler,
 //                                                  Exception ex) {
-//                ModelAndView model = new ModelAndView("error-page");
+//                ModelAndView model = new ModelAndView("error/exception");
 //                model.addObject("exceptionType", ex);
 //                model.addObject("handlerMethod", handler);
 //                return model;

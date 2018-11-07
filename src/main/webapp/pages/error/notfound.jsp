@@ -6,13 +6,16 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored = "false"%>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
-    <title>Title</title>
+    <%@ include file="/pages/head.jsp" %>
 </head>
 <body>
-    404
+<header class="header">
+    <div class="container" style="max-width: 800px;" id="content-profile-box">
+        <%@ include file="/resources/images/404_page.png" %>
+    </div>
+</header>
 </body>
 </html>

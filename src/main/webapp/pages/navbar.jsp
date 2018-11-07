@@ -36,7 +36,7 @@
                 </li>
             </ul>
         </sec:authorize>
-        <ul class="navbar-nav col-md-7 ml-md-auto order-first">
+        <ul class="navbar-nav col-md-7 ml-md-auto orderDTO-first">
             <li class="nav-item">
                 <a class="nav-link" href="#">About</a>
             </li>

@@ -152,30 +152,39 @@
       <artifactId>spring-aop</artifactId>
       <version>${springframework.version}</version>
     </dependency>
-
+    <!-- aspects (for logger) -->
     <dependency>
       <groupId>org.aspectj</groupId>
       <artifactId>aspectjtools</artifactId>
       <version>1.9.1</version>
     </dependency>
 
+    <!-- beanutils (for custom annotation) -->
     <dependency>
       <groupId>commons-beanutils</groupId>
       <artifactId>commons-beanutils</artifactId>
       <version>1.9.3</version>
     </dependency>
 
+    <!-- mapper DTO to Entity -->
     <dependency>
       <groupId>org.modelmapper</groupId>
       <artifactId>modelmapper</artifactId>
       <version>2.1.0</version>
     </dependency>
 
-
+    <!-- Logger -->
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
       <version>1.2.17</version>
+    </dependency>
+
+    <!-- lombok for @Getter @Setter -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>1.18.0</version>
     </dependency>
 
   </dependencies>

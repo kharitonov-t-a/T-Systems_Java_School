@@ -1,6 +1,6 @@
 package com.web.shop.security;
 
-import com.web.shop.model.enums.UserRoles;
+import com.web.shop.model.enums.UserRolesEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationTrustResolver;
 import org.springframework.security.core.Authentication;
@@ -28,7 +28,7 @@ public class UserSecurityService {
     }
 
 
-    public static boolean isCurrentUserInRole(UserRoles role) {
+    public static boolean isCurrentUserInRole(UserRolesEnum role) {
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication authentication = securityContext.getAuthentication();
         if (authentication != null) {

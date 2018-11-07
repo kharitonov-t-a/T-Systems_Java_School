@@ -1,8 +1,8 @@
 package com.web.shop.controler;
 
-import com.web.shop.Constants.MessageConstants;
+import com.web.shop.constants.MessageConstants;
 import com.web.shop.security.UserSecurityService;
-import com.web.shop.service.transact.UserService;
+import com.web.shop.service.transact.Users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

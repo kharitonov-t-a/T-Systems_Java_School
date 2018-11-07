@@ -10,9 +10,16 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <html>
 <head>
-    <title>Title</title>
+    <%@ include file="/pages/head.jsp"%>
 </head>
 <body>
-    ${exception}
+<%@ include file="/pages/navbar.jsp"%>
+<header class="header">
+    <div class="generic-container">
+        <h2 class="form-signin-heading">
+            ${exception}
+        </h2>
+    </div>
+</header>
 </body>
 </html>

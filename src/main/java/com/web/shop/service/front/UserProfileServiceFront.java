@@ -1,7 +1,7 @@
 package com.web.shop.service.front;
 
-import com.web.shop.dto.UserProfileDTO;
-import com.web.shop.service.transact.UserProfileService;
+import com.web.shop.dto.Users.UserProfileDTO;
+import com.web.shop.service.transact.Users.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

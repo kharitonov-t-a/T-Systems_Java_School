@@ -1,11 +1,9 @@
 package com.web.shop.service.front;
 
-import com.web.shop.dto.UserDTO;
+import com.web.shop.dto.Users.UserDTO;
 import com.web.shop.exceptions.SaveUserException;
-import com.web.shop.model.User;
-import com.web.shop.model.enums.UserRoles;
-import com.web.shop.service.transact.UserService;
-import com.web.shop.service.transact.UserServiceImpl;
+import com.web.shop.model.enums.UserRolesEnum;
+import com.web.shop.service.transact.Users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +50,7 @@ public class UserServiceFront implements UserService {
     }
 
     @Override
-    public void saveUser(UserDTO user, UserRoles role) throws SaveUserException {
+    public void saveUser(UserDTO user, UserRolesEnum role) throws SaveUserException {
         try {
             userServiceTransact.saveUser(user, role);
         }catch (Exception e){
