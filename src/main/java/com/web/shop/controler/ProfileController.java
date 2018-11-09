@@ -1,9 +1,9 @@
 package com.web.shop.controler;
 
 import com.web.shop.constants.MessageConstants;
-import com.web.shop.dto.Users.UserDTO;
+import com.web.shop.dto.users.UserDTO;
 import com.web.shop.security.UserSecurityService;
-import com.web.shop.service.transact.Users.UserService;
+import com.web.shop.service.interfaces.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -44,7 +44,7 @@ public class ProfileController {
     @RequestMapping(value = {"/userslist"}, method = RequestMethod.GET)
     public String listUsers(ModelMap model) {
 
-        List<UserDTO> users = userService.findAllUsers();
+        List<UserDTO> users = userService.findAll();
         model.addAttribute("users", users);
 
         model.addAttribute("message", MessageConstants.MESSAGE_USERLIST_PAGE);
@@ -155,7 +155,7 @@ public class ProfileController {
             return "registration/signup";
         }
 
-        userService.updateUser(user);
+        userService.update(user);
 
         return "done";
     }
@@ -201,7 +201,7 @@ public class ProfileController {
     @RequestMapping(value = {"/delete-user-{id}"}, method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteUser(@PathVariable String id, ModelMap model) {
         try {
-            userService.deleteUserById(Integer.parseInt(id));
+            userService.delete(Integer.parseInt(id));
             return ResponseEntity.noContent().build();
         } catch (Exception /*ResourceNotFoundException */ e) {
             return ResponseEntity.notFound().build();

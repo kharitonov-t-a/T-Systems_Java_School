@@ -1,8 +1,8 @@
 package com.web.shop.validator;
 
-import com.web.shop.dto.Users.UserDTO;
+import com.web.shop.dto.users.UserDTO;
 import com.web.shop.security.UserSecurityService;
-import com.web.shop.service.transact.Users.UserService;
+import com.web.shop.service.interfaces.users.UserService;
 import org.apache.commons.beanutils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 

@@ -1,6 +1,5 @@
 package com.web.shop.configuration;
 
-import com.web.shop.controler.GlobalExceptionHandler;
 import com.web.shop.converter.UserRoleToUserProfileConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -9,23 +8,19 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.format.FormatterRegistry;
-import org.springframework.web.servlet.HandlerExceptionResolver;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.ViewResolver;
-import org.springframework.web.servlet.config.annotation.*;
-import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.util.List;
-
+//@EnableWebMvc
 @Configuration
 @EnableAspectJAutoProxy
 @ComponentScan(basePackages = "com.web.shop")
-public class AppConfiguration extends WebMvcConfigurationSupport{
+public class AppConfiguration extends WebMvcConfigurationSupport {
+
 
 //    @Bean
 //    public WebMvcConfigurer adapter() {

@@ -17,7 +17,7 @@
 <header class="header">
     <div class="container" style="max-width: 800px;" id="content-profile-box">
 
-        <%--@elvariable id="productsCategoryDTO" type="com.web.shop.dto.Products.ProductsCategoryDTO"--%>
+        <%--@elvariable id="productsCategoryDTO" type="com.web.shop.dto.products.ProductsCategoryDTO"--%>
         <form:form modelAttribute="productsCategoryDTO" method="post" class="form-horizontal">
 
             <h2 class="form-signin-heading">

@@ -1,10 +1,10 @@
 package com.web.shop.controler;
 
 import com.web.shop.constants.MessageConstants;
-import com.web.shop.dto.Users.UserDTO;
+import com.web.shop.dto.users.UserDTO;
 import com.web.shop.exceptions.SaveUserException;
 import com.web.shop.model.enums.UserRolesEnum;
-import com.web.shop.service.transact.Users.UserService;
+import com.web.shop.service.interfaces.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
@@ -56,7 +56,7 @@ public class RegistrationController {
             return "registration/signup";
         }
 //        try {
-            userService.saveUser(user, UserRolesEnum.USER);
+            userService.create(user, UserRolesEnum.USER);
 //        }catch (SaveUserException e){
 //            throw new SaveUserException();
 //        }catch (Exception e){

@@ -12,6 +12,8 @@
 <head>
     <%@ include file="/pages/head.jsp"%>
     <script src="<c:url value="/resources/js/profile.js" />"></script>
+    <script src="<c:url value="/resources/js/characteristicType.js" />"></script>
+    <script src="<c:url value="/resources/js/productCharacteristic.js" />"></script>
 </head>
 <body>
 <%@ include file="/pages/navbar.jsp"%>
@@ -33,6 +35,18 @@
                     </a>
                     <a href="<c:url value="/formDeleteCategory" />" class="list-group-item list-group-item-action">
                         Delete products category
+                    </a>
+                    <a href="<c:url value="/formCharacteristicType" />" class="list-group-item list-group-item-action">
+                        Create product Characteristic
+                    </a>
+                    <a href="<c:url value="/formDeleteCharacteristicType" />" class="list-group-item list-group-item-action">
+                        Delete product Characteristic
+                    </a>
+                    <a href="<c:url value="/formProduct" />" class="list-group-item list-group-item-action">
+                        Create product
+                    </a>
+                    <a href="<c:url value="/formDeleteProduct" />" class="list-group-item list-group-item-action">
+                        Delete product
                     </a>
                     <a href="<c:url value="/userslist" />" class="list-group-item list-group-item-action" id="get-users-list-box">
                         Users list for admin

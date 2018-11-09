@@ -17,11 +17,7 @@ public class GenericDaoImpl <T, PK extends Serializable> implements GenericDao<T
 
     @SuppressWarnings("unchecked")
     public GenericDaoImpl(){
-//        this.persistentClass =(Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
-    }
-
-    public final void setPersistentClass( Class< T > persistentClass ){
-        this.persistentClass = persistentClass;
+        this.persistentClass =(Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[0];
     }
 
     @PersistenceContext
