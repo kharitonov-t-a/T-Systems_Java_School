@@ -23,6 +23,8 @@ public interface ProductsCategoryService extends GenericService<ProductsCategory
     List<ProductsCategoryDTO> checkModLeftLevel() throws CheckProductsCategoryException;
     List<ProductsCategoryDTO> checkNotUniqueNods() throws CheckProductsCategoryException;
 
+    List<ProductsCategoryDTO> findSlaveNodes(Integer leftKey, Integer rightKey);
+
 //    ProductsCategoryDTO findById(Integer id);
 //    List<ProductsCategoryDTO> findAll();
 //    void create(ProductsCategoryDTO productsCategoryDTO) throws CheckProductsCategoryException;

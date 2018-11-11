@@ -48,7 +48,7 @@ public class Order implements Serializable {
     @Enumerated(EnumType.STRING)
     private OrderStatusEnum orderStatusEnum;
 
-    @OneToMany(mappedBy="order", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="order", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<OrderProduct> orderProducts;
 
     public Integer getId() {
@@ -115,17 +115,17 @@ public class Order implements Serializable {
         this.orderProducts = orderProducts;
     }
 
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", user=" + user +
-                ", address=" + address +
-                ", paymentEnum=" + paymentEnum +
-                ", deliveryEnum=" + deliveryEnum +
-                ", paymentStatusEnum=" + paymentStatusEnum +
-                ", orderStatusEnum=" + orderStatusEnum +
-                ", orderProducts=" + orderProducts +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Order{" +
+//                "id=" + id +
+//                ", user=" + user +
+//                ", address=" + address +
+//                ", paymentEnum=" + paymentEnum +
+//                ", deliveryEnum=" + deliveryEnum +
+//                ", paymentStatusEnum=" + paymentStatusEnum +
+//                ", orderStatusEnum=" + orderStatusEnum +
+//                ", orderProducts=" + orderProducts +
+//                '}';
+//    }
 }

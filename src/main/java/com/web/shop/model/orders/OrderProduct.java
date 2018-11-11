@@ -31,6 +31,9 @@ public class OrderProduct implements Serializable {
     @NotBlank
     private Double price;
 
+//    @Column(name = "Count", length = 10)
+//    private Integer count;
+
     public Integer getId() {
         return id;
     }
@@ -63,13 +66,22 @@ public class OrderProduct implements Serializable {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "OrderProduct{" +
-                "id=" + id +
-                ", order=" + order +
-                ", product=" + product +
-                ", price=" + price +
-                '}';
-    }
+//    public Integer getCount() {
+//        return count;
+//    }
+
+//    public void setCount(Integer count) {
+//        this.count = count;
+//    }
+
+//    @Override
+//    public String toString() {
+//        return "OrderProduct{" +
+//                "id=" + id +
+//                ", order=" + order +
+//                ", product=" + product +
+//                ", price=" + price +
+////                ", count=" + count +
+//                '}';
+//    }
 }

@@ -28,6 +28,11 @@ public class ProductsCategoryServiceFront implements ProductsCategoryService {
         return productsCategoryServiceTransact.findSlaveNodesById(id);
     }
 
+    @Override
+    public List<ProductsCategoryDTO> findSlaveNodes(Integer leftKey, Integer rightKey) {
+        return productsCategoryServiceTransact.findSlaveNodes(leftKey, rightKey);
+    }
+
     public List<ProductsCategoryDTO> findParentBranchById(Integer id) {
         return productsCategoryServiceTransact.findParentBranchById(id);
     }
@@ -73,6 +78,7 @@ public class ProductsCategoryServiceFront implements ProductsCategoryService {
             throw new CheckProductsCategoryException(CheckProductsCategoryExceptionMessage.NOT_UNIQUE_NODS, listProductsCategoryDTO);
         return listProductsCategoryDTO;
     }
+
 
     public boolean checkIntegrityTree() throws CheckProductsCategoryException {
         checkLeftMoreRight();

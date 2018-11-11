@@ -2,6 +2,7 @@ package com.web.shop.dto.products;
 
 import com.web.shop.model.enums.CharacteristicTypeEnum;
 import com.web.shop.model.products.CheckboxCharacteristicNameValues;
+import com.web.shop.model.products.ProductCharacteristic;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -17,6 +18,18 @@ public class ProductCharacteristicTypeDTO implements Serializable {
 
     public ProductCharacteristicTypeDTO() {
     }
+
+//    @Override
+//    public String toString() {
+//        return "ProductCharacteristicTypeDTO{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", measure='" + measure + '\'' +
+//                ", characteristicType=" + characteristicType +
+//                ", checkboxCharacteristicNameValues=" + checkboxCharacteristicNameValues +
+//                ", productCharacteristics=" + productCharacteristics +
+//                '}';
+//    }
 
     public interface ValidationDelete {
     }
@@ -35,8 +48,10 @@ public class ProductCharacteristicTypeDTO implements Serializable {
 
     private CharacteristicTypeEnum characteristicType;
 
-    private List<String> checkboxCharacteristicNameValuesString;
     private List<CheckboxCharacteristicNameValuesDTO> checkboxCharacteristicNameValues;
+
+    private List<ProductCharacteristicDTO> productCharacteristics;
+
 
     public Integer getId() {
         return id;
@@ -70,15 +85,6 @@ public class ProductCharacteristicTypeDTO implements Serializable {
         this.characteristicType = characteristicType;
     }
 
-    public List<String> getCheckboxCharacteristicNameValuesString() {
-        return checkboxCharacteristicNameValuesString;
-    }
-
-    public void setCheckboxCharacteristicNameValuesString(List<String> checkboxCharacteristicNameValuesString) {
-        this.checkboxCharacteristicNameValuesString = checkboxCharacteristicNameValuesString;
-    }
-
-
     public List<CheckboxCharacteristicNameValuesDTO> getCheckboxCharacteristicNameValues() {
         return checkboxCharacteristicNameValues;
     }
@@ -87,14 +93,12 @@ public class ProductCharacteristicTypeDTO implements Serializable {
         this.checkboxCharacteristicNameValues = checkboxCharacteristicNameValues;
     }
 
-    @Override
-    public String toString() {
-        return "ProductCharacteristicTypeDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", characteristicType=" + characteristicType +
-                ", measure='" + measure + '\'' +
-                ", checkboxCharacteristicNameValuesString=" + checkboxCharacteristicNameValuesString +
-                '}';
+    public List<ProductCharacteristicDTO> getProductCharacteristics() {
+        return productCharacteristics;
     }
+
+    public void setProductCharacteristics(List<ProductCharacteristicDTO> productCharacteristics) {
+        this.productCharacteristics = productCharacteristics;
+    }
+
 }

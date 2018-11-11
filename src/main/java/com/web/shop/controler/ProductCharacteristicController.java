@@ -64,7 +64,7 @@ public class ProductCharacteristicController {
 
         productCharacteristicService.create(productCharacteristicDTO);
 
-        redirectAttrs.addFlashAttribute("productId", productCharacteristicDTO.getProductId());
+        redirectAttrs.addFlashAttribute("productId", productCharacteristicDTO.getProduct().getId());
 
         return "redirect:/formProductCharacteristic";
     }

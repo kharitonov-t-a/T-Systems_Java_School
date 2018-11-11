@@ -1,9 +1,12 @@
 package com.web.shop.dto.products;
 
+import com.web.shop.model.products.Product;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 
 public class ProductsCategoryDTO implements Serializable {
 
@@ -14,11 +17,26 @@ public class ProductsCategoryDTO implements Serializable {
     public ProductsCategoryDTO() {
     }
 
+//    @Override
+//    public String toString() {
+//        return "ProductsCategoryDTO{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", parent=" + parent +
+//                ", leftKey=" + leftKey +
+//                ", rightKey=" + rightKey +
+//                ", level=" + level +
+//                ", productList=" + productList +
+//                '}';
+//    }
+
+
     public interface ValidationDelete {
     }
 
     public interface ValidationCreate {
     }
+
 
     @Min(value = 2, groups={ValidationDelete.class})
     private Integer id;
@@ -35,6 +53,8 @@ public class ProductsCategoryDTO implements Serializable {
     private Integer rightKey = 0;
 
     private Integer level = 0;
+
+    private List<ProductDTO> productList;
 
     public Integer getId() {
         return id;
@@ -84,15 +104,14 @@ public class ProductsCategoryDTO implements Serializable {
         this.level = level;
     }
 
-    @Override
-    public String toString() {
-        return "ProductsCategoryDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", parent=" + parent +
-                ", leftKey=" + leftKey +
-                ", rightKey=" + rightKey +
-                ", level=" + level +
-                '}';
+
+    public List<ProductDTO> getProductList() {
+        return productList;
     }
+
+    public void setProductList(List<ProductDTO> productList) {
+        this.productList = productList;
+    }
+
+
 }

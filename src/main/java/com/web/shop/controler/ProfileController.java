@@ -1,8 +1,11 @@
 package com.web.shop.controler;
 
 import com.web.shop.constants.MessageConstants;
+import com.web.shop.dto.products.ProductsCategoryDTO;
 import com.web.shop.dto.users.UserDTO;
 import com.web.shop.security.UserSecurityService;
+import com.web.shop.service.front.products.ProductsCategoryServiceFront;
+import com.web.shop.service.interfaces.products.ProductsCategoryService;
 import com.web.shop.service.interfaces.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +23,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/")
 public class ProfileController {
+
+
 
     @ModelAttribute("Title")
     public String getTitle() {

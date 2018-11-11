@@ -1,6 +1,7 @@
 package com.web.shop.controler;
 
 import com.web.shop.exceptions.CheckProductsCategoryException;
+import com.web.shop.exceptions.NoProductsInStockException;
 import com.web.shop.exceptions.SaveUserException;
 import org.hibernate.annotations.Check;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,14 @@ public class ExceptionHandlingController {
         model.addAttribute("exceptionMessage", exception.getMessage());
         model.addAttribute("listProductsCategoryDTO", exception.getListProductsCategoryDTO());
         return "error/productsCategoryException";
+    }
+
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NoProductsInStockException.class)
+    public String noProductsInStockException(NoProductsInStockException exception, Model model) {
+        model.addAttribute("exceptionMessage", exception.getMessage());
+        model.addAttribute("productDTO", exception.getProductDTO());
+        return "error/noProductsInStock";
     }
 
 

@@ -60,7 +60,7 @@ public class User implements Serializable {
     @OneToMany(mappedBy="user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Order> orders;
 
-    @OneToMany(mappedBy="user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy="user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Address> addresses;
 
 //    public User(UserRole userRoleID, String firstName, String surnName, Date birthDay, String eMail, String password){
@@ -71,10 +71,6 @@ public class User implements Serializable {
 //        this.eMail = eMail;
 //        this.password = password;
 //    }
-
-    public User() {
-
-    }
 
     public Integer getId() {
         return id;
@@ -133,12 +129,34 @@ public class User implements Serializable {
     }
 
 
-    @Override
-    public String toString() {
-        StringBuilder userProfilesString = new StringBuilder();
-        userProfiles.parallelStream().forEach(e -> userProfilesString.append(e.getRole() + ", "));
-        return "User [id=" + id + ", firstName=" + firstName +
-                ", surnName=" + surnName + ", birthday=" + birthday + ", eMail=" + email +
-                ", password=" + password + ", roles:" + userProfilesString + "]";
+    public List<Order> getOrders() {
+        return orders;
     }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "id=" + id +
+//                ", firstName='" + firstName + '\'' +
+//                ", surnName='" + surnName + '\'' +
+//                ", birthday=" + birthday +
+//                ", email='" + email + '\'' +
+//                ", password='" + password + '\'' +
+//                ", userProfiles=" + userProfiles +
+//                ", orders=" + orders +
+//                ", addresses=" + addresses +
+//                '}';
+//    }
 }

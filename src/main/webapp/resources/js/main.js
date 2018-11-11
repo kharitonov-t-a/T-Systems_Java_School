@@ -17,17 +17,39 @@ $(document).ready(function () {
         });
     });
 
-    /*------------------------------------- profile.jsp -----------------------------------------------------*/
+    /*------------------------------------- listProduct.jsp -----------------------------------------------------*/
+    $("div.product-action button.addProduct").on("click",function(clickEvent){
+        clickEvent.preventDefault();
+        var button = $(this);
+        $.ajax({
+            url: $(this).attr("href"),
+            type: 'GET',
+            data: { productId: $(this).attr("attrIdProduct")},
+            success: function (data) {
+                $(button).closest('.single-product').find('img')
+                    .clone()
+                    .css({'position' : 'absolute', 'z-index' : '11100', top: $(button).offset().top-300, left:$(button).offset().left-100})
+                    .appendTo("body")
+                    .animate({opacity: 0.05,
+                        left: $(".cd-cart-container").offset()['left'],
+                        top: $(".cd-cart-container").offset()['top'],
+                        width: 20}, 1000, function() {
+                        // $(button).remove();
+                    });
+            },
+            error: function(data){
+                // if ($(data.responseText).find('div#error') != null) {
+                    $('div#error').html($(data.responseText));
+                    $('div#alertStock').modal({
+                        backdrop: true
+                    });
+                // }
+
+            }
+
+        });
 
 
 
-
-
-
-
-
-
-
-
-
+    });
 })

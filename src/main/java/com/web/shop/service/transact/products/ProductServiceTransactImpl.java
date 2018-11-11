@@ -32,12 +32,12 @@ public class ProductServiceTransactImpl extends GenericServiceTransactImpl<Produ
 //
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void create(ProductDTO productDTO) {
-        if(productDTO.getProductsCategory() == null)
-            productDTO.setProductsCategory(new ProductsCategoryDTO(productDTO.getProductsCategoryId()));
+//        if(productDTO.getProductsCategory() == null)
+//            productDTO.setProductsCategory(new ProductsCategoryDTO(productDTO.getProductsCategoryId()));
 //            productDTO.setProductsCategory(modelMapper.map(productsCategoryDao.findById(productDTO.getProductsCategoryId()), ProductsCategoryDTO.class));
-        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-        modelMapper.typeMap(ProductDTO.class, Product.class)
-                .addMappings(m -> m.map(src -> src.getProductsCategory(), Product::setProductsCategory));
+//        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+//        modelMapper.typeMap(ProductDTO.class, Product.class)
+//                .addMappings(m -> m.map(src -> src.getProductsCategory(), Product::setProductsCategory));
 
         Product product = modelMapper.map(productDTO, Product.class);
         dao.create(product);

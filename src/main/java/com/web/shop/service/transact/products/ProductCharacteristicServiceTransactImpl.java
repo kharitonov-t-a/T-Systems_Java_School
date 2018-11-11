@@ -32,17 +32,17 @@ public class ProductCharacteristicServiceTransactImpl extends GenericServiceTran
 
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void create(ProductCharacteristicDTO productCharacteristicDTO) {
-        productCharacteristicDTO.setProductCharacteristicType(productCharacteristicTypeService.findById(productCharacteristicDTO.getProductCharacteristicTypeId()));
-        productCharacteristicDTO.setProduct(productService.findById(productCharacteristicDTO.getProductId()));
+//        productCharacteristicDTO.setProductCharacteristicType(productCharacteristicDTO.getProductCharacteristicType());
+//        productCharacteristicDTO.setProduct(productCharacteristicDTO.getProduct());
         productCharacteristicDTO.setId(null);
 
-        List<CheckboxCharacteristicValuesDTO> checkboxCharacteristicValues = new ArrayList<>();
-        productCharacteristicDTO.getCheckboxCharacteristicValuesInteger().forEach((i)-> {
-            CheckboxCharacteristicValuesDTO checkboxCharacteristicValuesDTO = new CheckboxCharacteristicValuesDTO(i);
-            checkboxCharacteristicValuesDTO.setProductCharacteristic(productCharacteristicDTO);
-            checkboxCharacteristicValues.add(checkboxCharacteristicValuesDTO);
-        });
-        productCharacteristicDTO.setCheckboxCharacteristicValues(checkboxCharacteristicValues);
+//        List<CheckboxCharacteristicValuesDTO> checkboxCharacteristicValues = new ArrayList<>();
+//        productCharacteristicDTO.getCheckboxCharacteristicValuesInteger().forEach((i)-> {
+//            CheckboxCharacteristicValuesDTO checkboxCharacteristicValuesDTO = new CheckboxCharacteristicValuesDTO(i);
+//            checkboxCharacteristicValuesDTO.setProductCharacteristic(productCharacteristicDTO);
+//            checkboxCharacteristicValues.add(checkboxCharacteristicValuesDTO);
+//        });
+//        productCharacteristicDTO.setCheckboxCharacteristicValues(checkboxCharacteristicValues);
 
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
         modelMapper.typeMap(ProductCharacteristicDTO.class, ProductCharacteristic.class)

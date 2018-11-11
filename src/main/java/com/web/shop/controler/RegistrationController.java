@@ -1,9 +1,12 @@
 package com.web.shop.controler;
 
 import com.web.shop.constants.MessageConstants;
+import com.web.shop.dto.products.ProductsCategoryDTO;
 import com.web.shop.dto.users.UserDTO;
 import com.web.shop.exceptions.SaveUserException;
 import com.web.shop.model.enums.UserRolesEnum;
+import com.web.shop.service.front.products.ProductsCategoryServiceFront;
+import com.web.shop.service.interfaces.products.ProductsCategoryService;
 import com.web.shop.service.interfaces.users.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -14,6 +17,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.List;
 
 @Controller
 @RequestMapping(/*"/signup"*/)

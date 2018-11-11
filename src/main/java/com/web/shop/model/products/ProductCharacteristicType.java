@@ -36,10 +36,10 @@ public class ProductCharacteristicType implements Serializable {
     @Enumerated(EnumType.STRING)
     private CharacteristicTypeEnum characteristicType;
 
-    @OneToMany(mappedBy="productCharacteristicType", fetch = FetchType.LAZY, cascade = CascadeType.ALL) //EAGER
+    @OneToMany(mappedBy="productCharacteristicType", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<CheckboxCharacteristicNameValues> checkboxCharacteristicNameValues;
 
-    @OneToMany(mappedBy="productCharacteristicType", fetch = FetchType.LAZY, cascade = CascadeType.ALL) //EAGER
+    @OneToMany(mappedBy="productCharacteristicType", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<ProductCharacteristic> productCharacteristics;
 
     public Integer getId() {
@@ -95,16 +95,16 @@ public class ProductCharacteristicType implements Serializable {
         this.productCharacteristics = productCharacteristics;
     }
 
-    @Override
-    public String toString() {
-        return "ProductCharacteristicType{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", measure='" + measure + '\'' +
-                ", characteristicType=" + characteristicType +
-                ", checkboxCharacteristicNameValues=" + checkboxCharacteristicNameValues +
-                '}';
-    }
 
-
+//    @Override
+//    public String toString() {
+//        return "ProductCharacteristicType{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", measure='" + measure + '\'' +
+//                ", characteristicType=" + characteristicType +
+//                ", checkboxCharacteristicNameValues=" + checkboxCharacteristicNameValues +
+//                ", productCharacteristics=" + productCharacteristics +
+//                '}';
+//    }
 }

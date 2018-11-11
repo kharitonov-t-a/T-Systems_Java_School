@@ -28,7 +28,7 @@ public class ProductCharacteristic implements Serializable {
     @JoinColumn(name = "ProductId", nullable = false)
     private Product product;
 
-    @OneToMany(mappedBy="productCharacteristic", fetch = FetchType.LAZY, cascade = CascadeType.ALL) //EAGER
+    @OneToMany(mappedBy="productCharacteristic", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<CheckboxCharacteristicValues> checkboxCharacteristicValues;
 
     @Column(name = "booleanCharacteristicValue")
@@ -107,17 +107,17 @@ public class ProductCharacteristic implements Serializable {
         this.stringCharacteristicValue = stringCharacteristicValue;
     }
 
-    @Override
-    public String toString() {
-        return "ProductCharacteristic{" +
-                "id=" + id +
-                ", productCharacteristicType=" + productCharacteristicType +
-                ", product=" + product +
-                ", checkboxCharacteristicValues=" + checkboxCharacteristicValues +
-                ", booleanCharacteristicValue=" + booleanCharacteristicValue +
-                ", doubleCharacteristicValue=" + doubleCharacteristicValue +
-                ", integerCharacteristicValue=" + integerCharacteristicValue +
-                ", stringCharacteristicValue='" + stringCharacteristicValue + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "ProductCharacteristic{" +
+//                "id=" + id +
+//                ", productCharacteristicType=" + productCharacteristicType +
+//                ", product=" + product +
+//                ", checkboxCharacteristicValues=" + checkboxCharacteristicValues +
+//                ", booleanCharacteristicValue=" + booleanCharacteristicValue +
+//                ", doubleCharacteristicValue=" + doubleCharacteristicValue +
+//                ", integerCharacteristicValue=" + integerCharacteristicValue +
+//                ", stringCharacteristicValue='" + stringCharacteristicValue + '\'' +
+//                '}';
+//    }
 }

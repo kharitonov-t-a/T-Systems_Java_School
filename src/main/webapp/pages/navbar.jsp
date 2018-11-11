@@ -6,52 +6,67 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored = "false"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
-<nav class="navbar navbar-expand-lg fixed-top">
-    <a class="navbar-brand" href="/">
-        Home
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <sec:authorize access="!isAuthenticated()">
-            <ul class="navbar-nav ml-md-auto first-nav-element-incollapse">
-                <li class="nav-item">
-                    <a class="btn btn-success nav-btn" href="<c:url value="/signup" />" role="button">SIGN UP</a>
+<div id='nuvebar'>
+    <ul id="nuvigate">
+        <li><a href='/'>Home</a></li>
+        <li class='rootCutalog'><a href='/listProduct/1/0'>Root</a>
+            <c:set var="level" value="${1}"/>
+            <c:forEach items="${allProductsCategoryForNavBar}" var="productsCategoryDTO">
+            <c:choose>
+            <c:when test="${productsCategoryDTO.level == level + 1 }">
+            <ul>
+                <li><a href='/listProduct/${productsCategoryDTO.id}/0'>${productsCategoryDTO.name}</a>
+                    <c:set var="level" value="${level + 1}"/>
+            </c:when>
+            <c:when test="${productsCategoryDTO.level < level}">
+                <c:forEach begin="${productsCategoryDTO.level}" end="${level - 1}">
+                    </li>
+                </ul>
+                </c:forEach>
+                <c:set var="level" value="${productsCategoryDTO.level}"/>
+                    </li>
+                 <li><a href='/listProduct/${productsCategoryDTO.id}/0'>${productsCategoryDTO.name}</a>
+            </c:when>
+            <c:when test="${productsCategoryDTO.level == level}">
                 </li>
-                <li class="nav-item">
-                    <a class="btn btn-success nav-btn" href="<c:url value="/login" />" role="button">LOG IN</a>
+            <li><a href='/listProduct/${productsCategoryDTO.id}/0'>${productsCategoryDTO.name}</a>
+            </c:when>
+            </c:choose>
+            </c:forEach>
+
+            <c:if test="${level > 0}">
+            <c:forEach begin="${2}" end="${level}">
                 </li>
             </ul>
+            </c:forEach>
+    </c:if>
+    </li>
+    <li><a href='#'>Delivery</a></li>
+    <li><a href='#'>Payment</a></li>
+    </ul>
+
+    <ul id="authorize">
+        <sec:authorize access="!isAuthenticated()">
+            <li>
+                <a class="btn-success nav-btn" href="<c:url value="/signup" />" role="button">SIGN UP</a>
+            </li>
+            <li>
+                <a class="btn-success nav-btn" href="<c:url value="/login" />" role="button">LOG IN</a>
+            </li>
         </sec:authorize>
         <sec:authorize access="isAuthenticated()">
-            <ul class="navbar-nav ml-md-auto first-nav-element-incollapse">
-                <li class="nav-item">
-                    <a class="btn btn-warning nav-btn" href="<c:url value="/profile" />" role="button">User profile: <sec:authentication property="principal.username" /></a>
-                </li>
-                <li class="nav-item">
-                    <a class="btn btn-warning nav-btn" href="<c:url value="/logout" />" role="button">Exit</a>
-                </li>
-            </ul>
+            <li>
+                <a class="btn-warning nav-btn" href="<c:url value="/profile" />" role="button">User profile:
+                    <sec:authentication property="principal.username"/></a>
+            </li>
+            <li>
+                <a class="btn-warning nav-btn" href="<c:url value="/logout" />" role="button">Exit</a>
+            </li>
         </sec:authorize>
-        <ul class="navbar-nav col-md-7 ml-md-auto orderDTO-first">
-            <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="#">Portfolio</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="#">Team</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="#">Post</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link " href="#">Contact</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+    </ul>
+
+</div>
+<a href="/checkoutOrder" class="cd-cart-container"><img src="<c:url value="/resources/images/cart.png" />" alt=""></a>
+

@@ -26,9 +26,11 @@ public class UserProfileDTO implements Serializable {
         this.role = role;
     }
 
-    @Override
-    public String toString() {
-        return "UserProfile [id=" + id + ", type=" + role + "]";
-    }
-
+//    @Override
+//    public String toString() {
+//        return "UserProfileDTO{" +
+//                "id=" + id +
+//                ", role='" + role + '\'' +
+//                '}';
+//    }
 }

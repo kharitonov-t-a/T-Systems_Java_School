@@ -38,7 +38,7 @@ public class Product implements Serializable {
 //    @NotBlank
     private Integer stockQuantity;
 
-    @OneToMany(mappedBy="product", fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy="product", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<ProductCharacteristic> productCharacteristic;
 
     @OneToMany(mappedBy="product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -100,16 +100,16 @@ public class Product implements Serializable {
         this.orderProducts = orderProducts;
     }
 
-    @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", productsCategory=" + productsCategory +
-                ", stockQuantity=" + stockQuantity +
-                ", productCharacteristic=" + productCharacteristic +
-                ", orderProducts=" + orderProducts +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "Product{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", price=" + price +
+//                ", productsCategory=" + productsCategory +
+//                ", stockQuantity=" + stockQuantity +
+//                ", productCharacteristic=" + productCharacteristic +
+//                ", orderProducts=" + orderProducts +
+//                '}';
+//    }
 }

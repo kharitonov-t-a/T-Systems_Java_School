@@ -33,7 +33,12 @@ public class ProductsCategoryServiceTransactImpl extends GenericServiceTransactI
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public List<ProductsCategoryDTO> findSlaveNodesById(Integer id) {
         ProductsCategory productsCategory = dao.findById(id);
-        return modelMapper.mapListsEntityToDTO(dao.findSlaveNodes(productsCategory.getLeftKey(), productsCategory.getRightKey()), ProductsCategoryDTO.class);
+        return findSlaveNodes(productsCategory.getLeftKey(), productsCategory.getRightKey());
+    }
+
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    public List<ProductsCategoryDTO> findSlaveNodes(Integer leftKey, Integer rightKey) {
+        return modelMapper.mapListsEntityToDTO(dao.findSlaveNodes(leftKey, rightKey), ProductsCategoryDTO.class);
     }
 
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
@@ -106,5 +111,6 @@ public class ProductsCategoryServiceTransactImpl extends GenericServiceTransactI
     public List<ProductsCategoryDTO> checkNotUniqueNods() {
         return modelMapper.mapListsEntityToDTO(dao.selectNotUniqueNods(), ProductsCategoryDTO.class);
     }
+
 
 }

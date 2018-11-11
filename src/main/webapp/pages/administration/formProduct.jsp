@@ -58,9 +58,9 @@
             </div>
 
             <div class="row">
-                <label class="col-md-3 control-lable" for="productsCategoryId">Product category</label>
+                <label class="col-md-3 control-lable" for="productsCategory.id">Product category</label>
                 <div class="form-group col-md-12">
-                    <form:select path="productsCategoryId" class="custom-select" name="id">
+                    <form:select path="productsCategory.id" class="custom-select" name="id">
                         <c:forEach var="field" items="${listProductsCategoryDTO}">
                             <form:option value="${field.id}">
                                 <c:forEach var="space" begin="1" end="${field.level}">
@@ -71,7 +71,7 @@
                         </c:forEach>
                     </form:select>
                     <div class="has-error">
-                        <form:errors path="productsCategoryId" class="help-inline"/>
+                        <form:errors path="productsCategory.id" class="help-inline"/>
                     </div>
                 </div>
             </div>

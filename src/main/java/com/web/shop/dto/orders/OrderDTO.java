@@ -6,15 +6,21 @@ import com.web.shop.model.enums.DeliveryEnum;
 import com.web.shop.model.enums.OrderStatusEnum;
 import com.web.shop.model.enums.PaymentEnum;
 import com.web.shop.model.enums.PaymentStatusEnum;
+import com.web.shop.model.orders.OrderProduct;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
+import java.util.List;
 
 public class OrderDTO implements Serializable {
 
     private Integer id;
 
+    @NotEmpty
     private UserDTO user;
 
+    @Valid
     private AddressDTO address;
 
     private PaymentEnum paymentEnum;
@@ -24,6 +30,8 @@ public class OrderDTO implements Serializable {
     private PaymentStatusEnum paymentStatusEnum;
 
     private OrderStatusEnum orderStatusEnum;
+
+    private List<OrderProductDTO> orderProducts;
 
     public Integer getId() {
         return id;
@@ -81,16 +89,28 @@ public class OrderDTO implements Serializable {
         this.orderStatusEnum = orderStatusEnum;
     }
 
-    @Override
-    public String toString() {
-        return "OrderDTO{" +
-                "id=" + id +
-                ", user=" + user +
-                ", address=" + address +
-                ", paymentEnum=" + paymentEnum +
-                ", deliveryEnum=" + deliveryEnum +
-                ", paymentStatusEnum=" + paymentStatusEnum +
-                ", orderStatusEnum=" + orderStatusEnum +
-                '}';
+    public List<OrderProductDTO> getOrderProducts() {
+        return orderProducts;
     }
+    public void setOrderProductToList(OrderProductDTO orderProductDTO) {
+        this.orderProducts.add(orderProductDTO);
+    }
+
+    public void setOrderProducts(List<OrderProductDTO> orderProducts) {
+        this.orderProducts = orderProducts;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "OrderDTO{" +
+//                "id=" + id +
+//                ", user=" + user +
+//                ", address=" + address +
+//                ", paymentEnum=" + paymentEnum +
+//                ", deliveryEnum=" + deliveryEnum +
+//                ", paymentStatusEnum=" + paymentStatusEnum +
+//                ", orderStatusEnum=" + orderStatusEnum +
+//                ", orderProducts=" + orderProducts +
+//                '}';
+//    }
 }

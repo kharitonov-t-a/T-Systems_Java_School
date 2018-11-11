@@ -6,7 +6,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
 
-public class CheckboxCharacteristicNameValuesDTO implements Serializable {
+public class   CheckboxCharacteristicNameValuesDTO implements Serializable {
 
     private Integer id;
 
@@ -38,12 +38,12 @@ public class CheckboxCharacteristicNameValuesDTO implements Serializable {
         this.productCharacteristicType = productCharacteristicType;
     }
 
-    @Override
-    public String toString() {
-        return "CheckboxCharacteristicNameValues{" +
-                "id=" + id +
-                ", value='" + value + '\'' +
-                ", productCharacteristicType=" + productCharacteristicType +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "CheckboxCharacteristicNameValuesDTO{" +
+//                "id=" + id +
+//                ", value='" + value + '\'' +
+//                ", productCharacteristicType=" + productCharacteristicType +
+//                '}';
+//    }
 }

@@ -2,8 +2,8 @@ package com.web.shop.model.enums;
 
 public enum PaymentEnum {
 
-    CASH("1"),
-    BANK_CARD("2");
+    CASH("Cash"),
+    BANK_CARD("Bank card");
 
     String payment;
 
@@ -11,4 +11,11 @@ public enum PaymentEnum {
         this.payment = payment;
     }
 
+    public String getPayment() {
+        return payment;
+    }
+
+    public void setPayment(String payment) {
+        this.payment = payment;
+    }
 }

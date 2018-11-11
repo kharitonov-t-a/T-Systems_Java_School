@@ -60,8 +60,6 @@ public class Address implements Serializable {
     @OneToMany(mappedBy="address", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     private List<Order> orders;
 
-    public Address(){}
-
     public Integer getId() {
         return id;
     }
@@ -126,11 +124,26 @@ public class Address implements Serializable {
         this.user = user;
     }
 
-    @Override
-    public String toString() {
-        return "User [id=" + id + ", country=" + country + ", city=" + city +
-                ", zip=" + zip + ", street=" + street + ", house=" + house +
-                ", flat=" + flat + ", userId=" + user.getId() + "]";
+    public List<Order> getOrders() {
+        return orders;
     }
 
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "Address{" +
+//                "id=" + id +
+//                ", country='" + country + '\'' +
+//                ", city='" + city + '\'' +
+//                ", zip=" + zip +
+//                ", street='" + street + '\'' +
+//                ", house=" + house +
+//                ", flat=" + flat +
+//                ", user=" + user +
+//                ", orders=" + orders +
+//                '}';
+//    }
 }

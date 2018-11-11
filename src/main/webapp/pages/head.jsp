@@ -8,8 +8,93 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored = "false"%>
 <title>${Title}</title>
-<link href="<c:url value="/resources/css/bootstrap.min.css" />" rel="stylesheet">
+
+<!-- favicon
+============================================ -->
+<link rel="shortcut icon" type="image/x-icon" href="<c:url value="/resources/images/favicon.ico" />">
+<!-- Google Fonts
+============================================ -->
+<link href='https://fonts.googleapis.com/css?family=Raleway:400,600' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
+<!-- Bootstrap CSS
+============================================ -->
+<link rel="stylesheet" href="<c:url value="/resources/css/css/bootstrap.min.css" />">
+<%--<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">--%>
+<!-- Font awesome CSS
+============================================ -->
+<link rel="stylesheet" href="<c:url value="/resources/css/css/font-awesome.min.css" />">
+<!-- owl.carousel CSS
+============================================ -->
+<link rel="stylesheet" href="<c:url value="/resources/css/css/owl.carousel.css" />">
+<link rel="stylesheet" href="<c:url value="/resources/css/css/owl.theme.css" />">
+<link rel="stylesheet" href="<c:url value="/resources/css/css/owl.transitions.css" />">
+<!-- nivo slider CSS
+============================================ -->
+<link rel="stylesheet" href="<c:url value="/resources/css/css/nivo-slider.css" />" type="text/css" />
+<!-- meanmenu CSS
+============================================ -->
+<link rel="stylesheet" href="<c:url value="/resources/css/css/meanmenu.min.css" />">
+<!-- jquery-ui CSS
+============================================ -->
+<link rel="stylesheet" href="<c:url value="/resources/css/css/jquery-ui.css" />">
+<!-- animate CSS
+============================================ -->
+<link rel="stylesheet" href="<c:url value="/resources/css/css/animate.css" />">
+<!-- main CSS
+============================================ -->
+<link rel="stylesheet" href="<c:url value="/resources/css/css/main.css" />">
+<!-- style CSS
+============================================ -->
+<link rel="stylesheet" href="<c:url value="/resources/css/css/style.css" />">
+<!-- responsive CSS
+============================================ -->
+<link rel="stylesheet" href="<c:url value="/resources/css/css/responsive.css" />">
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+
 <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
-<script src="<c:url value="/resources/js/jquery-3.3.1.js" />"></script>
-<script src="<c:url value="/resources/js/bootstrap.js" />"></script>
+<link href="<c:url value="/resources/css/navbar.css" />" rel="stylesheet">
+
+
+<!-- jquery
+============================================ -->
+<script src="<c:url value="/resources/js/js/jquery-1.11.3.min.js" />"></script>
+<!-- bootstrap JS
+============================================ -->
+<script src="<c:url value="/resources/js/js/bootstrap.min.js" />"></script>
+<%--<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>--%>
+<!-- wow JS
+============================================ -->
+<script src="<c:url value="/resources/js/js/wow.min.js" />"></script>
+<!-- meanmenu JS
+============================================ -->
+<script src="<c:url value="/resources/js/js/jquery.meanmenu.js" />"></script>
+<!-- owl.carousel JS
+============================================ -->
+<script src="<c:url value="/resources/js/js/owl.carousel.min.js" />"></script>
+<!-- scrollUp JS
+============================================ -->
+<%--<script src="<c:url value="/resources/js/js/jquery.scrollUp.min.js" />"></script>--%>
+<!-- countdon.min JS
+============================================ -->
+<script src="<c:url value="/resources/js/js/countdon.min.js" />"></script>
+<!-- jquery-price-slider js
+============================================ -->
+<script src="<c:url value="/resources/js/js/jquery-price-slider.js" />"></script>
+<!-- Nivo slider js
+============================================ -->
+<script src="<c:url value="/resources/js/js/jquery.nivo.slider.js" />" type="text/javascript"></script>
+<!-- plugins JS
+============================================ -->
+<script src="<c:url value="/resources/js/js/plugins.js" />"></script>
+<!-- main JS
+============================================ -->
+<script src="<c:url value="/resources/js/js/main.js" />"></script>
+
+
+
+
+
 <script src="<c:url value="/resources/js/main.js" />"></script>
+<script src="<c:url value="/resources/js/navbar.js" />"></script>

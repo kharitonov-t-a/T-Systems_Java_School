@@ -45,12 +45,12 @@ public class CheckboxCharacteristicValues implements Serializable {
         this.productCharacteristic = productCharacteristic;
     }
 
-    @Override
-    public String toString() {
-        return "CheckboxCharacteristicValues{" +
-                "id=" + id +
-                ", value=" + value +
-                ", productCharacteristic=" + productCharacteristic +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "CheckboxCharacteristicValues{" +
+//                "id=" + id +
+//                ", value=" + value +
+//                ", productCharacteristic=" + productCharacteristic +
+//                '}';
+//    }
 }

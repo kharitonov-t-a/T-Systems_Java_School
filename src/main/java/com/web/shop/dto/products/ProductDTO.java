@@ -1,5 +1,7 @@
 package com.web.shop.dto.products;
 
+import com.web.shop.dto.orders.OrderProductDTO;
+import com.web.shop.model.orders.OrderProduct;
 import com.web.shop.model.products.ProductCharacteristic;
 
 import javax.validation.constraints.Digits;
@@ -10,11 +12,6 @@ import java.util.List;
 
 public class ProductDTO implements Serializable {
 
-    public ProductDTO(Integer id) {
-        this.id = id;
-    }
-    public ProductDTO() {
-    }
     private Integer id;
 
     @Size(min = 3, max = 30)
@@ -25,12 +22,13 @@ public class ProductDTO implements Serializable {
     private Double price;
 
     private ProductsCategoryDTO productsCategory;
-    private Integer productsCategoryId;
 
     @Digits(integer = 10, fraction = 0)
     private Integer stockQuantity;
 
     private List<ProductCharacteristicDTO> productCharacteristic;
+
+    private List<OrderProductDTO> orderProducts;
 
     public Integer getId() {
         return id;
@@ -72,25 +70,6 @@ public class ProductDTO implements Serializable {
         this.stockQuantity = stockQuantity;
     }
 
-    public Integer getProductsCategoryId() {
-        return productsCategoryId;
-    }
-
-    public void setProductsCategoryId(Integer productsCategoryId) {
-        this.productsCategoryId = productsCategoryId;
-    }
-
-    @Override
-    public String toString() {
-        return "ProductDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", productsCategory=" + productsCategory +
-                ", productsCategoryId=" + productsCategoryId +
-                ", stockQuantity=" + stockQuantity +
-                '}';
-    }
 
     public List<ProductCharacteristicDTO> getProductCharacteristic() {
         return productCharacteristic;
@@ -99,4 +78,25 @@ public class ProductDTO implements Serializable {
     public void setProductCharacteristic(List<ProductCharacteristicDTO> productCharacteristic) {
         this.productCharacteristic = productCharacteristic;
     }
+
+    public List<OrderProductDTO> getOrderProducts() {
+        return orderProducts;
+    }
+
+    public void setOrderProducts(List<OrderProductDTO> orderProducts) {
+        this.orderProducts = orderProducts;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "ProductDTO{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", price=" + price +
+//                ", productsCategory=" + productsCategory +
+//                ", stockQuantity=" + stockQuantity +
+//                ", productCharacteristic=" + productCharacteristic +
+//                ", orderProducts=" + orderProducts +
+//                '}';
+//    }
 }

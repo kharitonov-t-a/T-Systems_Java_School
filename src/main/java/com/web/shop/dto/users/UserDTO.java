@@ -1,5 +1,8 @@
 package com.web.shop.dto.users;
 
+import com.web.shop.dto.orders.OrderDTO;
+import com.web.shop.model.orders.Order;
+import com.web.shop.model.users.Address;
 import com.web.shop.validator.*;
 import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -11,6 +14,34 @@ import java.util.*;
 @EnableMatchConstraint(groups = {UserDTO.ValidationPassword.class})
 @EnableUniqueEmailConstraint(groups = {UserDTO.ValidationInfo.class})
 public class UserDTO implements Serializable {
+
+    public UserDTO(){
+        fieldsMap.put("id", "ID");
+        fieldsMap.put("firstName", "First Name");
+        fieldsMap.put("surnName", "Surn Name");
+        fieldsMap.put("email", "Email address");
+        fieldsMap.put("password", "Password");
+        fieldsMap.put("confirmPassword", "Confirm password");
+        fieldsMap.put("birthday", "Birthday");
+    }
+
+//    @Override
+//    public String toString() {
+//        return "UserDTO{" +
+//                "id=" + id +
+//                ", firstName='" + firstName + '\'' +
+//                ", surnName='" + surnName + '\'' +
+//                ", birthday=" + birthday +
+//                ", email='" + email + '\'' +
+//                ", password='" + password + '\'' +
+//                ", confirmPassword='" + confirmPassword + '\'' +
+//                ", userProfiles=" + userProfiles +
+//                ", orders=" + orders +
+//                ", addresses=" + addresses +
+//                ", fieldsMap=" + fieldsMap +
+//                ", fieldsList=" + fieldsList +
+//                '}';
+//    }
 
     public interface ValidationPassword {
     }
@@ -48,6 +79,10 @@ public class UserDTO implements Serializable {
 
     private Set<UserProfileDTO> userProfiles = new HashSet<UserProfileDTO>();
 
+    private List<OrderDTO> orders;
+
+    private List<AddressDTO> addresses;
+
     public List<String> getFieldsList() {
         return fieldsList;
     }
@@ -58,15 +93,6 @@ public class UserDTO implements Serializable {
 
     Map<String, String> fieldsMap = new LinkedHashMap <>();
 
-    public UserDTO(){
-        fieldsMap.put("id", "ID");
-        fieldsMap.put("firstName", "First Name");
-        fieldsMap.put("surnName", "Surn Name");
-        fieldsMap.put("email", "Email address");
-        fieldsMap.put("password", "Password");
-        fieldsMap.put("confirmPassword", "Confirm password");
-        fieldsMap.put("birthday", "Birthday");
-    }
     private final List<String> fieldsList = Arrays.asList("id", "firstName", "surnName", "birthday", "email","password", "confirmPassword");
 
     public Integer getId() {
@@ -133,12 +159,20 @@ public class UserDTO implements Serializable {
         this.confirmPassword = confirmPassword;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder userProfilesString = new StringBuilder();
-        userProfiles.parallelStream().forEach(e -> userProfilesString.append(e.getRole() + ", "));
-        return "User [id=" + id + ", firstName=" + firstName +
-                ", surnName=" + surnName + ", birthday=" + birthday + ", eMail=" + email +
-                ", password=" + password + ", roles:" + userProfilesString + "]";
+    public List<OrderDTO> getOrders() {
+        return orders;
     }
+
+    public void setOrders(List<OrderDTO> orders) {
+        this.orders = orders;
+    }
+
+    public List<AddressDTO> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<AddressDTO> addresses) {
+        this.addresses = addresses;
+    }
+
 }

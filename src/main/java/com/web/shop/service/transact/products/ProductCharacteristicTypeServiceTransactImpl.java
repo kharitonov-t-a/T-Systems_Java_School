@@ -37,16 +37,9 @@ public class ProductCharacteristicTypeServiceTransactImpl extends GenericService
 
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void create(ProductCharacteristicTypeDTO productCharacteristicDTO) {
-        List<String> listValues = productCharacteristicDTO.getCheckboxCharacteristicNameValuesString();
-        productCharacteristicDTO.setCheckboxCharacteristicNameValuesString(new ArrayList<String>());
         ProductCharacteristicType productCharacteristicType = modelMapper.map(productCharacteristicDTO, ProductCharacteristicType.class);
-        List<CheckboxCharacteristicNameValues> listCheckboxCharacteristicNameValues= new ArrayList<>();
-        listValues.remove(listValues.size() - 1);
-        listValues.forEach((i)-> {if(i!=null || !i.isEmpty())listCheckboxCharacteristicNameValues.add(new CheckboxCharacteristicNameValues(i, productCharacteristicType));});
-        productCharacteristicType.setCheckboxCharacteristicNameValues(listCheckboxCharacteristicNameValues);
         dao.create(productCharacteristicType);
         if(productCharacteristicType.getId() != null){
-
 //            listCheckboxCharacteristicNameValues.forEach((i)-> checkboxCharacteristicNameValuesDao.create(i));
         }
     }
@@ -58,9 +51,9 @@ public class ProductCharacteristicTypeServiceTransactImpl extends GenericService
 
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public List<ProductCharacteristicTypeDTO> findAll() {
-        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-        modelMapper.typeMap(ProductCharacteristicType.class, ProductCharacteristicTypeDTO.class)
-                .addMappings(m -> m.map(src -> src.getCheckboxCharacteristicNameValuesToString(), ProductCharacteristicTypeDTO::setCheckboxCharacteristicNameValuesString));
+//        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+//        modelMapper.typeMap(ProductCharacteristicType.class, ProductCharacteristicTypeDTO.class)
+//                .addMappings(m -> m.map(src -> src.getCheckboxCharacteristicNameValuesToString(), ProductCharacteristicTypeDTO::setCheckboxCharacteristicNameValuesString));
         return modelMapper.mapListsEntityToDTO(dao.findAll(), ProductCharacteristicTypeDTO.class);
 
 

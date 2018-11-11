@@ -12,9 +12,11 @@
     <%@ include file="/pages/head.jsp" %>
 </head>
 <body>
+<%@ include file="/pages/navbar.jsp" %>
 <header class="header">
     <div class="container" style="max-width: 800px;" id="content-profile-box">
-        <%@ include file="/resources/images/404_page.png" %>
+        404
+        <img src="<c:out value="/resources/images/404_page.png"/>"/>
     </div>
 </header>
 </body>

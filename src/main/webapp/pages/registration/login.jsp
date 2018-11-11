@@ -1,4 +1,4 @@
-$<%--
+<%--
   Created by IntelliJ IDEA.
   User: Trinita
   Date: 14.10.2018

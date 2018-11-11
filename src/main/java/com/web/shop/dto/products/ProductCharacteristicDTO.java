@@ -8,13 +8,10 @@ public class ProductCharacteristicDTO implements Serializable {
     private Integer id;
 
     private ProductCharacteristicTypeDTO productCharacteristicType;
-    private Integer productCharacteristicTypeId;
 
     private ProductDTO product;
-    private Integer productId;
 
     private List<CheckboxCharacteristicValuesDTO> checkboxCharacteristicValues;
-    private List<Integer> checkboxCharacteristicValuesInteger;
 
     private Boolean booleanCharacteristicValue;
 
@@ -88,41 +85,17 @@ public class ProductCharacteristicDTO implements Serializable {
         this.stringCharacteristicValue = stringCharacteristicValue;
     }
 
-    @Override
-    public String toString() {
-        return "ProductCharacteristicDTO{" +
-                "id=" + id +
-                ", productCharacteristicType=" + productCharacteristicType +
-                ", product=" + product +
-                ", checkboxCharacteristicValues=" + checkboxCharacteristicValues +
-                ", booleanCharacteristicValue=" + booleanCharacteristicValue +
-                ", doubleCharacteristicValue=" + doubleCharacteristicValue +
-                ", integerCharacteristicValue=" + integerCharacteristicValue +
-                ", stringCharacteristicValue='" + stringCharacteristicValue + '\'' +
-                '}';
-    }
-
-    public Integer getProductCharacteristicTypeId() {
-        return productCharacteristicTypeId;
-    }
-
-    public void setProductCharacteristicTypeId(Integer productCharacteristicTypeId) {
-        this.productCharacteristicTypeId = productCharacteristicTypeId;
-    }
-
-    public Integer getProductId() {
-        return productId;
-    }
-
-    public void setProductId(Integer productId) {
-        this.productId = productId;
-    }
-
-    public List<Integer> getCheckboxCharacteristicValuesInteger() {
-        return checkboxCharacteristicValuesInteger;
-    }
-
-    public void setCheckboxCharacteristicValuesInteger(List<Integer> checkboxCharacteristicValuesInteger) {
-        this.checkboxCharacteristicValuesInteger = checkboxCharacteristicValuesInteger;
-    }
+//    @Override
+//    public String toString() {
+//        return "ProductCharacteristicDTO{" +
+//                "id=" + id +
+//                ", productCharacteristicType=" + productCharacteristicType +
+//                ", product=" + product +
+//                ", checkboxCharacteristicValues=" + checkboxCharacteristicValues +
+//                ", booleanCharacteristicValue=" + booleanCharacteristicValue +
+//                ", doubleCharacteristicValue=" + doubleCharacteristicValue +
+//                ", integerCharacteristicValue=" + integerCharacteristicValue +
+//                ", stringCharacteristicValue='" + stringCharacteristicValue + '\'' +
+//                '}';
+//    }
 }

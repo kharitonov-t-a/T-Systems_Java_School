@@ -1,8 +1,12 @@
 package com.web.shop.dto.users;
 
+import com.web.shop.dto.orders.OrderDTO;
+import com.web.shop.model.orders.Order;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.List;
 
 //@Setter
 //@Getter
@@ -35,6 +39,8 @@ public class AddressDTO implements Serializable {
     private Integer flat;
 
     private UserDTO user;
+
+    private List<OrderDTO> orders;
 
     public AddressDTO() {
     }
@@ -103,11 +109,26 @@ public class AddressDTO implements Serializable {
         this.user = user;
     }
 
-    @Override
-    public String toString() {
-        return "User [id=" + id + ", country=" + country + ", city=" + city +
-                ", zip=" + zip + ", street=" + street + ", house=" + house +
-                ", flat=" + flat + ", userId=" + user.getId() + "]";
+    public List<OrderDTO> getOrders() {
+        return orders;
     }
 
+    public void setOrders(List<OrderDTO> orders) {
+        this.orders = orders;
+    }
+
+//    @Override
+//    public String toString() {
+//        return "AddressDTO{" +
+//                "id=" + id +
+//                ", country='" + country + '\'' +
+//                ", city='" + city + '\'' +
+//                ", zip=" + zip +
+//                ", street='" + street + '\'' +
+//                ", house=" + house +
+//                ", flat=" + flat +
+//                ", user=" + user +
+//                ", orders=" + orders +
+//                '}';
+//    }
 }

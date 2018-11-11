@@ -12,8 +12,8 @@
 <%--@elvariable id="productCharacteristicDTO" type="com.web.shop.dto.products.ProductCharacteristicDTO"--%>
 <form:form modelAttribute="productCharacteristicDTO" method="post" class="form-horizontal">
 
-    <form:hidden name="productCharacteristicTypeId" required="true" path="productCharacteristicTypeId" value="${productCharacteristicTypeDTO.id}"/>
-    <form:hidden name="productId" required="true" path="productId" value="${productId}"/>
+    <form:hidden name="productCharacteristicTypeId" required="true" path="productCharacteristicType.id" value="${productCharacteristicTypeDTO.id}"/>
+    <form:hidden name="productId" required="true" path="product.id" value="${productId}"/>
 
     <div class="row">
         <label class="col-md-3 control-lable">${productCharacteristicTypeDTO.name}</label>
@@ -45,10 +45,10 @@
             </c:if>
             <c:if test="${CharacteristicTypeEnum.CHECKBOX.compareTo(productCharacteristicTypeDTO.characteristicType) == 0}">
                 <c:forEach var="field" items="${productCharacteristicTypeDTO.checkboxCharacteristicNameValues}">
-                    <form:checkbox path="checkboxCharacteristicValuesInteger" value="${field.id}"/>${field.value}
+                    <form:checkbox path="checkboxCharacteristicValues[].id" value="${field.id}"/>${field.value}
                 </c:forEach>
                 <div class="has-error">
-                    <form:errors path="checkboxCharacteristicValuesInteger" class="help-inline"></form:errors>
+                    <form:errors path="checkboxCharacteristicValues" class="help-inline"></form:errors>
                 </div>
             </c:if>
         </div>

@@ -94,17 +94,17 @@ public class ProductsCategory implements Serializable {
         this.productList = productList;
     }
 
-    @Override
-    public String toString() {
-        return "ProductsCategory{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", parent=" + parent +
-                ", Left_key=" + leftKey +
-                ", right_key=" + rightKey +
-                ", level=" + level +
-                '}';
-    }
 
-
+//    @Override
+//    public String toString() {
+//        return "ProductsCategory{" +
+//                "id=" + id +
+//                ", name='" + name + '\'' +
+//                ", parent=" + parent +
+//                ", leftKey=" + leftKey +
+//                ", rightKey=" + rightKey +
+//                ", level=" + level +
+//                ", productList=" + productList +
+//                '}';
+//    }
 }

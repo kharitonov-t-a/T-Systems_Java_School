@@ -1,66 +1,18 @@
-.navbar {
-    background: #F97300;
-}
-
-.nav-link, .navbar-brand {
-    color: #f4f4f4;
-    cursor: pointer;
-}
-
-.nav-link, .nav-btn {
-    margin-right: 1em !important;
-}
-
-.nav-link:hover {
-    background: #f4f4f4;
-    color: #f97300;
-    order: -1;
-}
-
-.navbar-collapse {
-    justify-content: flex-end;
-}
-
-.navbar-toggler {
-    background: #fff !important;
-}
-
-.accessDenied {
-    position: absolute;
-    top: 37%;
-    left: 37%;
-    max-width: 400px;
-}
-
-@media (max-width: 991.98px) {
-    .navbar-collapse ul.navbar-nav.first-nav-element-incollapse {
-        flex-direction: unset;
-        margin-top: 5px;
-    }
-    .accessDenied {
-        top: 25%;
-        left: 0px;
-    }
-}
-
-.header {
-    position: absolute;
-    min-height: 100%;
-    min-width: 100%;
-    left: 0;
-    top: 56px;
-    background-image: url('/resources/images/goluboy-fon.jpg');
-    background-attachment: fixed;
-    background-size: cover;
-    background-position: center;
-    /*background: rgba(244, 244, 244, 0.79);*/
-}
-
-
-
-/*@media (max-width: 353px) {*/
-/*.nav-btn{*/
-/*padding: 4px;*/
-/*margin-right: 4px !important;*/
+/*.header {*/
+    /*position: absolute;*/
+    /*min-height: 100%;*/
+    /*min-width: 100%;*/
+    /*left: 0;*/
+    /*!*top: 56px;*!*/
+    /*background-image: url('/resources/images/goluboy-fon.jpg');*/
+    /*background-attachment: fixed;*/
+    /*background-size: cover;*/
+    /*background-position: center;*/
+    /*background-attachment: fixed;*/
+    /*!*background: rgba(244, 244, 244, 0.79);*!*/
 /*}*/
-/*}*/
+body{
+    background: white;
+    /*background-size: cover;*/
+    /*background-position: center;*/
+}

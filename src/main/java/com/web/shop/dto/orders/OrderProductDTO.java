@@ -16,6 +16,17 @@ public class OrderProductDTO implements Serializable {
     @NotBlank
     private Double price;
 
+//    private Integer count;
+
+    public OrderProductDTO(OrderDTO order, ProductDTO product, Double price) {
+        this.order = order;
+        this.product = product;
+        this.price = price;
+    }
+
+    public OrderProductDTO() {
+    }
+
     public Integer getId() {
         return id;
     }
@@ -48,13 +59,22 @@ public class OrderProductDTO implements Serializable {
         this.price = price;
     }
 
-    @Override
-    public String toString() {
-        return "OrderProductDTO{" +
-                "id=" + id +
-                ", order=" + order +
-                ", product=" + product +
-                ", price=" + price +
-                '}';
-    }
+//    public Integer getCount() {
+//        return count;
+//    }
+
+//    public void setCount(Integer count) {
+//        this.count = count;
+//    }
+
+//    @Override
+//    public String toString() {
+//        return "OrderProductDTO{" +
+//                "id=" + id +
+//                ", order=" + order +
+//                ", product=" + product +
+//                ", price=" + price +
+////                ", count=" + count +
+//                '}';
+//    }
 }

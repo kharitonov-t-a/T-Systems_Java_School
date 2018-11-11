@@ -41,11 +41,11 @@ public class UserProfile implements Serializable {
     }
 
 
-    @Override
-    public String toString() {
-        return "UserProfile{" +
-                "id=" + id +
-                ", role='" + role + '\'' +
-                '}';
-    }
+//    @Override
+//    public String toString() {
+//        return "UserProfile{" +
+//                "id=" + id +
+//                ", role='" + role + '\'' +
+//                '}';
+//    }
 }

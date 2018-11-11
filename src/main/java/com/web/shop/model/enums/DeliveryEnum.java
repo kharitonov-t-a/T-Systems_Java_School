@@ -2,9 +2,9 @@ package com.web.shop.model.enums;
 
 public enum DeliveryEnum {
 
-    SELF("SELF"),
-    COURIER("COURIER"),
-    POSTAL("POSTAL");
+    SELF("Self"),
+    COURIER("Courier"),
+    POSTAL("Postal");
 
     String delivery;
 
@@ -12,4 +12,11 @@ public enum DeliveryEnum {
         this.delivery = delivery;
     }
 
+    public String getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(String delivery) {
+        this.delivery = delivery;
+    }
 }
