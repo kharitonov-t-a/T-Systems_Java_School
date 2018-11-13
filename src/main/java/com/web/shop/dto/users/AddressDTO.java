@@ -2,9 +2,9 @@ package com.web.shop.dto.users;
 
 import com.web.shop.dto.orders.OrderDTO;
 import com.web.shop.model.orders.Order;
+import org.hibernate.validator.constraints.Range;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -22,20 +22,20 @@ public class AddressDTO implements Serializable {
     @NotBlank
     private String city;
 
-    @Size(min = 6, max = 6)
-    @NotBlank
+    @Digits(integer = 6, fraction = 0)
+    @NotNull
     private Integer zip;
 
     @Size(min = 3, max = 30)
     @NotBlank
     private String street;
 
-    @Size(min = 1, max = 5)
-    @NotBlank
+    @Digits(integer = 3, fraction = 0)
+    @NotNull
     private Integer house;
 
-    @Size(min = 1, max = 5)
-    @NotBlank
+    @Digits(integer = 5, fraction = 0)
+    @NotNull
     private Integer flat;
 
     private UserDTO user;

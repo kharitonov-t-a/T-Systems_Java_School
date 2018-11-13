@@ -105,7 +105,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // указываем URL при удачном логауте
                 .logoutSuccessUrl("/login?logout")
                 // делаем не валидной текущую сессию
-                .invalidateHttpSession(true);
+                .invalidateHttpSession(false);
 
         http.exceptionHandling()
                 .accessDeniedPage("/Access_Denied");

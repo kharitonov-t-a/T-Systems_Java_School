@@ -25,7 +25,7 @@ import java.util.List;
 public class ProductOrderController {
 
     @Autowired
-    OrderServiceFront orderService;
+    OrderService orderService;
 
     // translit name product instead id
     @RequestMapping(value = {"/addProductToOrder"}, method = RequestMethod.GET)

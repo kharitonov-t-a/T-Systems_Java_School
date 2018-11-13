@@ -19,12 +19,12 @@ public class GlobalControllerAdvice {
     @ModelAttribute("allProductsCategoryForNavBar")
     public List<ProductsCategoryDTO> getListProductsCategoryDTO(HttpSession httpSession) {
         List<ProductsCategoryDTO> productsCategoryDTO = (List<ProductsCategoryDTO>) httpSession.getAttribute("allProductsCategoryForNavBar");
-        if(productsCategoryDTO == null){
+//        if(productsCategoryDTO == null){
             productsCategoryDTO = productsCategoryService.findAll();
             if(productsCategoryDTO.size() > 0)
                 productsCategoryDTO.remove(0);
             httpSession.setAttribute("allProductsCategoryForNavBar", productsCategoryDTO);
-        }
+//        }
 
         return productsCategoryDTO;
     }

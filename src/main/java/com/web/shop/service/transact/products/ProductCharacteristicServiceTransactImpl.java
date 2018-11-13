@@ -44,11 +44,11 @@ public class ProductCharacteristicServiceTransactImpl extends GenericServiceTran
 //        });
 //        productCharacteristicDTO.setCheckboxCharacteristicValues(checkboxCharacteristicValues);
 
-        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-        modelMapper.typeMap(ProductCharacteristicDTO.class, ProductCharacteristic.class)
-                .addMappings(m -> m.map(src -> src.getProductCharacteristicType(), ProductCharacteristic::setProductCharacteristicType))
-                .addMappings(m -> m.map(src -> src.getProduct(), ProductCharacteristic::setProduct))
-                .addMappings(m -> m.map(src -> src.getCheckboxCharacteristicValues(), ProductCharacteristic::setCheckboxCharacteristicValues));
+//        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+//        modelMapper.typeMap(ProductCharacteristicDTO.class, ProductCharacteristic.class)
+//                .addMappings(m -> m.map(src -> src.getProductCharacteristicType(), ProductCharacteristic::setProductCharacteristicType))
+//                .addMappings(m -> m.map(src -> src.getProduct(), ProductCharacteristic::setProduct))
+//                .addMappings(m -> m.map(src -> src.getCheckboxCharacteristicValues(), ProductCharacteristic::setCheckboxCharacteristicValues));
 
         dao.create(modelMapper.map(productCharacteristicDTO, ProductCharacteristic.class));
 //        super.create(productCharacteristicDTO);

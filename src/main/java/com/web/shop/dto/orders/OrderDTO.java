@@ -17,7 +17,6 @@ public class OrderDTO implements Serializable {
 
     private Integer id;
 
-    @NotEmpty
     private UserDTO user;
 
     @Valid

@@ -108,9 +108,11 @@ public class ProductsCategoryDaoImpl extends GenericDaoImpl<ProductsCategory, In
     @Override
     public List<ProductsCategory> selectByModLeftLevel() {
         try {
-            return getEntityManager()
-                    .createNativeQuery("SELECT u.* FROM ProductsCategory u WHERE MOD((u.leftKey - u.level + 2), 2) = 0")
+            List<ProductsCategory> productsCategories =
+                    (List<ProductsCategory>)getEntityManager()
+                    .createNativeQuery("SELECT u.* FROM ProductsCategory u WHERE MOD((u.leftKey - u.level + 2), 2) = 1")
                     .getResultList();
+            return productsCategories;
         } catch (NoResultException ex) {
             return null;
         }

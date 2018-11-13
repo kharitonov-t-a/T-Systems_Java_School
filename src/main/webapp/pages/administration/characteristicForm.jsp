@@ -45,7 +45,7 @@
             </c:if>
             <c:if test="${CharacteristicTypeEnum.CHECKBOX.compareTo(productCharacteristicTypeDTO.characteristicType) == 0}">
                 <c:forEach var="field" items="${productCharacteristicTypeDTO.checkboxCharacteristicNameValues}">
-                    <form:checkbox path="checkboxCharacteristicValues[].id" value="${field.id}"/>${field.value}
+                    <form:checkbox path="checkboxCharacteristicValues[].value" value="${field.id}"/>${field.value}
                 </c:forEach>
                 <div class="has-error">
                     <form:errors path="checkboxCharacteristicValues" class="help-inline"></form:errors>

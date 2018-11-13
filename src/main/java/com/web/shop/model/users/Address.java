@@ -6,7 +6,9 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
@@ -34,8 +36,8 @@ public class Address implements Serializable {
     private String city;
 
     @Column(name = "Zip", length = 6)
-    @Size(min = 6, max = 6)
-    @NotBlank
+    @Digits(integer = 6, fraction = 0)
+    @NotNull
     private Integer zip;
 
     @Column(name = "Street", length = 30)
@@ -44,13 +46,13 @@ public class Address implements Serializable {
     private String street;
 
     @Column(name = "House", length = 5)
-    @Size(min = 1, max = 5)
-    @NotBlank
+    @Digits(integer = 3, fraction = 0)
+    @NotNull
     private Integer house;
 
     @Column(name = "Flat", length = 5)
-    @Size(min = 1, max = 5)
-    @NotBlank
+    @Digits(integer = 5, fraction = 0)
+    @NotNull
     private Integer flat;
 
     @ManyToOne

@@ -27,8 +27,11 @@
                     <a href="<c:url value="/editPassword" />" class="list-group-item list-group-item-action" id="edit-password">
                         Edit password
                     </a>
-                    <a href="<c:url value="/profile" />" class="list-group-item list-group-item-action">
+                    <a href="<c:url value="/orderList" />" class="list-group-item list-group-item-action">
                         Orders list
+                    </a>
+                    <a href="<c:url value="/allOrders" />" class="list-group-item list-group-item-action">
+                        All orders
                     </a>
                     <a href="<c:url value="/formCategory" />" class="list-group-item list-group-item-action">
                         Create products category
@@ -53,8 +56,8 @@
                     </a>
                 </div>
             </div>
-            <div class="col-sm-8">
-                <div class="container" id="body-profile-user">
+            <div class="col-sm-7">
+                <div id="body-profile-user">
 
                 </div>
             </div>

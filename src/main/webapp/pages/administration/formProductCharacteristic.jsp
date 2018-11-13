@@ -21,14 +21,16 @@
             Add new product characteristic
         </h2>
 
-        <div class="container" id="list-characteristic-box">
+        <div id="list-characteristic-box">
             <table class="table table-hover" id="user-list-table">
                 <thead>
                 <tr>
                     <th>Id</th>
                     <th>CharacteristicType</th>
-                    <th>Birthday</th>
-                    <th width="100"></th>
+                    <th></th>
+                    <sec:authorize access="hasRole('ADMIN') or hasRole('MANAGER')">
+                    <th></th>
+                    </sec:authorize>
                 </tr>
                 <c:forEach var="field" items="${listProductCharacteristic}">
                     <tr>

@@ -28,7 +28,7 @@
                 <label class="col-md-3 control-lable" for="name">Name</label>
                 <div class="form-group col-md-12">
                     <form:input type="text" class="form-control" name="name" placeholder="Name"
-                                autofocus="true" required="true" path="namie"/>
+                                autofocus="true" required="true" path="name"/>
                     <div class="has-error">
                         <form:errors path="name" class="help-inline"></form:errors>
                     </div>

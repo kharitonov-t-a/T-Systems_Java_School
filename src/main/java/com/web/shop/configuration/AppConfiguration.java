@@ -15,8 +15,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
-//@EnableWebMvc
 @Configuration
+//@EnableWebMvc
 @EnableAspectJAutoProxy
 @ComponentScan(basePackages = "com.web.shop")
 public class AppConfiguration extends WebMvcConfigurationSupport {

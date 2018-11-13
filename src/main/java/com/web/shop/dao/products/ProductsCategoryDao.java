@@ -15,7 +15,7 @@ public interface ProductsCategoryDao extends GenericDao<ProductsCategory, Intege
     List<ProductsCategory> selectLeftMoreRight();
     List selectCountMinMax();
     List<ProductsCategory> selectByModRightLeft();
-    List selectByModLeftLevel();
+    List<ProductsCategory> selectByModLeftLevel();
     List<ProductsCategory> selectNotUniqueNods();
 
     void updateBranchesBeforeCreate(Integer parentRightKey);

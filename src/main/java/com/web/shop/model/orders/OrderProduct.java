@@ -28,7 +28,6 @@ public class OrderProduct implements Serializable {
     private Product product;
 
     @Column(name = "Price", precision=10, scale=2)
-    @NotBlank
     private Double price;
 
 //    @Column(name = "Count", length = 10)

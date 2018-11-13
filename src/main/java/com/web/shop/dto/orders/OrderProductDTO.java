@@ -13,7 +13,6 @@ public class OrderProductDTO implements Serializable {
 
     private ProductDTO product;
 
-    @NotBlank
     private Double price;
 
 //    private Integer count;

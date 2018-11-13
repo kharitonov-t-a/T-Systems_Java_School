@@ -8,7 +8,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
-<html>
+<html lang="en">
 <head>
     <%@ include file="/pages/head.jsp" %>
 </head>
@@ -46,7 +46,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${orderDTO.orderProducts}" var="orderProduct">
+                                <c:forEach items="${orderSession.orderProducts}" var="orderProduct">
                                     <tr>
                                             <%--<td class="text-center">--%>
                                             <%--<a href="#"><img class="img-thumbnail" src="img/product/cart/2.jpg" alt="#" /></a>--%>
@@ -80,6 +80,14 @@
                         <%--<p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>--%>
                         <!-- Accordion start -->
 
+                        <c:if test="${productError != null}">
+                        <h1> Products:
+                            <c:forEach items="${productError}" var="product">
+                                ${product.name} /
+                            </c:forEach>
+                        </h1>
+                            are have not in stock.
+                        </c:if>
 
                         <%--@elvariable id="orderDTO" type="com.web.shop.dto.orders.OrderDTO"--%>
                         <form:form modelAttribute="orderDTO" method="post" class="form-horizontal">
@@ -120,24 +128,91 @@
                                                 <p>Select or enter an address.</p>
                                             </div>
                                             <div class="input-group">
-                                                <form:input type="text" class="form-control" name="address.country"
-                                                            placeholder="Country"
-                                                            required="true" path="address.country"/>
-                                                <form:input type="text" class="form-control" name="address.city"
-                                                            placeholder="City"
-                                                            required="true" path="address.city"/>
-                                                <form:input type="text" class="form-control" name="address.street"
-                                                            placeholder="Street"
-                                                            required="true" path="address.street"/>
-                                                <form:input type="number" class="form-control" name="address.house"
-                                                            placeholder="House"
-                                                            required="true" path="address.house"/>
-                                                <form:input type="number" class="form-control" name="address.flat"
-                                                            placeholder="Flat"
-                                                            required="true" path="address.flat"/>
-                                                <form:input type="number" class="form-control" name="address.zip"
-                                                            placeholder="ZIP"
-                                                            required="true" path="address.zip"/>
+
+                                                <div class="row">
+                                                    <label class="col-md-3 control-lable"
+                                                           for="address.country">Country</label>
+                                                    <div class="form-group col-md-12">
+                                                        <form:input type="text" class="form-control"
+                                                                    name="address.country"
+                                                                    placeholder="Country"
+                                                                    required="true" path="address.country"/>
+                                                        <div class="has-error">
+                                                            <form:errors path="address.country"
+                                                                         class="help-inline"></form:errors>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-3 control-lable"
+                                                           for="address.city">City</label>
+                                                    <div class="form-group col-md-12">
+                                                        <form:input type="text" class="form-control"
+                                                                    name="address.city"
+                                                                    placeholder="City"
+                                                                    required="true" path="address.city"/>
+                                                        <div class="has-error">
+                                                            <form:errors path="address.city"
+                                                                         class="help-inline"></form:errors>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-3 control-lable"
+                                                           for="address.street">Street</label>
+                                                    <div class="form-group col-md-12">
+                                                        <form:input type="text" class="form-control"
+                                                                    name="address.street"
+                                                                    placeholder="Street"
+                                                                    required="true" path="address.street"/>
+                                                        <div class="has-error">
+                                                            <form:errors path="address.street"
+                                                                         class="help-inline"></form:errors>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-3 control-lable"
+                                                           for="address.house">House</label>
+                                                    <div class="form-group col-md-12">
+                                                        <form:input type="number" class="form-control"
+                                                                    name="address.house"
+                                                                    placeholder="House"
+                                                                    required="true" path="address.house"/>
+                                                        <div class="has-error">
+                                                            <form:errors path="address.house"
+                                                                         class="help-inline"></form:errors>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-3 control-lable"
+                                                           for="address.house">Flat</label>
+                                                    <div class="form-group col-md-12">
+                                                        <form:input type="number" class="form-control"
+                                                                    name="address.flat"
+                                                                    placeholder="Flat"
+                                                                    required="true" path="address.flat"/>
+                                                        <div class="has-error">
+                                                            <form:errors path="address.flat"
+                                                                         class="help-inline"></form:errors>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <label class="col-md-3 control-lable"
+                                                           for="address.house">ZIP</label>
+                                                    <div class="form-group col-md-12">
+                                                        <form:input type="number" class="form-control"
+                                                                    name="address.zip"
+                                                                    placeholder="ZIP"
+                                                                    required="true" path="address.zip"/>
+                                                        <div class="has-error">
+                                                            <form:errors path="address.zip"
+                                                                         class="help-inline"></form:errors>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -161,16 +236,22 @@
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label"><sup>*</sup>Payment</label>
                                                     <div class="col-sm-10">
-                                                        <form:select path="paymentEnum" class="form-control input-sm" multiple="false">
-                                                            <form:options items="${com.web.shop.model.enums.PaymentEnum.values()}" itemLabel="payment"/>
+                                                        <form:select path="paymentEnum" class="form-control input-sm"
+                                                                     multiple="false">
+                                                            <form:options
+                                                                    items="${com.web.shop.model.enums.PaymentEnum.values()}"
+                                                                    itemLabel="payment"/>
                                                         </form:select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label"><sup>*</sup>Delivery</label>
                                                     <div class="col-sm-10">
-                                                        <form:select path="deliveryEnum" class="form-control input-sm" multiple="false">
-                                                            <form:options items="${com.web.shop.model.enums.DeliveryEnum.values()}" itemLabel="delivery"/>
+                                                        <form:select path="deliveryEnum" class="form-control input-sm"
+                                                                     multiple="false">
+                                                            <form:options
+                                                                    items="${com.web.shop.model.enums.DeliveryEnum.values()}"
+                                                                    itemLabel="delivery"/>
                                                         </form:select>
                                                     </div>
                                                 </div>
@@ -204,7 +285,7 @@
                         </div>
                         <div class="shopping-checkout">
                             <a href="#" class="btn btn-default pull-left">Continue Shopping</a>
-                            <a href="#" class="btn btn-primary pull-right" type="submit">Checkout</a>
+                            <button ${cartIsEmpty == true ? "disabled title=\"Cart is empty\"":""}  class="btn btn-primary pull-right" type="submit">Checkout</button>
                         </div>
                     </div>
                 </div>

@@ -200,27 +200,28 @@
                                             </c:forEach>
                                             <%--</div>--%>
                                             <!-- Start Pagination Area -->
-                                            <div class="pagination-area">
-                                                <div class="row">
-                                                    <div class="col-xs-5">
-                                                        <div class="pagination">
-                                                            <ul>
-                                                                <li class="active"><a href="#">1</a></li>
-                                                                <li><a href="#">2</a></li>
-                                                                <li><a href="#">></a></li>
-                                                                <li><a href="#">>|</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                    <%--<div class="col-xs-7">--%>
-                                                    <%--<div class="product-result">--%>
-                                                    <%--<span>Showing 1 to 16 of 19 (2 Pages)</span>--%>
-                                                    <%--</div>--%>
-                                                    <%--</div>--%>
-                                                </div>
-                                            </div>
-                                            <!-- End Pagination Area -->
+
                                         </div>
+                                        <div class="pagination-area">
+                                            <div class="row">
+                                                <div class="col-xs-5">
+                                                    <div class="pagination">
+                                                        <ul>
+                                                            <li class="active"><a href="#">1</a></li>
+                                                            <li><a href="#">2</a></li>
+                                                            <li><a href="#">></a></li>
+                                                            <li><a href="#">>|</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                <%--<div class="col-xs-7">--%>
+                                                <%--<div class="product-result">--%>
+                                                <%--<span>Showing 1 to 16 of 19 (2 Pages)</span>--%>
+                                                <%--</div>--%>
+                                                <%--</div>--%>
+                                            </div>
+                                        </div>
+                                        <!-- End Pagination Area -->
                                         <!-- End Product = TV -->
                                     </div>
                                 </div>

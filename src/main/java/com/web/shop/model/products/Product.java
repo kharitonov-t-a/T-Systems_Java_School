@@ -26,7 +26,6 @@ public class Product implements Serializable {
     private String name;
 
     @Column(name = "Price", precision=10, scale=2)
-//    @NotBlank
     private Double price;
 
     @ManyToOne
