@@ -115,6 +115,10 @@ public class Order implements Serializable {
         this.orderProducts = orderProducts;
     }
 
+    public void addOrderProduct(List<OrderProduct> orderProducts) {
+        this.orderProducts = orderProducts;
+    }
+
 //    @Override
 //    public String toString() {
 //        return "Order{" +

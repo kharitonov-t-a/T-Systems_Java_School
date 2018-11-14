@@ -38,13 +38,20 @@ $(document).ready(function () {
                     });
             },
             error: function(data){
-                // if ($(data.responseText).find('div#error') != null) {
-                    $('div#error').html($(data.responseText));
-                    $('div#alertStock').modal({
-                        backdrop: true
-                    });
-                // }
-
+                // // if ($(data.responseText).find('div#error') != null) {
+                //     $('div#error').html($(data.responseText));
+                //     $('div#alertStock').modal({
+                //         backdrop: true
+                //     });
+                // // }
+                swal({
+                    title: "Checks Stock!",
+                    text: data.responseText.toString(),
+                    type: "error",
+                    confirmButtonText: "Ok",
+                    showCancelButton: false,
+                    allowOutsideClick: true
+                });
             }
 
         });

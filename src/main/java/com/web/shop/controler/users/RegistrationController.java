@@ -1,4 +1,4 @@
-package com.web.shop.controler;
+package com.web.shop.controler.users;
 
 import com.web.shop.constants.MessageConstants;
 import com.web.shop.dto.products.ProductsCategoryDTO;

@@ -15,6 +15,8 @@ public class OrderProductDTO implements Serializable {
 
     private Double price;
 
+    private Boolean inStock = true;
+
 //    private Integer count;
 
     public OrderProductDTO(OrderDTO order, ProductDTO product, Double price) {
@@ -56,6 +58,14 @@ public class OrderProductDTO implements Serializable {
 
     public void setPrice(Double price) {
         this.price = price;
+    }
+
+    public Boolean getInStock() {
+        return inStock;
+    }
+
+    public void setInStock(Boolean inStock) {
+        this.inStock = inStock;
     }
 
 //    public Integer getCount() {

@@ -1,4 +1,4 @@
-package com.web.shop.controler;
+package com.web.shop.controler.advices;
 
 import com.web.shop.dto.products.ProductsCategoryDTO;
 import com.web.shop.service.front.products.ProductsCategoryServiceFront;

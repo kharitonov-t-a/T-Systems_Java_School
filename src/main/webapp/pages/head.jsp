@@ -48,9 +48,12 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/css/style.css" />">
 <!-- responsive CSS
 ============================================ -->
-<link rel="stylesheet" href="<c:url value="/resources/css/css/responsive.css" />">
+<link rel="stylesheet" href="">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<%--docs/assets/sweetalert/sweetalert.min.js--%>
+
+<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/sweetalert2.min.css" />/">
 
 
 <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
@@ -92,7 +95,7 @@
 ============================================ -->
 <script src="<c:url value="/resources/js/js/main.js" />"></script>
 
-
+<script src="<c:url value="/resources/js/sweetalert2.all.min.js" />"></script>
 
 
 

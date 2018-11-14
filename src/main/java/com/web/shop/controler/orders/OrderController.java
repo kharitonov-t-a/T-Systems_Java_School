@@ -1,4 +1,4 @@
-package com.web.shop.controler;
+package com.web.shop.controler.orders;
 
 import com.web.shop.dto.orders.OrderDTO;
 import com.web.shop.dto.products.ProductDTO;
@@ -23,8 +23,6 @@ import java.util.List;
 public class OrderController {
 
     @Autowired
-    ProductService productService;
-    @Autowired
     UserService userService;
     @Autowired
     OrderService orderService;
@@ -39,39 +37,34 @@ public class OrderController {
             orderSession = new OrderDTO();
             httpSession.setAttribute("shoppingCart", orderSession);
         }
-        if(orderSession.getOrderProducts() == null || orderSession.getOrderProducts().size() == 0)
-            model.addAttribute("cartIsEmpty", true);
 
-        model.addAttribute("orderDTO", orderSession);
         model.addAttribute("orderSession", orderSession);
-
+        model.addAttribute("orderDTO", orderSession);
         return "catalog/checkoutOrder";
     }
 
     @RequestMapping(value = {"/checkoutOrder"}, method = RequestMethod.POST)
     public String checkoutOrder(@Valid OrderDTO orderDTO, BindingResult result, ModelMap model, HttpSession httpSession) {
 
-        if (userSecurityService.isCurrentAuthenticationAnonymous()) {
-            return "redirect:/signup";
-        }
+//        if (userSecurityService.isCurrentAuthenticationAnonymous()) {
+//            return "redirect:/signup";
+//        }
 
         OrderDTO orderSession = (OrderDTO) httpSession.getAttribute("shoppingCart");
+
+        if (orderSession == null) {
+            orderSession = new OrderDTO();
+            httpSession.setAttribute("shoppingCart", orderSession);
+        }
+
         if (result.hasErrors()) {
-            if (orderSession == null) {
-                orderSession = new OrderDTO();
-                httpSession.setAttribute("shoppingCart", orderSession);
-            }
-            if(orderSession.getOrderProducts() == null || orderSession.getOrderProducts().size() == 0)
-                model.addAttribute("cartIsEmpty", true);
-            model.addAttribute("orderSession", orderSession);
+            model.addAttribute("orderDTO", orderSession);
             return "catalog/checkoutOrder";
         }
 
-        List<ProductDTO> productDTOList = productService.checkExistInStock(orderSession, orderDTO, userService.findByEmail(UserSecurityService.getPrincipal()));
-
-        if(productDTOList != null){
+        if(!orderService.checkoutOrder(orderSession, orderDTO, userService.findByEmail(UserSecurityService.getPrincipal()))){
             model.addAttribute("orderSession", orderSession);
-            model.addAttribute("productError", productDTOList);
+            model.addAttribute("orderDTO", orderDTO);
             return "catalog/checkoutOrder";
         }
 

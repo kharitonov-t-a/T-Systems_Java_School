@@ -39,18 +39,4 @@ public class ProductServiceFront implements ProductService {
         return productService.findAll();
     }
 
-    public List<ProductDTO> checkExistInStock(OrderDTO orderSession, OrderDTO orderDTO, UserDTO userDTO) {
-        orderSession.setAddress(orderDTO.getAddress());
-        orderSession.setDeliveryEnum(orderDTO.getDeliveryEnum());
-        orderSession.setPaymentEnum(orderDTO.getPaymentEnum());
-
-        List<ProductDTO> productDTO = productService.checkExistInStock(orderSession, orderDTO, userDTO);
-
-        if(productDTO != null){
-            return productDTO;
-//            throw new NoProductsInStockException("No product in stock", productDTO);
-        }else{
-            return null;
-        }
-    }
 }

@@ -1,4 +1,4 @@
-package com.web.shop.controler;
+package com.web.shop.controler.products;
 
 import com.web.shop.dto.products.ProductDTO;
 import com.web.shop.exceptions.GlobalCustomException;

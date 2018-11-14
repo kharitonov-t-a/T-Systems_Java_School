@@ -9,4 +9,5 @@ import java.util.List;
 public interface ProductDao extends GenericDao<Product, Integer> {
     List<Product> findAllByIds(List<OrderProduct> orderProducts);
 
+    Product findByIdForUpdate(Integer id);
 }

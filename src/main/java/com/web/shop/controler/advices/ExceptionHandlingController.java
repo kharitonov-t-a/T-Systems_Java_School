@@ -1,4 +1,4 @@
-package com.web.shop.controler;
+package com.web.shop.controler.advices;
 
 import com.web.shop.exceptions.CheckProductsCategoryException;
 import com.web.shop.exceptions.NoProductsInStockException;

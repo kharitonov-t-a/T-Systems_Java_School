@@ -1,4 +1,4 @@
-package com.web.shop.controler;
+package com.web.shop.controler.products;
 
 import com.web.shop.dto.products.ProductCharacteristicDTO;
 import com.web.shop.dto.products.ProductCharacteristicTypeDTO;

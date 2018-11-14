@@ -7,6 +7,8 @@
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html lang="en">
 <head>
@@ -31,6 +33,9 @@
                     <div class="col-md-12">
                         <div class="cart-title">
                             <h2 class="entry-title">Shopping Cart</h2>
+                            <sec:authorize access="isAnonymous()">
+                                You are not authenticated. Log in please or sign up in form below.
+                            </sec:authorize>
                         </div>
                         <!-- Start Table -->
                         <div class="table-responsive">
@@ -43,6 +48,7 @@
                                     <%--<td class="text-left">Quantity</td>--%>
                                     <td class="text-right">Unit Price</td>
                                     <%--<td class="text-right">Total</td>--%>
+                                    <%--<td class="text-right">Total</td>--%>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -53,6 +59,9 @@
                                             <%--</td>--%>
                                         <td class="text-left">
                                             <a href="#">${orderProduct.product.name}</a>
+                                            <c:if test="${!orderProduct.inStock}">
+                                                This product is out of stock.
+                                            </c:if>
                                         </td>
                                             <%--<td class="text-left">Product 14</td>--%>
                                             <%--<td class="text-left">--%>
@@ -80,13 +89,10 @@
                         <%--<p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>--%>
                         <!-- Accordion start -->
 
-                        <c:if test="${productError != null}">
-                        <h1> Products:
-                            <c:forEach items="${productError}" var="product">
-                                ${product.name} /
-                            </c:forEach>
+                        <c:if test="${fn:length(orderSession.orderProducts) < 0}">
+                        <h1>
+                            Your cart have not any products.
                         </h1>
-                            are have not in stock.
                         </c:if>
 
                         <%--@elvariable id="orderDTO" type="com.web.shop.dto.orders.OrderDTO"--%>

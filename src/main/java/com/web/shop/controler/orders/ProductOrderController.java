@@ -1,4 +1,4 @@
-package com.web.shop.controler;
+package com.web.shop.controler.orders;
 
 import com.web.shop.dto.orders.OrderDTO;
 import com.web.shop.dto.orders.OrderProductDTO;
@@ -37,8 +37,9 @@ public class ProductOrderController {
             httpSession.setAttribute("order", orderDTO);
         }
 
-        orderService.addProductToOrder(orderDTO, Integer.valueOf(productId));
+        orderService.addProductToOrder(orderDTO, productId);
         httpSession.setAttribute("shoppingCart", orderDTO);
+
         return "catalog/cart";
     }
 

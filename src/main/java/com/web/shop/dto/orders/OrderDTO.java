@@ -91,7 +91,8 @@ public class OrderDTO implements Serializable {
     public List<OrderProductDTO> getOrderProducts() {
         return orderProducts;
     }
-    public void setOrderProductToList(OrderProductDTO orderProductDTO) {
+
+    public void addProductToOrderList(OrderProductDTO orderProductDTO) {
         this.orderProducts.add(orderProductDTO);
     }
 

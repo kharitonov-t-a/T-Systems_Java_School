@@ -20,6 +20,5 @@ public interface ProductService extends GenericService<ProductDTO, Integer> {
 //
 //    List<ProductDTO> findAll();
 
-    List<ProductDTO> checkExistInStock(OrderDTO orderSession, OrderDTO orderDTO, UserDTO userDTO);
 
 }

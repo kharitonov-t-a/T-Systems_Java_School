@@ -10,7 +10,7 @@ import javax.persistence.NoResultException;
 import java.util.List;
 
 @Repository("productsDao")
-public class ProductDaoImpl  extends GenericDaoImpl<Product, Integer> implements ProductDao {
+public class ProductDaoImpl extends GenericDaoImpl<Product, Integer> implements ProductDao {
     @Override
     public List<Product> findAllByIds(List<OrderProduct> orderProducts) {
 
@@ -20,7 +20,7 @@ public class ProductDaoImpl  extends GenericDaoImpl<Product, Integer> implements
         );
         ids.deleteCharAt(0);
         try {
-            //getEntityManager().find(id, Product.class, LockModeType.PESSIMISTIC_WRITE);
+//            getEntityManager().find(id, Product.class, LockModeType.PESSIMISTIC_WRITE);
             return (List<Product>) getEntityManager()
                     .createNativeQuery("SELECT u.* FROM Products u WHERE u.id IN (" + ids + ") AND u.StockQuantity < 1 FOR UPDATE")
                     .getResultList();
@@ -28,4 +28,11 @@ public class ProductDaoImpl  extends GenericDaoImpl<Product, Integer> implements
             return null;
         }
     }
+
+    @Override
+    public Product findByIdForUpdate(Integer id) {
+        return getEntityManager().find(Product.class, id, LockModeType.PESSIMISTIC_WRITE);
+    }
+
+
 }
