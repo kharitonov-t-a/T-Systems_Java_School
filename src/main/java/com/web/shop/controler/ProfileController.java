@@ -1,12 +1,9 @@
 package com.web.shop.controler;
 
 import com.web.shop.constants.MessageConstants;
-import com.web.shop.dto.products.ProductsCategoryDTO;
-import com.web.shop.dto.users.UserDTO;
+import com.web.shop.dto.user.UserDTO;
 import com.web.shop.security.UserSecurityService;
-import com.web.shop.service.front.products.ProductsCategoryServiceFront;
-import com.web.shop.service.interfaces.products.ProductsCategoryService;
-import com.web.shop.service.interfaces.users.UserService;
+import com.web.shop.service.interfaces.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -224,7 +221,7 @@ public class ProfileController {
 
 //    private boolean isAdminOrHimself(UserDTO user, ModelMap model){
 //
-//        if (!(UserSecurityService.isCurrentUserInRole(UserRolesEnum.ADMIN) ||
+//        if (!(UserSecurityService.isCurrentUserInRole(UserRoles.ADMIN) ||
 //                user.getEmail().equalsIgnoreCase(UserSecurityService.getPrincipal()))) {
 //            model.addAttribute("message", String.format(
 //                    MessageConstants.MESSAGE_EDIT_USER_ACCESS_DENIED,

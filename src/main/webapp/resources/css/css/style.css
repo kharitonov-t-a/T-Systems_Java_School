@@ -120,9 +120,9 @@ body {
   transition: all 0.3s ease 0s;
 }
 .btn.btn-primary:hover {
-  background: #ED7987;
+  /*background: #ED7987;*/
   background-image: none;
-  border-color: #ED7987;
+  /*border-color: #ED7987;*/
 }
 label {
   font-size: 12px;
@@ -723,15 +723,11 @@ p.welcome-msg {
   z-index: 1000;
 }
 .category-menu-list ul {
-  border-color: #eee;
-  border-style: solid;
-  border-width: 0 1px 1px;
   list-style: outside none none;
   padding: 0;
 }
 .category-menu-list > ul > li {
   background: #fff none repeat scroll 0 0;
-  border-bottom: 1px solid #eee;
   padding: 3px 0;
   position: relative;
 }

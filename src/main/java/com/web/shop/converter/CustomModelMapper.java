@@ -1,6 +1,5 @@
 package com.web.shop.converter;
 
-import com.web.shop.model.products.ProductCharacteristicType;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 

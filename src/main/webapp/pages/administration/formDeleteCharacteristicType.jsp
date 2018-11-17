@@ -17,20 +17,20 @@
 <header class="header">
     <div class="container" style="max-width: 800px;" id="content-profile-box">
 
-        <%--@elvariable id="productCharacteristicTypeDTO" type="com.web.shop.dto.products.ProductCharacteristicTypeDTO"--%>
+        <%--@elvariable id="productCharacteristicTypeDTO" type="com.web.shop.dto.product.ProductCharacteristicTypeDTO"--%>
         <form:form modelAttribute="productCharacteristicTypeDTO" method="post" class="form-horizontal">
 
             <h2 class="form-signin-heading">
-                Delete product characteristic
+                Delete product productCharacteristicList
             </h2>
 
             <div class="row">
                 <label class="col-md-3 control-lable" for="id">Select node</label>
                 <div class="form-group col-md-12">
                     <form:select path="id" class="custom-select" name="id">
-                        <c:forEach var="field" items="${listProductCharacteristicType}">0
+                        <c:forEach var="field" items="${listProductCharacteristicType}">
                             <form:option value="${field.id}">
-                                Name: ${field.name} | Measure: ${field.measure} | Type: ${field.characteristicType}
+                                Name: ${field.name} | Measure: ${field.measure} | Type: ${field.productCharacteristicType}
                             </form:option>
                         </c:forEach>
                     </form:select>

@@ -3,9 +3,9 @@ package com.web.shop.security;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.web.shop.dto.users.UserDTO;
-import com.web.shop.dto.users.UserProfileDTO;
-import com.web.shop.service.interfaces.users.UserService;
+import com.web.shop.dto.user.UserDTO;
+import com.web.shop.dto.user.UserProfileDTO;
+import com.web.shop.service.interfaces.user.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class CustomUserDetailsService implements UserDetailsService{
     private List<GrantedAuthority> getGrantedAuthorities(UserDTO user){
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 
-        for(UserProfileDTO userProfile : user.getUserProfiles()){
+        for(UserProfileDTO userProfile : user.getUserProfileSet()){
             logger.info("UserProfile : {}", userProfile);
             authorities.add(new SimpleGrantedAuthority("ROLE_"+userProfile.getRole()));
         }

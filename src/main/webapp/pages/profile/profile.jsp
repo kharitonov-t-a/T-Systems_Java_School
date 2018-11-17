@@ -6,66 +6,89 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored = "false"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <html>
 <head>
-    <%@ include file="/pages/head.jsp"%>
+    <%@ include file="/pages/head.jsp" %>
     <script src="<c:url value="/resources/js/profile.js" />"></script>
-    <script src="<c:url value="/resources/js/characteristicType.js" />"></script>
-    <script src="<c:url value="/resources/js/productCharacteristic.js" />"></script>
+    <script src="<c:url value="/resources/js/productCharacteristicType.js" />"></script>
+    <script src="<c:url value="/resources/js/productCharacteristicList.js" />"></script>
 </head>
 <body>
-<%@ include file="/pages/navbar.jsp"%>
-<header class="header">
+<%@ include file="/pages/navbar.jsp" %>
+<!-- START PAGE-CONTENT -->
+<section class="page-content">
+    <div class="container">
         <div class="row">
-            <div class="col-sm-4">
-                <div class="list-group" id="profile-menu">
-                    <a href="<c:url value="/editCurrentUser" />" class="list-group-item list-group-item-action active" id="edit-current-user">
-                        Edit user
-                    </a>
-                    <a href="<c:url value="/editPassword" />" class="list-group-item list-group-item-action" id="edit-password">
-                        Edit password
-                    </a>
-                    <a href="<c:url value="/orderList" />" class="list-group-item list-group-item-action">
-                        Orders list
-                    </a>
-                    <a href="<c:url value="/allOrders" />" class="list-group-item list-group-item-action">
-                        All orders
-                    </a>
-                    <a href="<c:url value="/formCategory" />" class="list-group-item list-group-item-action">
-                        Create products category
-                    </a>
-                    <a href="<c:url value="/formDeleteCategory" />" class="list-group-item list-group-item-action">
-                        Delete products category
-                    </a>
-                    <a href="<c:url value="/formCharacteristicType" />" class="list-group-item list-group-item-action">
-                        Create product Characteristic
-                    </a>
-                    <a href="<c:url value="/formDeleteCharacteristicType" />" class="list-group-item list-group-item-action">
-                        Delete product Characteristic
-                    </a>
-                    <a href="<c:url value="/formProduct" />" class="list-group-item list-group-item-action">
-                        Create product
-                    </a>
-                    <a href="<c:url value="/formDeleteProduct" />" class="list-group-item list-group-item-action">
-                        Delete product
-                    </a>
-                    <a href="<c:url value="/userslist" />" class="list-group-item list-group-item-action" id="get-users-list-box">
-                        Users list for admin
-                    </a>
+            <div class="col-md-12">
+                <ul class="page-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active"><a href="my-account.html">My Account</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <!-- PROFILE-MENU-LIST START -->
+                <div class="left-productCategory-menu">
+                    <div class="left-product-cat">
+                        <div class="productCategory-heading ">
+                            <h2>profile</h2>
+                        </div>
+                        <div class="productCategory-menu-list list-group"  id="profile-menu">
+                            <ul>
+                                <li><a href="<c:url value="/editCurrentUser" />" class="list-group-item active">
+                                    Edit user
+                                </a></li>
+                                <li><a href="<c:url value="/editPassword" />" class="list-group-item">
+                                    Edit password
+                                </a></li>
+                                <li><a href="<c:url value="/orderList" />" class="list-group-item">
+                                    Orders list
+                                </a></li>
+                                <li><a href="<c:url value="/allOrders" />" class="list-group-item">
+                                    All orderList
+                                </a></li>
+                                <li><a href="<c:url value="/productCategory" />" class="list-group-item">
+                                    Products category
+                                </a></li>
+                                <li><a href="<c:url value="/listCharacteristicType" />" class="list-group-item">
+                                    Product Characteristic Type
+                                </a></li>
+                                <li><a href="<c:url value="/formCharacteristicType" />" class="list-group-item">
+                                    Create product Characteristic
+                                </a></li>
+                                <li><a href="<c:url value="/formDeleteCharacteristicType" />" class="list-group-item">
+                                    Delete product Characteristic
+                                </a></li>
+                                <li><a href="<c:url value="/productList" />" class="list-group-item">
+                                    Products
+                                </a></li>
+                                <li><a href="<c:url value="/formProduct" />" class="list-group-item">
+                                    Create product
+                                </a></li>
+                                <li><a href="<c:url value="/formDeleteProduct" />" class="list-group-item">
+                                    Delete product
+                                </a></li>
+                                <li><a href="<c:url value="/userslist" />" class="list-group-item list-group-item-action">
+                                    Users list for admin
+                                </a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="col-sm-7">
+
+            <!-- END PROFILE-MENU-LIST -->
+            <div class="col-md-9 col-xs-12">
                 <div id="body-profile-user">
 
                 </div>
             </div>
-
         </div>
-
-
-</header>
+    </div>
+</section>
 
 </body>
 </html>

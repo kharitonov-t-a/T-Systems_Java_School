@@ -17,18 +17,18 @@
 <header class="header">
     <div class="container" style="max-width: 800px;" id="content-profile-box">
 
-        <%--@elvariable id="productsCategoryDTO" type="com.web.shop.dto.products.ProductsCategoryDTO"--%>
-        <form:form modelAttribute="productsCategoryDTO" method="post" class="form-horizontal">
+        <%--@elvariable id="productCategoryDTO" type="com.web.shop.dto.product.ProductCategoryDTO"--%>
+        <form:form modelAttribute="productCategoryDTO" method="post" class="form-horizontal">
 
             <h2 class="form-signin-heading">
-                Delete products category
+                Delete products productCategory
             </h2>
 
             <div class="row">
                 <label class="col-md-3 control-lable" for="id">Select node</label>
                 <div class="form-group col-md-12">
                     <form:select path="id" class="custom-select" name="id">
-                        <c:forEach var="field" items="${productsCategory}">
+                        <c:forEach var="field" items="${productCategory}">
                             <form:option value="${field.id}">
                                 <c:forEach var="space" begin="1" end="${field.level}">
                                     &emsp;

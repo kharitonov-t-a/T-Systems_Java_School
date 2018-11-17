@@ -17,7 +17,7 @@
 <header class="header">
     <div class="container" style="max-width: 800px;" id="content-profile-box">
 
-        <%--@elvariable id="productDTO" type="com.web.shop.dto.products.ProductDTO"--%>
+        <%--@elvariable id="productDTO" type="com.web.shop.dto.product.ProductDTO"--%>
         <form:form modelAttribute="productDTO" method="post" class="form-horizontal">
 
             <h2 class="form-signin-heading">
@@ -58,10 +58,10 @@
             </div>
 
             <div class="row">
-                <label class="col-md-3 control-lable" for="productsCategory.id">Product category</label>
+                <label class="col-md-3 control-lable" for="productCategory.id">Product productCategory</label>
                 <div class="form-group col-md-12">
-                    <form:select path="productsCategory.id" class="custom-select" name="id">
-                        <c:forEach var="field" items="${listProductsCategoryDTO}">
+                    <form:select path="productCategory.id" class="custom-select" name="id">
+                        <c:forEach var="field" items="${listProductCategoryDTO}">
                             <form:option value="${field.id}">
                                 <c:forEach var="space" begin="1" end="${field.level}">
                                     &emsp;
@@ -71,7 +71,7 @@
                         </c:forEach>
                     </form:select>
                     <div class="has-error">
-                        <form:errors path="productsCategory.id" class="help-inline"/>
+                        <form:errors path="productCategory.id" class="help-inline"/>
                     </div>
                 </div>
             </div>

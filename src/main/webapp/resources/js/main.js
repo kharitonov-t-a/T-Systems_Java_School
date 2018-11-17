@@ -17,7 +17,7 @@ $(document).ready(function () {
         });
     });
 
-    /*------------------------------------- listProduct.jsp -----------------------------------------------------*/
+    /*------------------------------------- listProductProfile.jsp -----------------------------------------------------*/
     $("div.product-action button.addProduct").on("click",function(clickEvent){
         clickEvent.preventDefault();
         var button = $(this);

@@ -14,10 +14,12 @@
 </head>
 <body>
 <%@ include file="/pages/navbar.jsp" %>
-<header class="header">
-    <div class="container" style="max-width: 800px;"  id="content-profile-box">
+<section class="page-content">
+    <div class="container">
+        <div style="max-width: 800px;" id="content-profile-box">
+            <div class="col-md-12">
 
-        <%--@elvariable id="userDTO" type="com.web.shop.dto.users.UserDTO"--%>
+                <%--@elvariable id="userDTO" type="com.web.shop.dto.user.UserDTO"--%>
         <form:form modelAttribute="userDTO" method="post" class="form-horizontal">
 
 
@@ -31,8 +33,9 @@
                 ((notEditInfoUser == null || notEditInfoUser == false) && field.key.compareToIgnoreCase(\"id\") != 0 && field.key.compareToIgnoreCase(\"password\") != 0 && field.key.compareToIgnoreCase(\"confirmPassword\") != 0) ||
                 ((notEditPassword == null || notEditPassword == false) && field.key.compareToIgnoreCase(\"id\") != 0 && (field.key.compareToIgnoreCase(\"password\") == 0 || field.key.compareToIgnoreCase(\"confirmPassword\") == 0))
                 }">
-                <div class="row" <c:out value="${field.key.compareToIgnoreCase(\"id\") == 0 ? \"hidden\" : \"\"}"/>>
-                    <div class="form-group col-md-12">
+                <div class="form-group row" <c:out value="${field.key.compareToIgnoreCase(\"id\") == 0 ? \"hidden\" : \"\"}"/>>
+                    <label class="col-sm-2 control-label" for="${field.key}">${field.value}</label>
+                    <div class="col-sm-10">
                         <form:input path="${field.key}"
                                     type="${field.key.compareToIgnoreCase(\"password\") == 0 || field.key.compareToIgnoreCase(\"confirmPassword\") == 0 ? \"password\" :
                                             field.key.compareToIgnoreCase(\"birthday\") == 0 ? \"date\" :
@@ -56,7 +59,7 @@
             <%--<c:if test="${notEditInfoUser == null || notEditInfoUser == false}">--%>
             <%--<div class="row">--%>
                 <%--<div class="form-group col-md-12">--%>
-                    <%--<form:input type="text" class="form-control" name="email" placeholder="Email address"--%>
+                    <%--<form:input type="text" class="form-control" name="email" placeholder="Email userAddress"--%>
                                 <%--autofocus="true" required="true" path="email"/>--%>
                     <%--<div class="has-error">--%>
                         <%--<form:errors path="email" class="help-inline"></form:errors>--%>
@@ -105,10 +108,10 @@
             <%--</div>--%>
             <%--<div class="row">--%>
                 <%--<div class="form-group col-md-12">--%>
-                    <%--<form:input type="text" class="form-control" name="surnName" placeholder="Surn Name"--%>
-                                <%--path="surnName"/>--%>
+                    <%--<form:input type="text" class="form-control" name="lastName" placeholder="Surn Name"--%>
+                                <%--path="lastName"/>--%>
                     <%--<div class="has-error">--%>
-                        <%--<form:errors path="surnName" class="help-inline"></form:errors>--%>
+                        <%--<form:errors path="lastName" class="help-inline"></form:errors>--%>
                     <%--</div>--%>
                 <%--</div>--%>
             <%--</div>--%>
@@ -123,13 +126,13 @@
             <%--</div>--%>
             <%--&lt;%&ndash;<div class="row">&ndash;%&gt;--%>
                 <%--&lt;%&ndash;<div class="form-group col-md-12">&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;<label class="col-md-3 control-lable" for="userProfiles">Roles</label>&ndash;%&gt;--%>
+                    <%--&lt;%&ndash;<label class="col-md-3 control-lable" for="userProfileSet">Roles</label>&ndash;%&gt;--%>
                     <%--&lt;%&ndash;<div class="col-md-7">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<form:select path="userProfiles" items="${roles}" multiple="true" itemValue="id"&ndash;%&gt;--%>
+                        <%--&lt;%&ndash;<form:select path="userProfileSet" items="${roles}" multiple="true" itemValue="id"&ndash;%&gt;--%>
 
                                      <%--&lt;%&ndash;itemLabel="type" class="form-control input-sm" />&ndash;%&gt;--%>
                         <%--&lt;%&ndash;<div class="has-error">&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<form:errors path="userProfiles" class="help-inline"/>&ndash;%&gt;--%>
+                            <%--&lt;%&ndash;<form:errors path="userProfileSet" class="help-inline"/>&ndash;%&gt;--%>
                         <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
                     <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
                 <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
@@ -142,16 +145,18 @@
             </button>
             <%--<form:hidden  class="form-control" name="id" placeholder="ID" value="0" path="id"/>--%>
             <%--<form:hidden  class="form-control" name="UserRoleID" placeholder="Role" value="2" path="userRoleID" />--%>
-            <%--<form:input class="form-control" name="eMail" placeholder="Email address" path="eMail"/>--%>
+            <%--<form:input class="form-control" name="eMail" placeholder="Email userAddress" path="eMail"/>--%>
             <%--<form:input  class="form-control" name="password" placeholder="Password" path="password"/>--%>
             <%--<form:input  class="form-control" name="firstName" placeholder="First Name" path="firstName" />--%>
-            <%--<form:input  class="form-control" name="surnName" placeholder="Surn Name" path="surnName"/>--%>
+            <%--<form:input  class="form-control" name="lastName" placeholder="Surn Name" path="lastName"/>--%>
             <%--<form:input  class="form-control" name="birthday" placeholder="Birthday" path="birthday"/>--%>
             <%--<form:button class="btn btn-lg btn-primary btn-block" type="submit">--%>
             <%--Зарегистрировать!--%>
             <%--</form:button>--%>
         </form:form>
+            </div>
+        </div>
     </div>
-</header>
+</section>
 </body>
 </html>

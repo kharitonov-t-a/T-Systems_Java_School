@@ -1,7 +1,7 @@
 package com.web.shop.converter;
 
-import com.web.shop.dto.users.UserProfileDTO;
-import com.web.shop.service.interfaces.users.UserProfileService;
+import com.web.shop.dto.user.UserProfileDTO;
+import com.web.shop.service.interfaces.user.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;

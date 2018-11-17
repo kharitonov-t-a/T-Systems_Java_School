@@ -52,7 +52,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${orderSession.orderProducts}" var="orderProduct">
+                                <c:forEach items="${orderSession.orderProductList}" var="orderProduct">
                                     <tr>
                                             <%--<td class="text-center">--%>
                                             <%--<a href="#"><img class="img-thumbnail" src="img/product/cart/2.jpg" alt="#" /></a>--%>
@@ -86,16 +86,16 @@
                         </div>
                         <!-- End Table -->
                         <%--<h3 class="title-group-3 gfont-1">What would you like to do next?</h3>--%>
-                        <%--<p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>--%>
+                        <%--<p>Choose if you have a discount code or reward points you want to use or would like to estimate your deliveryType cost.</p>--%>
                         <!-- Accordion start -->
 
-                        <c:if test="${fn:length(orderSession.orderProducts) < 0}">
+                        <c:if test="${fn:length(orderSession.orderProductList) < 0}">
                         <h1>
                             Your cart have not any products.
                         </h1>
                         </c:if>
 
-                        <%--@elvariable id="orderDTO" type="com.web.shop.dto.orders.OrderDTO"--%>
+                        <%--@elvariable id="orderDTO" type="com.web.shop.dto.orderList.OrderDTO"--%>
                         <form:form modelAttribute="orderDTO" method="post" class="form-horizontal">
                         <div class="accordion-cart">
                             <div class="panel-group" id="accordion">
@@ -119,102 +119,102 @@
                                     <%--</div>--%>
                                     <%--</div>--%>
                                 <!-- End Coupon -->
-                                <!-- Start Address -->
+                                <!-- Start UserAddress -->
                                 <div class="panel panel_default">
                                     <div class="panel-heading">
                                         <h4 class="panel-title">
                                             <a class="accordion-trigger collapsed" data-toggle="collapse"
-                                               data-parent="#address" href="#address">Address<i
+                                               data-parent="#userAddress" href="#userAddress">Address<i
                                                     class="fa fa-caret-down"></i> </a>
                                         </h4>
                                     </div>
-                                    <div id="address" class="collapse">
+                                    <div id="userAddress" class="collapse">
                                         <div class="panel-body">
                                             <div class="col-sm-2">
-                                                <p>Select or enter an address.</p>
+                                                <p>Select or enter an userAddress.</p>
                                             </div>
                                             <div class="input-group">
 
                                                 <div class="row">
                                                     <label class="col-md-3 control-lable"
-                                                           for="address.country">Country</label>
+                                                           for="userAddress.country">Country</label>
                                                     <div class="form-group col-md-12">
                                                         <form:input type="text" class="form-control"
-                                                                    name="address.country"
+                                                                    name="userAddress.country"
                                                                     placeholder="Country"
-                                                                    required="true" path="address.country"/>
+                                                                    required="true" path="userAddress.country"/>
                                                         <div class="has-error">
-                                                            <form:errors path="address.country"
+                                                            <form:errors path="userAddress.country"
                                                                          class="help-inline"></form:errors>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <label class="col-md-3 control-lable"
-                                                           for="address.city">City</label>
+                                                           for="userAddress.city">City</label>
                                                     <div class="form-group col-md-12">
                                                         <form:input type="text" class="form-control"
-                                                                    name="address.city"
+                                                                    name="userAddress.city"
                                                                     placeholder="City"
-                                                                    required="true" path="address.city"/>
+                                                                    required="true" path="userAddress.city"/>
                                                         <div class="has-error">
-                                                            <form:errors path="address.city"
+                                                            <form:errors path="userAddress.city"
                                                                          class="help-inline"></form:errors>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <label class="col-md-3 control-lable"
-                                                           for="address.street">Street</label>
+                                                           for="userAddress.street">Street</label>
                                                     <div class="form-group col-md-12">
                                                         <form:input type="text" class="form-control"
-                                                                    name="address.street"
+                                                                    name="userAddress.street"
                                                                     placeholder="Street"
-                                                                    required="true" path="address.street"/>
+                                                                    required="true" path="userAddress.street"/>
                                                         <div class="has-error">
-                                                            <form:errors path="address.street"
+                                                            <form:errors path="userAddress.street"
                                                                          class="help-inline"></form:errors>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <label class="col-md-3 control-lable"
-                                                           for="address.house">House</label>
+                                                           for="userAddress.house">House</label>
                                                     <div class="form-group col-md-12">
                                                         <form:input type="number" class="form-control"
-                                                                    name="address.house"
+                                                                    name="userAddress.house"
                                                                     placeholder="House"
-                                                                    required="true" path="address.house"/>
+                                                                    required="true" path="userAddress.house"/>
                                                         <div class="has-error">
-                                                            <form:errors path="address.house"
+                                                            <form:errors path="userAddress.house"
                                                                          class="help-inline"></form:errors>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <label class="col-md-3 control-lable"
-                                                           for="address.house">Flat</label>
+                                                           for="userAddress.house">Flat</label>
                                                     <div class="form-group col-md-12">
                                                         <form:input type="number" class="form-control"
-                                                                    name="address.flat"
+                                                                    name="userAddress.flat"
                                                                     placeholder="Flat"
-                                                                    required="true" path="address.flat"/>
+                                                                    required="true" path="userAddress.flat"/>
                                                         <div class="has-error">
-                                                            <form:errors path="address.flat"
+                                                            <form:errors path="userAddress.flat"
                                                                          class="help-inline"></form:errors>
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <label class="col-md-3 control-lable"
-                                                           for="address.house">ZIP</label>
+                                                           for="userAddress.house">ZIP</label>
                                                     <div class="form-group col-md-12">
                                                         <form:input type="number" class="form-control"
-                                                                    name="address.zip"
+                                                                    name="userAddress.zip"
                                                                     placeholder="ZIP"
-                                                                    required="true" path="address.zip"/>
+                                                                    required="true" path="userAddress.zip"/>
                                                         <div class="has-error">
-                                                            <form:errors path="address.zip"
+                                                            <form:errors path="userAddress.zip"
                                                                          class="help-inline"></form:errors>
                                                         </div>
                                                     </div>
@@ -223,7 +223,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <!-- Start Address -->
+                                <!-- Start UserAddress -->
                                 <!-- Start Shipping -->
                                 <div class="panel panel_default">
                                     <div class="panel-heading">
@@ -236,28 +236,28 @@
                                     <div id="shipping" class="collapse">
                                         <div class="panel-body">
                                             <div class="col-sm-12">
-                                                <p>Enter your way payment and delivery.</p>
+                                                <p>Enter your way paymentType and deliveryType.</p>
                                             </div>
                                             <div class="form-horizontal">
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label"><sup>*</sup>Payment</label>
                                                     <div class="col-sm-10">
-                                                        <form:select path="paymentEnum" class="form-control input-sm"
+                                                        <form:select path="paymentType" class="form-control input-sm"
                                                                      multiple="false">
                                                             <form:options
                                                                     items="${com.web.shop.model.enums.PaymentEnum.values()}"
-                                                                    itemLabel="payment"/>
+                                                                    itemLabel="paymentType"/>
                                                         </form:select>
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <label class="col-sm-2 control-label"><sup>*</sup>Delivery</label>
                                                     <div class="col-sm-10">
-                                                        <form:select path="deliveryEnum" class="form-control input-sm"
+                                                        <form:select path="deliveryType" class="form-control input-sm"
                                                                      multiple="false">
                                                             <form:options
                                                                     items="${com.web.shop.model.enums.DeliveryEnum.values()}"
-                                                                    itemLabel="delivery"/>
+                                                                    itemLabel="deliveryType"/>
                                                         </form:select>
                                                     </div>
                                                 </div>

@@ -1,4 +1,4 @@
-(function ($) {
+$(document).ready(function () {
  "use strict";
  
 /*----------------------------
@@ -202,7 +202,7 @@ $('[data-toggle="tooltip"]').tooltip();
 		
 	});
 
-	$(".embed-responsive iframe").addClass("embed-responsive-item");
+	$(".embed-responsivescrollUp iframe").addClass("embed-responsive-item");
 	$(".carousel-inner .item:first-child").addClass("active");
 	
 /*--------------------------
@@ -245,15 +245,15 @@ $('[data-toggle="tooltip"]').tooltip();
 /*--------------------------
  scrollUp
 ---------------------------- */	
-	$.scrollUp({
-        easingType: 'linear',
-        scrollSpeed: 900,
-        animation: 'fade'
-    }); 	
+    // $.scrollUp({
+    //     easingType: 'linear',
+    //     scrollSpeed: 900,
+    //     animation: 'fade'
+    // });
 
 
 
 
 
  
-})(jQuery); 
+});

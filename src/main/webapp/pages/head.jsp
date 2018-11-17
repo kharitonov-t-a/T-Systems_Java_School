@@ -18,7 +18,7 @@
 <link href='https://fonts.googleapis.com/css?family=Roboto:400,700' rel='stylesheet' type='text/css'>
 <!-- Bootstrap CSS
 ============================================ -->
-<link rel="stylesheet" href="<c:url value="/resources/css/css/bootstrap.min.css" />">
+<link rel="stylesheet" href="<c:url value="/resources/css/bootstrapcss/bootstrap.min.css" />">
 <%--<link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.min.css" />">--%>
 <!-- Font awesome CSS
 ============================================ -->
@@ -48,7 +48,6 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/css/style.css" />">
 <!-- responsive CSS
 ============================================ -->
-<link rel="stylesheet" href="">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <%--docs/assets/sweetalert/sweetalert.min.js--%>
@@ -62,10 +61,10 @@
 
 <!-- jquery
 ============================================ -->
-<script src="<c:url value="/resources/js/js/jquery-1.11.3.min.js" />"></script>
+<script src="<c:url value="/resources/js/jquery-3.3.1.js" />"></script>
 <!-- bootstrap JS
 ============================================ -->
-<script src="<c:url value="/resources/js/js/bootstrap.min.js" />"></script>
+<script src="<c:url value="/resources/js/bootstrapjs/bootstrap.min.js" />"></script>
 <%--<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>--%>
 <!-- wow JS
 ============================================ -->

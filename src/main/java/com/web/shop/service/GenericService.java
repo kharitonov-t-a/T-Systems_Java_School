@@ -11,9 +11,11 @@ public interface GenericService<Dto, PK extends Serializable> {
 
     Dto findById(PK id);
 
-    void create(Dto dto) throws GlobalCustomException;
+    void create(Dto dto) throws SaveUserException;
 
-    void delete(PK id) throws GlobalCustomException;
+    void update(Dto dto);
+
+    void delete(PK id);
 
     List<Dto> findAll();
 }

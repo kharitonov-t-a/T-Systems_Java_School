@@ -30,14 +30,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach items="${listProductsCategoryDTO}" var="productsCategoryDTO">
+                <c:forEach items="${listProductCategoryDTO}" var="productCategoryDTO">
                     <tr>
-                        <td>${productsCategoryDTO.id}</td>
-                        <td>${productsCategoryDTO.parent}</td>
-                        <td>${productsCategoryDTO.name}</td>
-                        <td>${productsCategoryDTO.leftKey}</td>
-                        <td>${productsCategoryDTO.rightKey}</td>
-                        <td>${productsCategoryDTO.level}</td>
+                        <td>${productCategoryDTO.id}</td>
+                        <td>${productCategoryDTO.parent}</td>
+                        <td>${productCategoryDTO.name}</td>
+                        <td>${productCategoryDTO.leftKey}</td>
+                        <td>${productCategoryDTO.rightKey}</td>
+                        <td>${productCategoryDTO.level}</td>
                     </tr>
                 </c:forEach>
                 </tbody>

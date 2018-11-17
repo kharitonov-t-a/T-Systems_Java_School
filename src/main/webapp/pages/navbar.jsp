@@ -11,27 +11,27 @@
 <div id='nuvebar'>
     <ul id="nuvigate">
         <li><a href='/'>Home</a></li>
-        <li class='rootCutalog'><a href='/listProduct/1/0'>Root</a>
+        <li class='rootCutalog'><a href='/productList/1/0'>Root</a>
             <c:set var="level" value="${1}"/>
-            <c:forEach items="${allProductsCategoryForNavBar}" var="productsCategoryDTO">
+            <c:forEach items="${allProductsCategoryForNavBar}" var="productCategoryDTO">
             <c:choose>
-            <c:when test="${productsCategoryDTO.level == level + 1 }">
+            <c:when test="${productCategoryDTO.level == level + 1 }">
             <ul>
-                <li><a href='/listProduct/${productsCategoryDTO.id}/0'>${productsCategoryDTO.name}</a>
+                <li><a href='/productList/${productCategoryDTO.id}/0'>${productCategoryDTO.name}</a>
                     <c:set var="level" value="${level + 1}"/>
             </c:when>
-            <c:when test="${productsCategoryDTO.level < level}">
-                <c:forEach begin="${productsCategoryDTO.level}" end="${level - 1}">
+            <c:when test="${productCategoryDTO.level < level}">
+                <c:forEach begin="${productCategoryDTO.level}" end="${level - 1}">
                     </li>
                 </ul>
                 </c:forEach>
-                <c:set var="level" value="${productsCategoryDTO.level}"/>
+                <c:set var="level" value="${productCategoryDTO.level}"/>
                     </li>
-                 <li><a href='/listProduct/${productsCategoryDTO.id}/0'>${productsCategoryDTO.name}</a>
+                 <li><a href='/productList/${productCategoryDTO.id}/0'>${productCategoryDTO.name}</a>
             </c:when>
-            <c:when test="${productsCategoryDTO.level == level}">
+            <c:when test="${productCategoryDTO.level == level}">
                 </li>
-            <li><a href='/listProduct/${productsCategoryDTO.id}/0'>${productsCategoryDTO.name}</a>
+            <li><a href='/productList/${productCategoryDTO.id}/0'>${productCategoryDTO.name}</a>
             </c:when>
             </c:choose>
             </c:forEach>
@@ -41,7 +41,7 @@
                 </li>
             </ul>
             </c:forEach>
-    </c:if>
+            </c:if>
     </li>
     <li><a href='#'>Delivery</a></li>
     <li><a href='#'>Payment</a></li>

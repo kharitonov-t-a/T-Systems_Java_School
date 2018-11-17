@@ -13,9 +13,11 @@
 </head>
 <body>
 <%@ include file="/pages/navbar.jsp" %>
-<header class="header">
+<section class="page-content">
+    <div class="container">
+        <div style="max-width: 800px;" id="content-profile-box">
+            <div class="col-md-12">
 
-    <div class="container" style="max-width: 800px;">
         <c:url value="/login" var="loginUrl"/>
         <form action="${loginUrl}" method="post" class="form-horizontal">
             <h2 class="form-signin-heading">
@@ -31,14 +33,16 @@
                     <p>You have been logged out successfully.</p>
                 </div>
             </c:if>
-            <div class="row">
-                <div class="form-group col-md-12">
-                    <input type="text" class="form-control" name="email" placeholder="Email address" required autofocus>
+            <div class="form-group row">
+                <label class="col-sm-2 control-label" for="inputEmail">Email userAddress</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="email" id="inputEmail" placeholder="Email userAddress" required autofocus>
                 </div>
             </div>
-            <div class="row">
-                <div class="form-group col-md-12">
-                    <input type="password" class="form-control" name="password" placeholder="Password" required>
+            <div class="form-group row">
+                <label class="col-sm-2 control-label" for="inputPassword">Password</label>
+                <div class="col-sm-10">
+                    <input type="password" class="form-control" name="password" id="inputPassword" placeholder="Password" required>
                 </div>
             </div>
             <button class="btn btn-lg btn-primary btn-block" type="submit">
