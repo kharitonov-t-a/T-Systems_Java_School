@@ -45,12 +45,12 @@ public class UserServiceImpl extends GenericServiceImpl<UserDTO, Integer, UserDa
 //
 //
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public void create(UserDTO user) throws SaveUserException {
+    public void create(UserDTO user)   {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         try {
             dao.create(modelMapper.map(user, User.class));
         }catch (Exception e){
-            throw new SaveUserException();
+//            throw new SaveUserException();
         }
     }
 

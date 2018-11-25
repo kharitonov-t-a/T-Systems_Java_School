@@ -21,4 +21,16 @@ public class ProductCharacteristicTypeDaoImpl extends GenericDaoImpl<ProductChar
         }
     }
 
+    @Override
+    public List<ProductCharacteristicType> findByCatalogId(Integer catalogId) {
+        try{
+            return getEntityManager()
+                    .createQuery("SELECT u FROM ProductCharacteristicType u WHERE u.productCategory.id = :catalogId ORDER BY u.characteristicType")
+                    .setParameter("catalogId", catalogId)
+                    .getResultList();
+        }catch(NoResultException ex){
+            return null;
+        }
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.web.shop.validator;
+package com.web.shop.validator.match;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;

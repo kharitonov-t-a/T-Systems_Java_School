@@ -3,6 +3,7 @@ package com.web.shop.service;
 import com.web.shop.converter.CustomModelMapper;
 import com.web.shop.dao.GenericDaoImpl;
 import com.web.shop.exceptions.CheckProductsCategoryException;
+import com.web.shop.exceptions.CreateDaoException;
 import com.web.shop.exceptions.SaveUserException;
 import com.web.shop.service.GenericService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +38,11 @@ public class GenericServiceImpl<Dto, PK extends Serializable, Dao, Entity> imple
     }
 
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
-    public void create(Dto dto) throws SaveUserException {
+    public void create(Dto dto) {
         ((GenericDaoImpl) dao).create(modelMapper.map(dto, genericEntityType));
     }
 
-    @Override
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void update(Dto dto) {
         ((GenericDaoImpl) dao).update(modelMapper.map(dto, genericEntityType));
     }

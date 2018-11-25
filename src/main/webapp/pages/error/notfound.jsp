@@ -9,15 +9,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
-    <%@ include file="/pages/head.jsp" %>
 </head>
 <body>
-<%@ include file="/pages/navbar.jsp" %>
-<header class="header">
-    <div class="container" style="max-width: 800px;" id="content-profile-box">
+    <div id="content-exception">
         404
         <img src="<c:out value="/resources/images/404_page.png"/>"/>
     </div>
-</header>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.web.shop.dao.product;
 
 import com.web.shop.dao.GenericDao;
+import com.web.shop.dto.product.ProductCategoryDTO;
 import com.web.shop.model.product.ProductCategory;
 
 import java.util.List;
@@ -22,4 +23,6 @@ public interface ProductCategoryDao extends GenericDao<ProductCategory, Integer>
     void updateBranchesAfterDelete(Integer leftKey, Integer rightKey);
 
     void deleteSlaveNodes(Integer leftKey, Integer rightKey);
+
+    ProductCategory findNodeByCharacterCode(String characterCode);
 }

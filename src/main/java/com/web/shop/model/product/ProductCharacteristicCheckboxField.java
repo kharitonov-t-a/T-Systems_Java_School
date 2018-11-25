@@ -4,19 +4,12 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "ProductCharacteristicCheckboxField")
 public class ProductCharacteristicCheckboxField implements Serializable {
-
-    public ProductCharacteristicCheckboxField(){
-
-    }
-
-    public ProductCharacteristicCheckboxField(String value, ProductCharacteristicType productCharacteristicType){
-        this.value = value;
-        this.productCharacteristicType = productCharacteristicType;
-    }
 
     @Id
     @GeneratedValue(generator = "increment")
@@ -30,6 +23,9 @@ public class ProductCharacteristicCheckboxField implements Serializable {
     @ManyToOne
     @JoinColumn(name="productCharacteristicTypeId")
     private ProductCharacteristicType productCharacteristicType;
+
+    @OneToMany(mappedBy="productCharacteristicCheckboxField", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<ProductCharacteristicCheckboxValue> productCharacteristicCheckboxValueList = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -53,6 +49,14 @@ public class ProductCharacteristicCheckboxField implements Serializable {
 
     public void setProductCharacteristicType(ProductCharacteristicType productCharacteristicType) {
         this.productCharacteristicType = productCharacteristicType;
+    }
+
+    public List<ProductCharacteristicCheckboxValue> getProductCharacteristicCheckboxValueList() {
+        return productCharacteristicCheckboxValueList;
+    }
+
+    public void setProductCharacteristicCheckboxValueList(List<ProductCharacteristicCheckboxValue> productCharacteristicCheckboxValueList) {
+        this.productCharacteristicCheckboxValueList = productCharacteristicCheckboxValueList;
     }
 
 //    @Override

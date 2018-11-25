@@ -27,46 +27,68 @@
 
                     <div class="form-group">
                         <div class="col-sm-12">
-                            <button class="btn btn-lg btn-primary btn-block">
-                                Create new productCharacteristicList type
+                            <button class="btn btn-lg btn-primary btn-block" id="createCharacteristicBtn">
+                                Create new product characteristic type
                             </button>
+                        </div>
+                    </div>
+
+                    <div class="modal fade bd-example-modal-lg" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">${modalTitle}</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="content-modal-box"></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="modalCharacteristicFormButton">Save changes</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="table-responsive panel panel-default">
                         <div class="panel-heading"><span class="lead">Product Characteristic Type</span></div>
-                        <table class="table table-hover" id="user-list-table">
+                        <table class="table table-hover" id="list-table">
                             <thead>
                             <tr>
                                 <th>Name</th>
                                 <th>Measure</th>
                                 <th>Characteristic Type</th>
                                 <th>Checkbox Name Values</th>
+                                <th>Category</th>
                                 <th width="100"></th>
                                 <th width="100"></th>
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${listProductCharacteristicType}" var="productCharacteristicType">
+                            <c:forEach items="${productCharacteristicTypeDTOList}" var="productCharacteristicType">
                                 <tr>
                                     <td>${productCharacteristicType.name}</td>
-                                    <td>${productCharacteristicType.measure}</td>
-                                    <td>${productCharacteristicType.productCharacteristicType.name()}</td>
+                                    <td>${productCharacteristicType.measure.toString()}</td>
+                                    <td>${productCharacteristicType.characteristicType.name()}</td>
                                     <td><c:forEach items="${productCharacteristicType.productCharacteristicCheckboxFieldList}"
                                                    var="checkboxCharacteristicName">
                                         / ${checkboxCharacteristicName.value}
                                     </c:forEach> /
                                     </td>
+                                    <td>${productCharacteristicType.productCategory.name}</td>
                                     <sec:authorize access="hasRole('ADMIN') or hasRole('MANAGER')">
                                         <td>
-                                            <a href="<c:url value='/edit-productCharacteristicList-${productCharacteristicType.id}' />"
-                                               class="btn btn-success custom-width btn-edit-productCharacteristicList">edit</a>
+                                            <a href="<c:url value='/product/characteristic/type/${productCharacteristicType.id}' />"
+                                               class="btn btn-success custom-width btn-edit-productCharacteristic">edit</a>
                                         </td>
                                     </sec:authorize>
                                     <sec:authorize access="hasRole('ADMIN')">
                                         <td>
-                                            <a href="<c:url value='/delete-productCharacteristicList-${productCharacteristicType.id}' />"
-                                               class="btn btn-danger custom-width btn-delete-productCharacteristicList">delete</a>
+                                            <a href="<c:url value='/product/characteristic/type/${productCharacteristicType.id}' />"
+                                               class="btn btn-danger custom-width btn-delete-productCharacteristic">delete</a>
                                         </td>
                                     </sec:authorize>
                                 </tr>

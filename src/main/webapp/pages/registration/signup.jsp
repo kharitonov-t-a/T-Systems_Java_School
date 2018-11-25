@@ -17,143 +17,96 @@
 <section class="page-content">
     <div class="container">
         <div style="max-width: 800px;" id="content-profile-box">
+            <div class="hidden" id="successFlag" data="<c:out value="${success}"/>"></div>
             <div class="col-md-12">
 
                 <%--@elvariable id="userDTO" type="com.web.shop.dto.user.UserDTO"--%>
-        <form:form modelAttribute="userDTO" method="post" class="form-horizontal">
+                <form:form modelAttribute="userDTO" method="post" class="form-horizontal">
 
+                    <h2 class="form-signin-heading">
+                        Please sign up
+                    </h2>
 
-            <h2 class="form-signin-heading">
-                ${message}
-            </h2>
-
-            <c:forEach var="field" items="${userDTO.fieldsMap}">
-                <%-- id need only when --%>
-                <c:if test="${(edit == true && field.key.compareToIgnoreCase(\"id\") == 0) ||
-                ((notEditInfoUser == null || notEditInfoUser == false) && field.key.compareToIgnoreCase(\"id\") != 0 && field.key.compareToIgnoreCase(\"password\") != 0 && field.key.compareToIgnoreCase(\"confirmPassword\") != 0) ||
-                ((notEditPassword == null || notEditPassword == false) && field.key.compareToIgnoreCase(\"id\") != 0 && (field.key.compareToIgnoreCase(\"password\") == 0 || field.key.compareToIgnoreCase(\"confirmPassword\") == 0))
-                }">
-                <div class="form-group row" <c:out value="${field.key.compareToIgnoreCase(\"id\") == 0 ? \"hidden\" : \"\"}"/>>
-                    <label class="col-sm-2 control-label" for="${field.key}">${field.value}</label>
-                    <div class="col-sm-10">
-                        <form:input path="${field.key}"
-                                    type="${field.key.compareToIgnoreCase(\"password\") == 0 || field.key.compareToIgnoreCase(\"confirmPassword\") == 0 ? \"password\" :
-                                            field.key.compareToIgnoreCase(\"birthday\") == 0 ? \"date\" :
-                                            \"text\"}"
-                                    class="form-control" name="${field.key}" placeholder="${field.value}"/>
-                                    <%--${field.key.compareToIgnoreCase(\"password\") == 0 ? \"max='1999-12-31'\" : \"\"}"--%>
-                        <div class="has-error">
-                            <form:errors path="${field.key}" class="help-inline"></form:errors>
+                    <div class="form-group row">
+                        <label class="col-sm-2 control-label treeLabel">Email</label>
+                        <div class="col-sm-10">
+                            <form:input type="text" class="form-control" name="email" placeholder="Email"
+                                        autofocus="true" required="true" path="email"/>
+                            <div class="has-error">
+                                <form:errors path="email" class="help-inline"></form:errors>
+                            </div>
                         </div>
                     </div>
-                </div>
-                </c:if>
-            </c:forEach>
 
-            <%--&lt;%&ndash;if we edit user we need id&ndash;%&gt;--%>
-            <%--<c:if test="${edit == true}">--%>
-                <%--<form:input type="text" class="form-control" name="id" placeholder="ID" hidden="true" path="id"/>--%>
-            <%--</c:if>--%>
+                    <div class="form-group row">
+                        <label class="col-sm-2 control-label treeLabel">Password</label>
+                        <div class="col-sm-10">
+                            <form:input type="password" class="form-control" name="password" placeholder="Password"
+                                        required="true"
+                                        path="password"/>
+                            <div class="has-error">
+                                <form:errors path="password" class="help-inline"></form:errors>
+                            </div>
+                        </div>
+                    </div>
 
-            <%--&lt;%&ndash;if we edit password we don't show info user&ndash;%&gt;--%>
-            <%--<c:if test="${notEditInfoUser == null || notEditInfoUser == false}">--%>
-            <%--<div class="row">--%>
-                <%--<div class="form-group col-md-12">--%>
-                    <%--<form:input type="text" class="form-control" name="email" placeholder="Email userAddress"--%>
-                                <%--autofocus="true" required="true" path="email"/>--%>
-                    <%--<div class="has-error">--%>
-                        <%--<form:errors path="email" class="help-inline"></form:errors>--%>
-                        <%--&lt;%&ndash;Additional error if email already exist&ndash;%&gt;--%>
-                        <%--<form:errors class="help-inline"></form:errors>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-            <%--</c:if>--%>
+                    <div class="form-group row">
+                        <label class="col-sm-2 control-label treeLabel">Confirm password</label>
+                        <div class="col-sm-10">
+                            <form:input type="password" class="form-control" name="confirmPassword"
+                                        placeholder="Confirm password"
+                                        required="true"
+                                        path="confirmPassword"/>
+                            <div class="has-error">
+                                <form:errors path="confirmPassword" class="help-inline"></form:errors>
+                            </div>
+                        </div>
+                    </div>
 
-            <%--&lt;%&ndash;if we edit user we don't show password&ndash;%&gt;--%>
-            <%--<c:if test="${notEditPassword == null || notEditPassword == false}">--%>
-            <%--<div class="row">--%>
-                <%--<div class="form-group col-md-12">--%>
-                    <%--<form:input type="password" class="form-control" name="password" placeholder="Password"--%>
-                                <%--required="true"--%>
-                                <%--path="password"/>--%>
-                    <%--<div class="has-error">--%>
-                        <%--<form:errors path="password" class="help-inline"></form:errors>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="row">--%>
-                <%--<div class="form-group col-md-12">--%>
-                    <%--<form:input type="password" class="form-control" name="confirmPassword" placeholder="Confirm password"--%>
-                                <%--required="true"--%>
-                                <%--path="confirmPassword"/>--%>
-                    <%--<div class="has-error">--%>
-                        <%--<form:errors path="confirmPassword" class="help-inline"></form:errors>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-            <%--</c:if>--%>
+                    <div class="form-group row">
+                        <label class="col-sm-2 control-label treeLabel">First Name</label>
+                        <div class="col-sm-10">
+                            <form:input type="text" class="form-control" name="firstName" placeholder="First Name"
+                                        required="true"
+                                        path="firstName"/>
+                            <div class="has-error">
+                                <form:errors path="firstName" class="help-inline"></form:errors>
+                            </div>
+                        </div>
+                    </div>
 
-            <%--&lt;%&ndash;if we edit password we don't show info user&ndash;%&gt;--%>
-            <%--<c:if test="${notEditInfoUser == null ||notEditInfoUser == false}">--%>
-            <%--<div class="row">--%>
-                <%--<div class="form-group col-md-12">--%>
-                    <%--<form:input type="text" class="form-control" name="firstName" placeholder="First Name"--%>
-                                <%--required="true"--%>
-                                <%--path="firstName"/>--%>
-                    <%--<div class="has-error">--%>
-                        <%--<form:errors path="firstName" class="help-inline"></form:errors>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="row">--%>
-                <%--<div class="form-group col-md-12">--%>
-                    <%--<form:input type="text" class="form-control" name="lastName" placeholder="Surn Name"--%>
-                                <%--path="lastName"/>--%>
-                    <%--<div class="has-error">--%>
-                        <%--<form:errors path="lastName" class="help-inline"></form:errors>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-            <%--<div class="row">--%>
-                <%--<div class="form-group col-md-12">--%>
-                    <%--<form:input type="date" class="form-control" name="birthday" placeholder="Birthday" required="true"--%>
-                                <%--path="birthday" max="1999-12-31" id="birthdayInput"/>--%>
-                    <%--<div class="has-error">--%>
-                        <%--<form:errors path="birthday" class="help-inline"></form:errors>--%>
-                    <%--</div>--%>
-                <%--</div>--%>
-            <%--</div>--%>
-            <%--&lt;%&ndash;<div class="row">&ndash;%&gt;--%>
-                <%--&lt;%&ndash;<div class="form-group col-md-12">&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;<label class="col-md-3 control-lable" for="userProfileSet">Roles</label>&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;<div class="col-md-7">&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<form:select path="userProfileSet" items="${roles}" multiple="true" itemValue="id"&ndash;%&gt;--%>
+                    <div class="form-group row">
+                        <label class="col-sm-2 control-label treeLabel">Last Name</label>
+                        <div class="col-sm-10">
+                            <form:input type="text" class="form-control" name="lastName" placeholder="Last Name"
+                                        path="lastName"/>
+                            <div class="has-error">
+                                <form:errors path="lastName" class="help-inline"></form:errors>
+                            </div>
+                        </div>
+                    </div>
 
-                                     <%--&lt;%&ndash;itemLabel="type" class="form-control input-sm" />&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;<div class="has-error">&ndash;%&gt;--%>
-                            <%--&lt;%&ndash;<form:errors path="userProfileSet" class="help-inline"/>&ndash;%&gt;--%>
-                        <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                    <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-                <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
-            <%--&lt;%&ndash;</div>&ndash;%&gt;--%>
+                    <div class="form-group row">
+                        <label class="col-sm-2 control-label treeLabel">Birthday</label>
+                        <div class="col-sm-10">
+                            <form:input type="date" class="form-control" name="birthday" placeholder="Birthday"
+                                        required="true"
+                                        path="birthday" max="1999-12-31" id="birthdayInput"/>
+                            <div class="has-error">
+                                <form:errors path="birthday" class="help-inline"></form:errors>
+                            </div>
+                        </div>
+                    </div>
 
-            <%--</c:if>--%>
+                    <div class="form-group row">
+                        <div class="col-sm-12">
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">
+                                Sign up!
+                            </button>
+                        </div>
+                    </div>
 
-            <button class="btn btn-lg btn-primary btn-block" type="submit">
-                ${button}
-            </button>
-            <%--<form:hidden  class="form-control" name="id" placeholder="ID" value="0" path="id"/>--%>
-            <%--<form:hidden  class="form-control" name="UserRoleID" placeholder="Role" value="2" path="userRoleID" />--%>
-            <%--<form:input class="form-control" name="eMail" placeholder="Email userAddress" path="eMail"/>--%>
-            <%--<form:input  class="form-control" name="password" placeholder="Password" path="password"/>--%>
-            <%--<form:input  class="form-control" name="firstName" placeholder="First Name" path="firstName" />--%>
-            <%--<form:input  class="form-control" name="lastName" placeholder="Surn Name" path="lastName"/>--%>
-            <%--<form:input  class="form-control" name="birthday" placeholder="Birthday" path="birthday"/>--%>
-            <%--<form:button class="btn btn-lg btn-primary btn-block" type="submit">--%>
-            <%--Зарегистрировать!--%>
-            <%--</form:button>--%>
-        </form:form>
+                </form:form>
             </div>
         </div>
     </div>

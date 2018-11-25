@@ -1,11 +1,17 @@
 package com.web.shop.dto.product;
 
+import com.web.shop.model.product.ProductCharacteristicType;
+import com.web.shop.validator.characterCode.EnableUniqueCharacterCodeConstraint;
+import com.web.shop.validator.characterCode.UniqueCharacterCode;
+
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
+@EnableUniqueCharacterCodeConstraint
 public class ProductCategoryDTO implements Serializable {
 
     public ProductCategoryDTO(Integer productsCategoryId) {
@@ -15,13 +21,6 @@ public class ProductCategoryDTO implements Serializable {
     public ProductCategoryDTO() {
     }
 
-    public String getCharacterCode() {
-        return characterCode;
-    }
-
-    public void setCharacterCode(String characterCode) {
-        this.characterCode = characterCode;
-    }
 
 //    public String getImageUrl() {
 //        return imageUrl;
@@ -44,23 +43,23 @@ public class ProductCategoryDTO implements Serializable {
 //                '}';
 //    }
 
+//
+//    public interface ValidationDelete {
+//    }
+//
+//    public interface ValidationCreate {
+//    }
+//
 
-    public interface ValidationDelete {
-    }
-
-    public interface ValidationCreate {
-    }
-
-
-    @Min(value = 2, groups={ValidationDelete.class})
     private Integer id;
 
-    @Size(min = 3, max = 30, groups = {ValidationCreate.class})
-    @NotBlank(groups = {ValidationCreate.class})
+    @Size(min = 3, max = 30)
+    @NotBlank
     private String name;
 
     @Size(min = 3, max = 30)
     @NotBlank
+    @UniqueCharacterCode
     private String characterCode;
 
 //    @NotEmpty
@@ -75,7 +74,9 @@ public class ProductCategoryDTO implements Serializable {
 //    @NotBlank
 //    private String imageUrl;
 
-    private List<ProductDTO> productList;
+    private List<ProductDTO> productList = new ArrayList<>();
+
+    private List<ProductCharacteristicTypeDTO> productCharacteristicTypeList = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -125,6 +126,13 @@ public class ProductCategoryDTO implements Serializable {
         this.level = level;
     }
 
+    public String getCharacterCode() {
+        return characterCode;
+    }
+
+    public void setCharacterCode(String characterCode) {
+        this.characterCode = characterCode;
+    }
 
     public List<ProductDTO> getProductList() {
         return productList;
@@ -135,4 +143,11 @@ public class ProductCategoryDTO implements Serializable {
     }
 
 
+    public List<ProductCharacteristicTypeDTO> getProductCharacteristicTypeList() {
+        return productCharacteristicTypeList;
+    }
+
+    public void setProductCharacteristicTypeList(List<ProductCharacteristicTypeDTO> productCharacteristicTypeList) {
+        this.productCharacteristicTypeList = productCharacteristicTypeList;
+    }
 }

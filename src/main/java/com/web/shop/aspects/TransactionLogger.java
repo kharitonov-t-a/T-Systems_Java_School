@@ -2,6 +2,7 @@ package com.web.shop.aspects;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -12,7 +13,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class TransactionLogger {
 
-    static Log LOG  = LogFactory.getLog(ServiceLogger.class.getName());
+    private static final Logger LOG = Logger.getLogger(ServiceLogger.class.getName());
 
     @Pointcut("@annotation(org.springframework.transaction.annotation.Transactional)")
     public void transactMethod() { }

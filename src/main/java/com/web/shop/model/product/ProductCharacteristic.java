@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,15 +18,15 @@ public class ProductCharacteristic implements Serializable {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "productCharacteristicTypeId", nullable = false)
+    @JoinColumn(name = "productCharacteristicTypeId")
     private ProductCharacteristicType productCharacteristicType;
 
     @ManyToOne
-    @JoinColumn(name = "productId", nullable = false)
+    @JoinColumn(name = "productId")
     private Product product;
 
     @OneToMany(mappedBy="productCharacteristic", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<ProductCharacteristicCheckboxValue> productCharacteristicCheckboxValueList;
+    private List<ProductCharacteristicCheckboxValue> productCharacteristicCheckboxValueList = new ArrayList<>();;
 
     @Column(name = "booleanCharacteristicValue")
     private Boolean booleanCharacteristicValue;

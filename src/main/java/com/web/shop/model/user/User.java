@@ -1,8 +1,9 @@
 package com.web.shop.model.user;
 
 import com.web.shop.model.order.Order;
-import com.web.shop.validator.UniqueEmail;
-import com.web.shop.validator.Year;
+import com.web.shop.validator.email.EnableUniqueEmailConstraint;
+import com.web.shop.validator.email.UniqueEmail;
+import com.web.shop.validator.year.Year;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,9 +14,6 @@ import java.util.*;
 
 @Entity
 @Table(name = "User")
-//@Setter
-//@Getter
-//@NamedQuery(name = "User.getAll", query = "SELECT c from User c")
 public class User implements Serializable {
 
 
@@ -44,7 +42,6 @@ public class User implements Serializable {
 
     @Column(name = "email", nullable = false, length = 120, unique = true)
     @Email
-    @UniqueEmail
     @NotBlank
     private String email;
 

@@ -19,7 +19,7 @@ public final class MessageConstants {
 
     /* REGISTRATION MESSAGES */
     public static final String MESSAGE_REGISTRATION_PAGE = "Please sign up";
-    public static final String BUTTON_REGISTRATION_PAGE = "Sign up!";
+    public static final String BUTTON_REGISTRATION_PAGE = "";
 
     /* EDIT USER MESSAGES */
     public static final String MESSAGE_EDIT_USER_PAGE = "Change user info";

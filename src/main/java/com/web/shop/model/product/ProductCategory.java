@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,8 +20,7 @@ public class ProductCategory implements Serializable {
     @Column(name = "ID", nullable = false, length = 6)
     private Integer id;
 
-    @Column(name = "characterCode", length = 30)
-    @UniqueElements
+    @Column(name = "characterCode", length = 30, unique = true)
     @Size(min = 3, max = 30)
     @NotBlank
     private String characterCode;
@@ -47,7 +47,10 @@ public class ProductCategory implements Serializable {
 //    private String imageUrl;
 
     @OneToMany(mappedBy="productCategory", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    private List<Product> productList;
+    private List<Product> productList = new ArrayList<>();
+
+    @OneToMany(mappedBy="productCategory", fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    private List<ProductCharacteristicType> productCharacteristicTypeList = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -111,6 +114,14 @@ public class ProductCategory implements Serializable {
 
     public void setCharacterCode(String characterCode) {
         this.characterCode = characterCode;
+    }
+
+    public List<ProductCharacteristicType> getProductCharacteristicTypeList() {
+        return productCharacteristicTypeList;
+    }
+
+    public void setProductCharacteristicTypeList(List<ProductCharacteristicType> productCharacteristicTypeList) {
+        this.productCharacteristicTypeList = productCharacteristicTypeList;
     }
 
 //    public String getImageUrl() {

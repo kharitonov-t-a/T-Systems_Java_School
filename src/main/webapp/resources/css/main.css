@@ -132,3 +132,9 @@ body{
 .custom-control-label {
     font-size: 21px;
 }
+
+
+
+button.btn.btn-outline-secondary{
+    padding: 4px;
+}

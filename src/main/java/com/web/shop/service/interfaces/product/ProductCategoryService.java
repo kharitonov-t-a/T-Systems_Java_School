@@ -2,6 +2,8 @@ package com.web.shop.service.interfaces.product;
 
 import com.web.shop.dto.product.ProductCategoryDTO;
 import com.web.shop.exceptions.CheckProductsCategoryException;
+import com.web.shop.exceptions.CreateDaoException;
+import com.web.shop.model.product.ProductCategory;
 import com.web.shop.service.GenericService;
 
 import java.util.List;
@@ -17,6 +19,8 @@ public interface ProductCategoryService extends GenericService<ProductCategoryDT
 
     List<ProductCategoryDTO> findCurrentBranchById(Integer id);
 
+    boolean checkIntegrityTree() throws CheckProductsCategoryException;
+
     boolean checkLeftMoreRight() throws CheckProductsCategoryException;
 
     boolean checkCountMinMax() throws CheckProductsCategoryException;
@@ -29,9 +33,13 @@ public interface ProductCategoryService extends GenericService<ProductCategoryDT
 
     List<ProductCategoryDTO> findSlaveNodes(Integer leftKey, Integer rightKey);
 
-    void createNod(ProductCategoryDTO productCategoryDTO);
+    void createNode(ProductCategoryDTO productCategoryDTO) throws CheckProductsCategoryException;
 
-    void deleteNod(Integer id);
+    void deleteNode(Integer id) throws CheckProductsCategoryException;
+
+    void updateNode(ProductCategoryDTO productCategoryDTO) throws CheckProductsCategoryException;
+
+    ProductCategoryDTO findNodeByCharacterCode(String characterCode);
 
 //    ProductCategoryDTO findById(Integer id);
 //    List<ProductCategoryDTO> findAll();

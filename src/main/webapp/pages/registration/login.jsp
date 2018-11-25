@@ -34,9 +34,9 @@
                 </div>
             </c:if>
             <div class="form-group row">
-                <label class="col-sm-2 control-label" for="inputEmail">Email userAddress</label>
+                <label class="col-sm-2 control-label" for="inputEmail">Email</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" name="email" id="inputEmail" placeholder="Email userAddress" required autofocus>
+                    <input type="text" class="form-control" name="email" id="inputEmail" placeholder="Email" required autofocus>
                 </div>
             </div>
             <div class="form-group row">
@@ -50,6 +50,8 @@
             </button>
         </form>
     </div>
-</header>
+        </div>
+    </div>
+</section>
 </body>
 </html>

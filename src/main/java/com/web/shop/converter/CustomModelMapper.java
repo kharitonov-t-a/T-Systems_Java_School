@@ -10,7 +10,7 @@ import java.util.List;
 public class CustomModelMapper<Tdto, T> extends ModelMapper {
 
     public List<Tdto> mapListsEntityToDTO(List<T> listFields, Class<Tdto> tdtoClass) {
-        List<Tdto> listFieldsDTO = new ArrayList<>();
+         List<Tdto> listFieldsDTO = new ArrayList<>();
         for (T field : listFields) {
             listFieldsDTO.add(this.map(field, tdtoClass));
         }

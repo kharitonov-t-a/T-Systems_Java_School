@@ -1,4 +1,4 @@
-package com.web.shop.validator;
+package com.web.shop.validator.match;
 
 import javax.validation.Constraint;
 import javax.validation.Payload;
@@ -6,11 +6,11 @@ import java.lang.annotation.*;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = UniqueEmailValidator.class)
+@Constraint(validatedBy = MatchValidator.class)
 @Documented
-public @interface EnableUniqueEmailConstraint {
+public @interface EnableMatchConstraint {
 
-    String message() default "Field must be unique!";
+    String message() default "Fields must match!";
 
     Class<?>[] groups() default {};
 

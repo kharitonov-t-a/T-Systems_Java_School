@@ -6,44 +6,38 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored = "false"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
-    <%@ include file="/pages/head.jsp"%>
 </head>
 <body>
-<%@ include file="/pages/navbar.jsp"%>
-<header class="header">
-    <div class="generic-container">
-        <div class="panel panel-default" id="content-profile-box">
-            <!-- Default panel contents -->
-            <div class="panel-heading"><span class="lead">${exceptionMessage}</span></div>
-            <table class="table table-hover" id="user-list-table">
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Parent</th>
-                    <th>Name</th>
-                    <th>LeftKey</th>
-                    <th>RightKey</th>
-                    <th>Level</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${listProductCategoryDTO}" var="productCategoryDTO">
-                    <tr>
-                        <td>${productCategoryDTO.id}</td>
-                        <td>${productCategoryDTO.parent}</td>
-                        <td>${productCategoryDTO.name}</td>
-                        <td>${productCategoryDTO.leftKey}</td>
-                        <td>${productCategoryDTO.rightKey}</td>
-                        <td>${productCategoryDTO.level}</td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</header>
+<div class="panel panel-default" id="content-exception">
+    <!-- Default panel contents -->
+    <div class="panel-heading"><span class="lead">${exceptionMessage}</span></div>
+    <table class="table table-hover" id="user-list-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Parent</th>
+            <th>Name</th>
+            <th>LeftKey</th>
+            <th>RightKey</th>
+            <th>Level</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${listProductCategoryDTO}" var="productCategoryDTO">
+            <tr>
+                <td>${productCategoryDTO.id}</td>
+                <td>${productCategoryDTO.parent}</td>
+                <td>${productCategoryDTO.name}</td>
+                <td>${productCategoryDTO.leftKey}</td>
+                <td>${productCategoryDTO.rightKey}</td>
+                <td>${productCategoryDTO.level}</td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

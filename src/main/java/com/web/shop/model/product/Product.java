@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -21,45 +22,34 @@ public class Product implements Serializable {
     @Column(name = "ID", nullable = false, length = 6)
     private Integer id;
 
+    @Column(name = "name", length = 30)
+    @Size(min = 3, max = 30)
+    @NotBlank
+    private String name;
+
     @Column(name = "characterCode", length = 30)
     @UniqueElements
     @Size(min = 3, max = 30)
     @NotBlank
     private String characterCode;
 
-    @Column(name = "name", length = 30)
-    @Size(min = 3, max = 30)
-    @NotBlank
-    private String name;
-
     @Column(name = "price", precision=10, scale=2)
     private BigDecimal price;
-
-    @ManyToOne
-    @JoinColumn(name = "productCategoryId")
-    private ProductCategory productCategory;
 
     @Column(name = "stockQuantity", length = 10)
 //    @Size(min = 1, max = 10)
 //    @NotBlank
     private Integer stockQuantity;
 
-    @OneToMany(mappedBy="product", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-    private List<ProductCharacteristic> productCharacteristicList;
+    @ManyToOne
+    @JoinColumn(name = "productCategoryId")
+    private ProductCategory productCategory;
 
     @OneToMany(mappedBy="product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<OrderProduct> orderProductList;
+    private List<ProductCharacteristic> productCharacteristicList = new ArrayList<>();
 
-//    @OneToMany(mappedBy="product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    private List<ProductImage> productImageList;
-
-    public List<ProductCharacteristic> getProductCharacteristicList() {
-        return productCharacteristicList;
-    }
-
-    public void setProductCharacteristicList(List<ProductCharacteristic> productCharacteristicList) {
-        this.productCharacteristicList = productCharacteristicList;
-    }
+    @OneToMany(mappedBy="product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<OrderProduct> orderProductList = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -77,20 +67,20 @@ public class Product implements Serializable {
         this.name = name;
     }
 
+    public String getCharacterCode() {
+        return characterCode;
+    }
+
+    public void setCharacterCode(String characterCode) {
+        this.characterCode = characterCode;
+    }
+
     public BigDecimal getPrice() {
         return price;
     }
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public ProductCategory getProductCategory() {
-        return productCategory;
-    }
-
-    public void setProductCategory(ProductCategory productCategory) {
-        this.productCategory = productCategory;
     }
 
     public Integer getStockQuantity() {
@@ -101,6 +91,22 @@ public class Product implements Serializable {
         this.stockQuantity = stockQuantity;
     }
 
+    public ProductCategory getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
+    }
+
+    public List<ProductCharacteristic> getProductCharacteristicList() {
+        return productCharacteristicList;
+    }
+
+    public void setProductCharacteristicList(List<ProductCharacteristic> productCharacteristicList) {
+        this.productCharacteristicList = productCharacteristicList;
+    }
+
     public List<OrderProduct> getOrderProductList() {
         return orderProductList;
     }
@@ -109,13 +115,8 @@ public class Product implements Serializable {
         this.orderProductList = orderProductList;
     }
 
-    public String getCharacterCode() {
-        return characterCode;
-    }
-
-    public void setCharacterCode(String characterCode) {
-        this.characterCode = characterCode;
-    }
+//    @OneToMany(mappedBy="product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    private List<ProductImage> productImageList;
 
 //    @Override
 //    public String toString() {

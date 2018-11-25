@@ -1,5 +1,6 @@
 package com.web.shop.model.product;
 
+import com.web.shop.dto.product.ProductCharacteristicCheckboxFieldDTO;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -14,11 +15,12 @@ public class ProductCharacteristicCheckboxValue implements Serializable {
     @Column(name = "ID", nullable = false, length = 6)
     private Integer id;
 
-    @Column(name = "value")
-    private Integer value;
+    @ManyToOne
+    @JoinColumn(name="productCharacteristicCheckboxFieldId")
+    private ProductCharacteristicCheckboxField productCharacteristicCheckboxField;
 
     @ManyToOne
-    @JoinColumn(name="productCharacteristicId", nullable=false)
+    @JoinColumn(name="productCharacteristicId")
     private ProductCharacteristic productCharacteristic;
 
     public Integer getId() {
@@ -29,12 +31,12 @@ public class ProductCharacteristicCheckboxValue implements Serializable {
         this.id = id;
     }
 
-    public Integer getValue() {
-        return value;
+    public ProductCharacteristicCheckboxField getProductCharacteristicCheckboxField() {
+        return productCharacteristicCheckboxField;
     }
 
-    public void setValue(Integer value) {
-        this.value = value;
+    public void setProductCharacteristicCheckboxField(ProductCharacteristicCheckboxField productCharacteristicCheckboxField) {
+        this.productCharacteristicCheckboxField = productCharacteristicCheckboxField;
     }
 
     public ProductCharacteristic getProductCharacteristic() {
@@ -44,6 +46,7 @@ public class ProductCharacteristicCheckboxValue implements Serializable {
     public void setProductCharacteristic(ProductCharacteristic productCharacteristic) {
         this.productCharacteristic = productCharacteristic;
     }
+
 
 //    @Override
 //    public String toString() {

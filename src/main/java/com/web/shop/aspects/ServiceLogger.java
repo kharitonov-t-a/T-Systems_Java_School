@@ -1,13 +1,15 @@
 package com.web.shop.aspects;
 
+import lombok.extern.log4j.Log4j;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.testng.log4testng.Logger;
 
 import java.util.Arrays;
 
@@ -15,7 +17,7 @@ import java.util.Arrays;
 @Aspect
 public class ServiceLogger {
 
-    static Log  LOG  = LogFactory.getLog(ServiceLogger.class.getName());
+    private static final org.apache.log4j.Logger LOG = Logger.getLogger(ServiceLogger.class.getName());
 
     @Pointcut("execution(* com.web.shop.service..*.*(..))")
     public void serviceMethod() { }

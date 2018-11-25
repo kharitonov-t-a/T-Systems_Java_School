@@ -5,51 +5,35 @@ import com.web.shop.model.enums.CharacteristicType;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductCharacteristicTypeDTO implements Serializable {
 
 
-    public ProductCharacteristicTypeDTO(Integer id) {
-        this.id = id;
-    }
-
-    public ProductCharacteristicTypeDTO() {
-    }
-
-//    @Override
-//    public String toString() {
-//        return "ProductCharacteristicTypeDTO{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", measure='" + measure + '\'' +
-//                ", characteristicType=" + characteristicType +
-//                ", productCharacteristicCheckboxFieldList=" + productCharacteristicCheckboxFieldList +
-//                ", productCharacteristicList=" + productCharacteristicList +
-//                '}';
+//    public ProductCharacteristicTypeDTO(Integer id) {
+//        this.id = id;
 //    }
-
-    public interface ValidationDelete {
-    }
-
-    public interface ValidationCreate {
-    }
+//
+//    public ProductCharacteristicTypeDTO() {
+//    }
 
     private Integer id;
 
-    @Size(min = 3, max = 30, groups = {ValidationCreate.class})
-    @NotBlank(groups = {ProductCategoryDTO.ValidationCreate.class})
+    @Size(min = 3, max = 30)
+    @NotBlank
     private String name;
 
-    @Size(min = 1, max = 30, groups = {ValidationCreate.class})
+    @Size(min = 1, max = 30)
     private String measure;
 
     private CharacteristicType characteristicType;
 
-    private List<ProductCharacteristicCheckboxFieldDTO> productCharacteristicCheckboxFieldList;
+    private List<ProductCharacteristicCheckboxFieldDTO> productCharacteristicCheckboxFieldList = new ArrayList<>();
 
-    private List<ProductCharacteristicDTO> productCharacteristicList;
+    private List<ProductCharacteristicDTO> productCharacteristicList = new ArrayList<>();
 
+    private ProductCategoryDTO productCategory;
 
     public Integer getId() {
         return id;
@@ -99,4 +83,11 @@ public class ProductCharacteristicTypeDTO implements Serializable {
         this.productCharacteristicList = productCharacteristicList;
     }
 
+    public ProductCategoryDTO getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(ProductCategoryDTO productCategory) {
+        this.productCategory = productCategory;
+    }
 }

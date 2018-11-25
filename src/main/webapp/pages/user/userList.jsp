@@ -28,21 +28,41 @@
 
                     <div class="form-group row">
                         <div class="col-sm-12">
-                            <button class="btn btn-lg btn-primary btn-block">
+                            <button class="btn btn-lg btn-primary btn-block" id="createUserBtn">
                                 Create new user
                             </button>
+                        </div>
+                    </div>
+
+                    <div class="modal fade bd-example-modal-lg" id="modalForm" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Change user</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="content-modal-box"></div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary" id="modalUserFormButton">Save changes</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
 
                     <!-- Default panel contents -->
                     <div class="table-responsive panel panel-default">
-                        <div class="panel-heading"><span class="lead">${message}</span></div>
-                        <table class="table table-hover" id="user-list-table">
+                        <div class="panel-heading"><span class="lead">User list</span></div>
+                        <table class="table table-hover" id="list-table">
                             <thead>
                             <tr>
                                 <th>First name</th>
-                                <th>Surn name</th>
+                                <th>Last name</th>
                                 <th>Email</th>
                                 <th>Birthday</th>
                                 <th width="100"></th>
@@ -50,18 +70,18 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <c:forEach items="${users}" var="user">
+                            <c:forEach items="${userDTOList}" var="user">
                                 <tr>
                                     <td>${user.firstName}</td>
                                     <td>${user.lastName}</td>
                                     <td>${user.email}</td>
                                     <td>${user.birthday}</td>
                                     <sec:authorize access="hasRole('ADMIN') or hasRole('MANAGER')">
-                                        <td><a href="<c:url value='/edit-user-${user.id}' />"
+                                        <td><a href="<c:url value='/user/${user.id}' />"
                                                class="btn btn-success custom-width btn-edit-user">edit</a></td>
                                     </sec:authorize>
                                     <sec:authorize access="hasRole('ADMIN')">
-                                        <td><a href="<c:url value='/delete-user-${user.id}' />"
+                                        <td><a href="<c:url value='/user/${user.id}' />"
                                                class="btn btn-danger custom-width btn-delete-user">delete</a></td>
                                     </sec:authorize>
                                 </tr>
@@ -70,11 +90,11 @@
                         </table>
                     </div>
                 </div>
-                <sec:authorize access="hasRole('ADMIN')">
+                <%--<sec:authorize access="hasRole('ADMIN')">--%>
                     <%--<div class="well">--%>
                     <%--<a href="<c:url value='/newuser' />">Add New User</a>--%>
                     <%--</div>--%>
-                </sec:authorize>
+                <%--</sec:authorize>--%>
             </div>
         </div>
     </div>

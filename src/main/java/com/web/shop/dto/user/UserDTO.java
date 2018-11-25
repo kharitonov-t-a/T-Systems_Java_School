@@ -1,8 +1,11 @@
 package com.web.shop.dto.user;
 
 import com.web.shop.dto.order.OrderDTO;
-import com.web.shop.validator.*;
-import org.hibernate.validator.constraints.UniqueElements;
+import com.web.shop.validator.email.EnableUniqueEmailConstraint;
+import com.web.shop.validator.email.UniqueEmail;
+import com.web.shop.validator.match.EnableMatchConstraint;
+import com.web.shop.validator.match.Match;
+import com.web.shop.validator.year.Year;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.*;
@@ -65,7 +68,6 @@ public class UserDTO implements Serializable {
     @NotBlank(groups = {ValidationInfo.class})
     @Email(groups = {ValidationInfo.class})
     @UniqueEmail
-    @UniqueElements
     private String email;
 
     @NotBlank(groups = {ValidationPassword.class})

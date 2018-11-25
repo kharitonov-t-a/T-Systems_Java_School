@@ -1,6 +1,7 @@
 package com.web.shop.controler.product;
 
 import com.web.shop.dto.product.ProductDTO;
+import com.web.shop.exceptions.CheckProductsCategoryException;
 import com.web.shop.exceptions.GlobalCustomException;
 import com.web.shop.service.interfaces.product.ProductService;
 import com.web.shop.service.interfaces.product.ProductCategoryService;
@@ -16,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/product")
 public class ProductController {
 
     @Autowired
@@ -27,31 +28,37 @@ public class ProductController {
     @Autowired
     ProductCategoryService productCategoryService;
 
-    @RequestMapping(value = {"/formProduct"}, method = RequestMethod.GET)
+    @RequestMapping(value = {""}, method = RequestMethod.GET)
     public String createProduct(ModelMap model) {
 
         model.addAttribute("productDTO", new ProductDTO());
-        model.addAttribute("listProductsCategoryDTO", productCategoryService.findAll());
+        model.addAttribute("productCategoryList", productCategoryService.findAll());
 
-        return "administration/formProduct";
+        return "administration/productForm";
     }
 
-    @RequestMapping(value = {"/formProduct"}, method = RequestMethod.POST)
-    public String createProduct(@Valid ProductDTO productDTO, BindingResult result, ModelMap model, final RedirectAttributes redirectAttrs) throws GlobalCustomException {
+    @RequestMapping(value = {""}, method = RequestMethod.POST)
+    public String createProduct(@Valid ProductDTO productDTO, BindingResult result, ModelMap model, final RedirectAttributes redirectAttrs) throws CheckProductsCategoryException {
 
         if (result.hasErrors()) {
-            return "administration/formProduct";
+            model.addAttribute("productCategoryList", productCategoryService.findAll());
+            return "administration/productForm";
         }
 
         productService.create(productDTO);
-        redirectAttrs.addFlashAttribute("productId", productDTO.getId());
-        return "redirect:/formProductCharacteristic";
+//        redirectAttrs.addFlashAttribute("productId", productDTO.getId());
+        return "redirect:/product/list";
     }
 
-    @RequestMapping(value = {"/listProduct"}, method = RequestMethod.GET)
-    public String listProduct(ModelMap model) {
-        List<ProductDTO> productDTOList = productService.findAll();
-        model.addAttribute("productDTOList", productDTOList);
-        return "administration/listProductProfile";
+    @RequestMapping(value = {"/list"}, method = RequestMethod.GET)
+    public String productList(ModelMap model) {
+        model.addAttribute("productDTOList", productService.findAll());
+        return "administration/productList";
     }
+
+//    @RequestMapping(value = {"/list"}, method = RequestMethod.GET)
+//    public String listProduct(ModelMap model) {
+//        model.addAttribute("productDTOList", productService.findAll());
+//        return "administration/listProductProfile";
+//    }
 }

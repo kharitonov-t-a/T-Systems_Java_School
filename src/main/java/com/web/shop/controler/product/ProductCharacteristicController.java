@@ -15,7 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/product/characteristic")
 public class ProductCharacteristicController {
 
     @Autowired
@@ -24,47 +24,61 @@ public class ProductCharacteristicController {
     @Autowired
     ProductCharacteristicTypeService productCharacteristicTypeService;
 
-    @Autowired
-    ProductCharacteristicService productCharacteristicService;
 
+    @RequestMapping(value = {"/{catalogId}/{productId}"}, method = RequestMethod.GET)
+    public String getStartFormProductCharacteristic(@PathVariable String catalogId, @PathVariable String productId, ModelMap model) {
 
-    @RequestMapping(value = {"/formProductCharacteristic"}, method = RequestMethod.GET)
-    public String getStartFormProductCharacteristic(@ModelAttribute("productId") final Integer productId, ModelMap model) {
+        model.addAttribute("productCharacteristicTypeDTOList", productCharacteristicTypeService.findByCatalogId(Integer.valueOf(catalogId)));
+        model.addAttribute("productDTO", productService.findById(Integer.valueOf(productId)));
 
-        model.addAttribute("listProductCharacteristicTypeDTO", productCharacteristicTypeService.findAll());
-        model.addAttribute("idProduct", productId);
-        ProductDTO productDTO = productService.findById(productId);
-        model.addAttribute("listProductCharacteristic", productDTO.getProductCharacteristicList());
-
-        return "administration/formProductCharacteristic";
+        return "administration/productCharacteristicForm";
     }
 
-    @RequestMapping(value = {"/getFormProductCharacteristic"}, method = RequestMethod.GET)
-    public String getFormProductCharacteristic(@RequestParam("id") Integer id, @RequestParam("productId") Integer productId, ModelMap model) {
+    @RequestMapping(value = {"/{catalogId}"}, method = RequestMethod.GET)
+    public String getStartFormProductCharacteristic(@PathVariable String catalogId, ModelMap model) {
 
-        ProductCharacteristicTypeDTO productCharacteristicTypeDTO = productCharacteristicTypeService.findById(id);
-//        if(productCharacteristicTypeDTO.getProductCharacteristicType().equals(ProductCharacteristicType.CHECKBOX))
-//            model.addAttribute("ProductCharacteristicCheckboxField", productCharacte+-risticTypeDTO.getCheckboxCharacteristicNameValuesString());
-        model.addAttribute("productCharacteristicTypeDTO", productCharacteristicTypeDTO);
-        model.addAttribute("productCharacteristicDTO", new ProductCharacteristicDTO());
-        model.addAttribute("productId", productId);
+        model.addAttribute("productCharacteristicTypeDTOList", productCharacteristicTypeService.findByCatalogId(Integer.valueOf(catalogId)));
+        model.addAttribute("productDTO", new ProductDTO());
 
-        return "administration/characteristicForm";
+        return "administration/productCharacteristicForm";
     }
 
-    @RequestMapping(value = {"/getFormProductCharacteristic"}, method = RequestMethod.POST)
-    public String createProductCharacteristic(@Valid ProductCharacteristicDTO productCharacteristicDTO, BindingResult result, ModelMap model, final RedirectAttributes redirectAttrs) throws GlobalCustomException {
+    @RequestMapping(value = {"/retry"}, method = RequestMethod.POST)
+    public String getStartFormProductCharacteristicRetry(@Valid ProductDTO productDTO, BindingResult result, ModelMap model) {
 
-        if (result.hasErrors()) {
-            return "administration/characteristicForm";
-        }
+        model.addAttribute("productCharacteristicTypeDTOList", productCharacteristicTypeService.findByCatalogId(productDTO.getProductCategory().getId()));
 
-        productCharacteristicService.create(productCharacteristicDTO);
-
-        redirectAttrs.addFlashAttribute("productId", productCharacteristicDTO.getProduct().getId());
-
-        return "redirect:/formProductCharacteristic";
+        return "administration/productCharacteristicForm";
     }
+
+
+
+//    @RequestMapping(value = {"/getFormProductCharacteristic"}, method = RequestMethod.GET)
+//    public String getFormProductCharacteristic(@RequestParam("id") Integer id, @RequestParam("productId") Integer productId, ModelMap model) {
+//
+//        ProductCharacteristicTypeDTO productCharacteristicTypeDTO = productCharacteristicTypeService.findById(id);
+////        if(productCharacteristicTypeDTO.getProductCharacteristicType().equals(ProductCharacteristicType.CHECKBOX))
+////            model.addAttribute("ProductCharacteristicCheckboxField", productCharacte+-risticTypeDTO.getCheckboxCharacteristicNameValuesString());
+//        model.addAttribute("productCharacteristicTypeDTO", productCharacteristicTypeDTO);
+//        model.addAttribute("productCharacteristicDTO", new ProductCharacteristicDTO());
+//        model.addAttribute("productId", productId);
+//
+//        return "administration/productCharacteristicForm";
+//    }
+//
+//    @RequestMapping(value = {"/getFormProductCharacteristic"}, method = RequestMethod.POST)
+//    public String createProductCharacteristic(@Valid ProductCharacteristicDTO productCharacteristicDTO, BindingResult result, ModelMap model, final RedirectAttributes redirectAttrs) throws GlobalCustomException {
+//
+//        if (result.hasErrors()) {
+//            return "administration/productCharacteristicForm";
+//        }
+//
+//        productCharacteristicService.create(productCharacteristicDTO);
+//
+//        redirectAttrs.addFlashAttribute("productId", productCharacteristicDTO.getProduct().getId());
+//
+//        return "redirect:/formProductCharacteristic";
+//    }
 
 
 }

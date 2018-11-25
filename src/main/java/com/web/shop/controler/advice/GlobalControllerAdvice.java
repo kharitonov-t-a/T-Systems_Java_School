@@ -20,8 +20,7 @@ public class GlobalControllerAdvice {
         List<ProductCategoryDTO> productCategoryDTO = (List<ProductCategoryDTO>) httpSession.getAttribute("allProductsCategoryForNavBar");
 //        if(productCategoryDTO == null){
             productCategoryDTO = productCategoryService.findAll();
-            if(productCategoryDTO.size() > 0)
-                productCategoryDTO.remove(0);
+            productCategoryDTO.remove(0);
             httpSession.setAttribute("allProductsCategoryForNavBar", productCategoryDTO);
 //        }
 

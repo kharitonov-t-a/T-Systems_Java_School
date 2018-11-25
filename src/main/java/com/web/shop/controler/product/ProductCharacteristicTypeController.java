@@ -3,77 +3,99 @@ package com.web.shop.controler.product;
 import com.web.shop.dto.product.ProductCharacteristicTypeDTO;
 import com.web.shop.exceptions.GlobalCustomException;
 import com.web.shop.model.enums.CharacteristicType;
+import com.web.shop.service.interfaces.product.ProductCategoryService;
 import com.web.shop.service.interfaces.product.ProductCharacteristicTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/product/characteristic/type")
 public class ProductCharacteristicTypeController {
 
     @Autowired
     ProductCharacteristicTypeService productCharacteristicTypeService;
 
-    @RequestMapping(value = {"/formCharacteristicType"}, method = RequestMethod.GET)
-    public String createCharacteristic(ModelMap model) {
+    @Autowired
+    ProductCategoryService productCategoryService;
+
+    @RequestMapping(value = {""}, method = RequestMethod.GET)
+    public String getCreateCharacteristicForm(ModelMap model) {
 
         model.addAttribute("productCharacteristicTypeDTO", new ProductCharacteristicTypeDTO());
-        model.addAttribute("characteristicType", CharacteristicType.values());
+        model.addAttribute("productCharacteristicTypeValues", CharacteristicType.values());
+        model.addAttribute("productCategoryList", productCategoryService.findAll());
+        model.addAttribute("modalTitle", "Create product characteristic type");
 
-        return "administration/formCharacteristicType";
+        return "administration/productCharacteristicTypeForm";
     }
 
-    @RequestMapping(value = {"/formCharacteristicType"}, method = RequestMethod.POST)
-    @ResponseBody
-    public String createCharacteristic(@Valid ProductCharacteristicTypeDTO productCharacteristicTypeDTO,/* @RequestBody MultiValueMap<String, String> listCheckboxCharacteristicNameValue,*/ BindingResult result, ModelMap model) throws GlobalCustomException {
+    @RequestMapping(value = {""}, method = RequestMethod.POST)
+    public String createCharacteristic(@Valid ProductCharacteristicTypeDTO productCharacteristicTypeDTO, BindingResult result, ModelMap model) {
 
-//        Object[] dsd = listCheckboxCharacteristicNameValue.get("listCheckboxCharacteristicNameValue[]").toArray();
         if (result.hasErrors()) {
-            model.addAttribute("characteristicType", CharacteristicType.values());
-            return "administration/formCharacteristicType";
+            return "administration/productCharacteristicTypeForm";
         }
 
         productCharacteristicTypeService.create(productCharacteristicTypeDTO);
-        return "redirect:/formCharacteristicType";
+        return "redirect:/product/characteristic/type/list";
     }
 
-    @RequestMapping(value = {"/formDeleteCharacteristicType"}, method = RequestMethod.GET)
-    public String deleteCharacteristic(ModelMap model) {
+    @RequestMapping(value = {"/{id}"}, method = RequestMethod.GET)
+    public String getEditCharacteristicForm(@PathVariable String id, ModelMap model) {
 
-        List<ProductCharacteristicTypeDTO> listProductCharacteristicType = productCharacteristicTypeService.findAll();
+        model.addAttribute("productCharacteristicTypeDTO", productCharacteristicTypeService.findById(Integer.valueOf(id)));
+        model.addAttribute("productCharacteristicTypeValues", CharacteristicType.values());
+        model.addAttribute("productCategoryList", productCategoryService.findAll());
+        model.addAttribute("modalTitle", "Change product characteristic type");
 
-        model.addAttribute("listProductCharacteristicType", listProductCharacteristicType);
-        model.addAttribute("productCharacteristicTypeDTO", new ProductCharacteristicTypeDTO());
-
-        return "administration/formDeleteCharacteristicType";
+        return "administration/productCharacteristicTypeForm";
     }
 
-    @RequestMapping(value = {"/formDeleteCharacteristicType"}, method = RequestMethod.POST)
-    public String deleteCharacteristic(@Validated({ProductCharacteristicTypeDTO.ValidationDelete.class}) ProductCharacteristicTypeDTO productCharacteristicTypeDTO, BindingResult result, ModelMap model) throws GlobalCustomException {
+    @RequestMapping(value = {"/{id}"}, method = RequestMethod.POST)
+    public String editCharacteristic(@Valid ProductCharacteristicTypeDTO productCharacteristicTypeDTO, BindingResult result, ModelMap model) {
 
         if (result.hasErrors()) {
-            return "administration/formDeleteCharacteristicType";
+            return "administration/productCharacteristicTypeForm";
         }
 
-        productCharacteristicTypeService.delete(productCharacteristicTypeDTO.getId());
-        return "redirect:/formDeleteCharacteristicType";
+        productCharacteristicTypeService.update(productCharacteristicTypeDTO);
+        return characteristicTypeList(model);
     }
 
-    @RequestMapping(value = {"/listCharacteristicType"}, method = RequestMethod.GET)
-    public String listCharacteristicType(ModelMap model) {
+    @RequestMapping(value = {"/{id}"}, method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteCharacteristic(@PathVariable String id, ModelMap model) {
 
-        List<ProductCharacteristicTypeDTO> listProductCharacteristicType = productCharacteristicTypeService.findAll();
+        productCharacteristicTypeService.delete(Integer.valueOf(id));
 
-        model.addAttribute("listProductCharacteristicType", listProductCharacteristicType);
+        return ResponseEntity.noContent().build();
+    }
+//
+//    @RequestMapping(value = {"/formDeleteCharacteristicType"}, method = RequestMethod.POST)
+//    public String deleteCharacteristic(@Validated({ProductCharacteristicTypeDTO.ValidationDelete.class}) ProductCharacteristicTypeDTO productCharacteristicTypeDTO, BindingResult result, ModelMap model) throws GlobalCustomException {
+//
+//        if (result.hasErrors()) {
+//            return "administration/formDeleteCharacteristicType";
+//        }
+//
+//        productCharacteristicTypeService.delete(productCharacteristicTypeDTO.getId());
+//        return "redirect:/formDeleteCharacteristicType";
+//    }
 
-        return "administration/listCharacteristicType";
+    @RequestMapping(value = {"/list"}, method = RequestMethod.GET)
+    public String characteristicTypeList(ModelMap model) {
+
+        List<ProductCharacteristicTypeDTO> productCharacteristicTypeDTOList = productCharacteristicTypeService.findAll();
+
+        model.addAttribute("productCharacteristicTypeDTOList", productCharacteristicTypeDTOList);
+
+        return "administration/productCharacteristicTypeList";
     }
 
 }

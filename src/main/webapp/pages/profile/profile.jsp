@@ -12,8 +12,12 @@
 <head>
     <%@ include file="/pages/head.jsp" %>
     <script src="<c:url value="/resources/js/profile.js" />"></script>
+    <%--<script src="<c:url value="/resources/js/productCharacteristicList.js" />"></script>--%>
+    <script src="<c:url value="/resources/js/productCategory.js" />"></script>
     <script src="<c:url value="/resources/js/productCharacteristicType.js" />"></script>
-    <script src="<c:url value="/resources/js/productCharacteristicList.js" />"></script>
+    <script src="<c:url value="/resources/js/user.js" />"></script>
+    <script src="<c:url value="/resources/js/product.js" />"></script>
+
 </head>
 <body>
 <%@ include file="/pages/navbar.jsp" %>
@@ -38,40 +42,28 @@
                         </div>
                         <div class="productCategory-menu-list list-group"  id="profile-menu">
                             <ul>
-                                <li><a href="<c:url value="/editCurrentUser" />" class="list-group-item active">
+                                <li><a href="<c:url value="/user" />" class="list-group-item active">
                                     Edit user
                                 </a></li>
-                                <li><a href="<c:url value="/editPassword" />" class="list-group-item">
+                                <li><a href="<c:url value="/user/password" />" class="list-group-item">
                                     Edit password
                                 </a></li>
-                                <li><a href="<c:url value="/orderList" />" class="list-group-item">
-                                    Orders list
-                                </a></li>
-                                <li><a href="<c:url value="/allOrders" />" class="list-group-item">
-                                    All orderList
-                                </a></li>
-                                <li><a href="<c:url value="/productCategory" />" class="list-group-item">
+                                <%--<li><a href="<c:url value="/orderList" />" class="list-group-item">--%>
+                                    <%--Orders list--%>
+                                <%--</a></li>--%>
+                                <%--<li><a href="<c:url value="/allOrders" />" class="list-group-item">--%>
+                                    <%--All orderList--%>
+                                <%--</a></li>--%>
+                                <li><a href="<c:url value="/productCategory/list" />" class="list-group-item">
                                     Products category
                                 </a></li>
-                                <li><a href="<c:url value="/listCharacteristicType" />" class="list-group-item">
+                                <li><a href="<c:url value="/product/characteristic/type/list" />" class="list-group-item">
                                     Product Characteristic Type
                                 </a></li>
-                                <li><a href="<c:url value="/formCharacteristicType" />" class="list-group-item">
-                                    Create product Characteristic
-                                </a></li>
-                                <li><a href="<c:url value="/formDeleteCharacteristicType" />" class="list-group-item">
-                                    Delete product Characteristic
-                                </a></li>
-                                <li><a href="<c:url value="/productList" />" class="list-group-item">
+                                <li><a href="<c:url value="/product/list" />" class="list-group-item">
                                     Products
                                 </a></li>
-                                <li><a href="<c:url value="/formProduct" />" class="list-group-item">
-                                    Create product
-                                </a></li>
-                                <li><a href="<c:url value="/formDeleteProduct" />" class="list-group-item">
-                                    Delete product
-                                </a></li>
-                                <li><a href="<c:url value="/userslist" />" class="list-group-item list-group-item-action">
+                                <li><a href="<c:url value="/user/list" />" class="list-group-item list-group-item-action">
                                     Users list for admin
                                 </a></li>
                             </ul>

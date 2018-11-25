@@ -1,6 +1,7 @@
 package com.web.shop.dao.product;
 
 import com.web.shop.dao.GenericDaoImpl;
+import com.web.shop.dto.product.ProductCategoryDTO;
 import com.web.shop.model.product.ProductCategory;
 import org.springframework.stereotype.Repository;
 
@@ -65,7 +66,7 @@ public class ProductCategoryDaoImpl extends GenericDaoImpl<ProductCategory, Inte
 
     @Override
     public List<ProductCategory> findAll() {
-        return getEntityManager().createQuery("SELECT u FROM ProductCategory u ORDER BY u.leftKey")
+        return getEntityManager().createQuery("SELECT u FROM ProductCategory u WHERE u.id <> 0 ORDER BY u.leftKey")
                 .getResultList();
     }
 
@@ -76,7 +77,7 @@ public class ProductCategoryDaoImpl extends GenericDaoImpl<ProductCategory, Inte
     public List<ProductCategory> selectLeftMoreRight() {
         try {
             return getEntityManager()
-                    .createQuery("SELECT u FROM ProductCategory u WHERE u.leftKey >= u.rightKey")
+                    .createQuery("SELECT u FROM ProductCategory u WHERE u.leftKey >= u.rightKey AND u.id <> 0")
                     .getResultList();
         } catch (NoResultException ex) {
             return null;
@@ -87,7 +88,7 @@ public class ProductCategoryDaoImpl extends GenericDaoImpl<ProductCategory, Inte
     public List selectCountMinMax() {
         try {
             return getEntityManager()
-                    .createQuery("SELECT COUNT(u.id), MIN(u.leftKey), MAX(u.rightKey) FROM ProductCategory u")
+                    .createQuery("SELECT COUNT(u.id), MIN(u.leftKey), MAX(u.rightKey) FROM ProductCategory u WHERE u.id <> 0")
                     .getResultList();
         } catch (NoResultException ex) {
             return null;
@@ -98,7 +99,7 @@ public class ProductCategoryDaoImpl extends GenericDaoImpl<ProductCategory, Inte
     public List<ProductCategory> selectByModRightLeft() {
         try {
             return getEntityManager()
-                    .createQuery("SELECT u FROM ProductCategory u WHERE MOD((u.rightKey - u.leftKey), 2) = 0")
+                    .createQuery("SELECT u FROM ProductCategory u WHERE MOD((u.rightKey - u.leftKey), 2) = 0  AND u.id <> 0")
                     .getResultList();
         } catch (NoResultException ex) {
             return null;
@@ -110,7 +111,7 @@ public class ProductCategoryDaoImpl extends GenericDaoImpl<ProductCategory, Inte
         try {
             List<ProductCategory> productsCategories =
                     (List<ProductCategory>)getEntityManager()
-                    .createNativeQuery("SELECT u.* FROM ProductCategory u WHERE MOD((u.leftKey - u.level + 2), 2) = 1")
+                    .createNativeQuery("SELECT u.* FROM ProductCategory u WHERE MOD((u.leftKey - u.level + 2), 2) = 1  AND u.id <> 0")
                     .getResultList();
             return productsCategories;
         } catch (NoResultException ex) {
@@ -124,7 +125,7 @@ public class ProductCategoryDaoImpl extends GenericDaoImpl<ProductCategory, Inte
             return (List<ProductCategory>)getEntityManager()
                     .createNativeQuery("SELECT u1.*, COUNT(u1.id) AS rep, MAX(u3.rightKey) AS maxright " +
                             " FROM ProductCategory AS u1, ProductCategory AS u2, ProductCategory AS u3 " +
-                            " WHERE u1.leftKey <> u2.leftKey AND u1.leftKey <> u2.rightKey AND u1.rightKey <> u2.leftKey AND u1.rightKey <> u2.rightKey" +
+                            " WHERE u1.leftKey <> u2.leftKey AND u1.leftKey <> u2.rightKey AND u1.rightKey <> u2.leftKey AND u1.rightKey <> u2.rightKey AND u1.id <> 0 AND u2.id <> 0 AND u3.id <> 0" +
                             " GROUP BY u1.id HAVING maxright <> SQRT(4 * rep + 1) + 1")
                     .getResultList();
         } catch (NoResultException ex) {
@@ -136,7 +137,7 @@ public class ProductCategoryDaoImpl extends GenericDaoImpl<ProductCategory, Inte
         getEntityManager()
                 .createNativeQuery("UPDATE ProductCategory u " +
                         "SET u.rightKey = u.rightKey + 2, u.leftKey = IF(u.leftKey > :parentRightKey, u.leftKey + 2, u.leftKey) " +
-                        "WHERE u.rightKey >= :parentRightKey")
+                        "WHERE u.rightKey >= :parentRightKey AND u.id <> 0")
                 .setParameter("parentRightKey", parentRightKey).executeUpdate();
     }
 
@@ -144,7 +145,7 @@ public class ProductCategoryDaoImpl extends GenericDaoImpl<ProductCategory, Inte
         getEntityManager()
                 .createNativeQuery("UPDATE ProductCategory u " +
                         "SET u.leftKey = IF(u.leftKey > :leftKey, u.leftKey-(:rightKey - :leftKey + 1), u.leftKey), u.rightKey = u.rightKey-(:rightKey - :leftKey + 1)" +
-                        "WHERE u.rightKey > :rightKey")
+                        "WHERE u.rightKey > :rightKey AND u.id <> 0")
                 .setParameter("rightKey", rightKey)
                 .setParameter("leftKey", leftKey).executeUpdate();
     }
@@ -158,6 +159,16 @@ public class ProductCategoryDaoImpl extends GenericDaoImpl<ProductCategory, Inte
                 .executeUpdate();
     }
 
+    @Override
+    public ProductCategory findNodeByCharacterCode(String characterCode) {
+        try {
+            return (ProductCategory) getEntityManager()
+                    .createQuery("SELECT u FROM ProductCategory u WHERE u.characterCode = :characterCode ")
+                    .setParameter("characterCode", characterCode)
+                    .getSingleResult();
+        } catch (NoResultException ex) {
+            return null;
+        }    }
 
 
 }

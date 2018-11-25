@@ -7,9 +7,17 @@
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
+<html>
+<head>
+</head>
+<body>
+<div id="content-exception">
     <p>
         Alert!
     </p>
     <p>
         ${productDTO.name} ended in stock.
     </p>
+</div>
+</body>
+</html>

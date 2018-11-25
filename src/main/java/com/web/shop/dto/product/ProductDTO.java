@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDTO implements Serializable {
@@ -26,14 +27,14 @@ public class ProductDTO implements Serializable {
     @Digits(integer = 10, fraction = 2)
     private BigDecimal price;
 
-    private ProductCategoryDTO productCategory;
-
     @Digits(integer = 10, fraction = 0)
     private Integer stockQuantity;
 
-    private List<ProductCharacteristicDTO> productCharacteristicList;
+    private ProductCategoryDTO productCategory;
 
-    private List<OrderProductDTO> orderProductList;
+    private List<ProductCharacteristicDTO> productCharacteristicList = new ArrayList<>();
+
+    private List<OrderProductDTO> orderProductList = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -51,20 +52,20 @@ public class ProductDTO implements Serializable {
         this.name = name;
     }
 
+    public String getCharacterCode() {
+        return characterCode;
+    }
+
+    public void setCharacterCode(String characterCode) {
+        this.characterCode = characterCode;
+    }
+
     public BigDecimal getPrice() {
         return price;
     }
 
     public void setPrice(BigDecimal price) {
         this.price = price;
-    }
-
-    public ProductCategoryDTO getProductCategory() {
-        return productCategory;
-    }
-
-    public void setProductCategory(ProductCategoryDTO productCategoryDTO) {
-        this.productCategory = productCategoryDTO;
     }
 
     public Integer getStockQuantity() {
@@ -75,6 +76,13 @@ public class ProductDTO implements Serializable {
         this.stockQuantity = stockQuantity;
     }
 
+    public ProductCategoryDTO getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(ProductCategoryDTO productCategory) {
+        this.productCategory = productCategory;
+    }
 
     public List<ProductCharacteristicDTO> getProductCharacteristicList() {
         return productCharacteristicList;
@@ -92,13 +100,6 @@ public class ProductDTO implements Serializable {
         this.orderProductList = orderProductList;
     }
 
-    public String getCharacterCode() {
-        return characterCode;
-    }
-
-    public void setCharacterCode(String characterCode) {
-        this.characterCode = characterCode;
-    }
 
 //    @Override
 //    public String toString() {

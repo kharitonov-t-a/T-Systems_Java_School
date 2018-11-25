@@ -34,10 +34,14 @@ public class ProductCharacteristicType implements Serializable {
     private CharacteristicType characteristicType;
 
     @OneToMany(mappedBy="productCharacteristicType", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<ProductCharacteristicCheckboxField> productCharacteristicCheckboxFieldList;
+    private List<ProductCharacteristicCheckboxField> productCharacteristicCheckboxFieldList = new ArrayList<>();
 
     @OneToMany(mappedBy="productCharacteristicType", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<ProductCharacteristic> productCharacteristicList;
+    private List<ProductCharacteristic> productCharacteristicList = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "productCategoryId")
+    private ProductCategory productCategory;
 
     public Integer getId() {
         return id;
@@ -63,21 +67,16 @@ public class ProductCharacteristicType implements Serializable {
         this.measure = measure;
     }
 
-    public com.web.shop.model.enums.CharacteristicType getCharacteristicType() {
+    public CharacteristicType getCharacteristicType() {
         return characteristicType;
     }
 
-    public void setCharacteristicType(com.web.shop.model.enums.CharacteristicType characteristicType) {
+    public void setCharacteristicType(CharacteristicType characteristicType) {
         this.characteristicType = characteristicType;
     }
 
     public List<ProductCharacteristicCheckboxField> getProductCharacteristicCheckboxFieldList() {
         return productCharacteristicCheckboxFieldList;
-    }
-    public List<String> getCheckboxCharacteristicNameValuesToString() {
-        List<String> listValues = new ArrayList<>();
-        productCharacteristicCheckboxFieldList.forEach((i)->listValues.add(i.getValue()));
-        return listValues;
     }
 
     public void setProductCharacteristicCheckboxFieldList(List<ProductCharacteristicCheckboxField> productCharacteristicCheckboxFieldList) {
@@ -90,6 +89,14 @@ public class ProductCharacteristicType implements Serializable {
 
     public void setProductCharacteristicList(List<ProductCharacteristic> productCharacteristicList) {
         this.productCharacteristicList = productCharacteristicList;
+    }
+
+    public ProductCategory getProductCategory() {
+        return productCategory;
+    }
+
+    public void setProductCategory(ProductCategory productCategory) {
+        this.productCategory = productCategory;
     }
 
 

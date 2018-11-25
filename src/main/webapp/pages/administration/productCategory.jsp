@@ -14,15 +14,13 @@
 </head>
 <body>
 <%@ include file="/pages/navbar.jsp" %>
-<section class="page-content">
+<section class="page-content" id="productCategory">
     <div class="container">
         <div style="max-width: 800px;" id="content-profile-box">
             <div class="col-md-12">
-                <%--@elvariable id="productCategory" type="com.web.shop.dto.product.ProductCategoryDTO"--%>
-                <form:form modelAttribute="productCategory" method="post" class="form-horizontal" id="productCategoryForm">
 
                     <h2 class="form-signin-heading">
-                        Products productCategory
+                        Products category
                     </h2>
 
                     <div class="form-group row">
@@ -48,6 +46,7 @@
                     </div>
 
                     <div class="form-group row">
+                        <label class="col-sm-2 control-label treeLabel">Category</label>
                         <div class="col-md-12">
                             <ul class="treeview">
                                 <c:set var="level" value="${0}"/>
@@ -58,7 +57,7 @@
                                 <ul>
                                     <li>
                                         <div class="custom-control custom-radio custom-control-inline">
-                                            <form:radiobutton path="parent" name="parent" class="custom-control-input"
+                                            <input type="radio" name="parent" class="custom-control-input"
                                                               value="${productCategoryListElement.id}" id="productCategoryDTO${productCategoryListElement.id}"/>
                                             <label class="custom-control-label" for="productCategoryDTO${productCategoryListElement.id}">${productCategoryListElement.name}</label>
                                         </div>
@@ -74,7 +73,7 @@
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <form:radiobutton path="parent" class="custom-control-input" name="parent"
+                                        <input type="radio"  class="custom-control-input" name="parent"
                                                           value="${productCategoryListElement.id}" id="productCategoryDTO${productCategoryListElement.id}"/>
                                         <label class="custom-control-label" for="productCategoryDTO${productCategoryListElement.id}">${productCategoryListElement.name}</label>
                                     </div>
@@ -84,7 +83,7 @@
                                 </li>
                                 <li>
                                     <div class="custom-control custom-radio custom-control-inline">
-                                        <form:radiobutton path="parent" class="custom-control-input" name="parent"
+                                        <input type="radio"  class="custom-control-input" name="parent"
                                                           value="${productCategoryListElement.id}" id="productCategoryDTO${productCategoryListElement.id}"/>
                                         <label class="custom-control-label" for="productCategoryDTO${productCategoryListElement.id}">${productCategoryListElement.name}</label>
                                     </div>
@@ -101,14 +100,10 @@
                             </c:forEach>
                             </c:if>
                             </ul>
-
-                            <div class="has-error">
-                                <form:errors path="parent" class="help-inline"/>
-                            </div>
                         </div>
                     </div>
 
-                </form:form>
+
             </div>
         </div>
     </div>

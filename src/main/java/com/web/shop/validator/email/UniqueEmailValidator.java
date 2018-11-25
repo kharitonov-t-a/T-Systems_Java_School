@@ -1,4 +1,4 @@
-package com.web.shop.validator;
+package com.web.shop.validator.email;
 
 import com.web.shop.dto.user.UserDTO;
 import com.web.shop.security.UserSecurityService;
@@ -36,11 +36,14 @@ public class UniqueEmailValidator  implements ConstraintValidator<EnableUniqueEm
             idObj = BeanUtils.getProperty(o, "id");
             // if id from form == null
 
-
             for (Field field : fields) {
                 // find fields with annotation @UniqueEmail
                 if (field.isAnnotationPresent(UniqueEmail.class)) {
+                    String nameEmailField = field.getName();
                     emailField = BeanUtils.getProperty(o, field.getName());
+
+                    context.disableDefaultConstraintViolation();
+                    context.buildConstraintViolationWithTemplate("").addPropertyNode(nameEmailField).addConstraintViolation();
 
                     // if field not null
                     if(emailField != null){
@@ -52,6 +55,7 @@ public class UniqueEmailValidator  implements ConstraintValidator<EnableUniqueEm
                                 !String.valueOf(emailField).equalsIgnoreCase(UserSecurityService.getPrincipal())){
                             //if create new user or edit current user
                             if(idObj == null){
+
                                 return false;
                             }else{
                                 // if id user in DB != id from form

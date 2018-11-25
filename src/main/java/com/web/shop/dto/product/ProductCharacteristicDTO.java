@@ -1,6 +1,7 @@
 package com.web.shop.dto.product;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductCharacteristicDTO implements Serializable {
@@ -11,7 +12,7 @@ public class ProductCharacteristicDTO implements Serializable {
 
     private ProductDTO product;
 
-    private List<ProductCharacteristicCheckboxValueDTO> productCharacteristicCheckboxValueList;
+    private List<ProductCharacteristicCheckboxValueDTO> productCharacteristicCheckboxValueList  = new ArrayList<>();
 
     private Boolean booleanCharacteristicValue;
 
@@ -84,6 +85,7 @@ public class ProductCharacteristicDTO implements Serializable {
     public void setStringCharacteristicValue(String stringCharacteristicValue) {
         this.stringCharacteristicValue = stringCharacteristicValue;
     }
+
 
 //    @Override
 //    public String toString() {
