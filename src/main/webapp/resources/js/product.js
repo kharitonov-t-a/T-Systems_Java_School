@@ -44,7 +44,11 @@ $(document).ready(function () {
         // edit user for admin
         $(document).on('click', 'a.btn-edit-product', function (clickEvent) {
             clickEvent.preventDefault();
-            modalGetAjax($(this).attr("href"))
+            var request = modalGetAjax($(this).attr("href"));
+            request.done(function (data) {
+                if ($('div#content-profile-box .treeview input[type=radio]:checked').val() != null) {
+                    getProductCharacteristicAjax("/product/characteristic/" + $('div#content-profile-box .treeview input[type=radio]:checked').val() + "/" + $('div#content-profile-box input[name=id]').val());                }
+            });
         });
 
         $(document).on('click', 'button#modalProductFormButton', function (clickEvent) {

@@ -17,7 +17,6 @@
     <script src="<c:url value="/resources/js/productCharacteristicType.js" />"></script>
     <script src="<c:url value="/resources/js/user.js" />"></script>
     <script src="<c:url value="/resources/js/product.js" />"></script>
-
 </head>
 <body>
 <%@ include file="/pages/navbar.jsp" %>

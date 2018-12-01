@@ -1,8 +1,10 @@
 package com.web.shop.service.product;
 
+import com.web.shop.dao.product.ProductCategoryDao;
 import com.web.shop.dao.product.ProductCharacteristicCheckboxFieldDao;
 import com.web.shop.dao.product.ProductCharacteristicTypeDao;
 import com.web.shop.dto.product.ProductCharacteristicTypeDTO;
+import com.web.shop.model.product.ProductCategory;
 import com.web.shop.model.product.ProductCharacteristicCheckboxField;
 import com.web.shop.model.product.ProductCharacteristicType;
 import com.web.shop.service.interfaces.product.ProductCharacteristicTypeService;
@@ -23,6 +25,8 @@ public class ProductCharacteristicTypeServiceImpl extends GenericServiceImpl<Pro
 //
     @Autowired
     ProductCharacteristicCheckboxFieldDao productCharacteristicCheckboxFieldDao;
+    @Autowired
+    ProductCategoryDao productCategoryDao;
     @Autowired
     ProductCharacteristicTypeService productCharacteristicTypeService;
 
@@ -73,7 +77,8 @@ public class ProductCharacteristicTypeServiceImpl extends GenericServiceImpl<Pro
 
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
     public List<ProductCharacteristicTypeDTO> findByCatalogId(Integer catalogId) {
-        List<ProductCharacteristicType> productCharacteristicType =dao.findByCatalogId(catalogId);
+        ProductCategory productCategory = productCategoryDao.findById(catalogId);
+        List<ProductCharacteristicType> productCharacteristicType =dao.findByCategory(productCategory);
 //        productCharacteristicType.forEach(i->{
 //            if(i.getProductCharacteristicCheckboxFieldList().isEmpty())
 //                i.getProductCharacteristicCheckboxFieldList().isEmpty();

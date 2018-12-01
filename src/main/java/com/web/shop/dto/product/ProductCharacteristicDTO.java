@@ -18,7 +18,13 @@ public class ProductCharacteristicDTO implements Serializable {
 
     private Double doubleCharacteristicValue;
 
+    private Double doubleCharacteristicFilterMin;
+    private Double doubleCharacteristicFilterMax;
+
     private Integer integerCharacteristicValue;
+
+    private Integer integerCharacteristicFilterMin;
+    private Integer integerCharacteristicFilterMax;
 
     private String stringCharacteristicValue;
 
@@ -84,6 +90,38 @@ public class ProductCharacteristicDTO implements Serializable {
 
     public void setStringCharacteristicValue(String stringCharacteristicValue) {
         this.stringCharacteristicValue = stringCharacteristicValue;
+    }
+
+    public Double getDoubleCharacteristicFilterMin() {
+        return doubleCharacteristicFilterMin;
+    }
+
+    public void setDoubleCharacteristicFilterMin(Double doubleCharacteristicFilterMin) {
+        this.doubleCharacteristicFilterMin = doubleCharacteristicFilterMin;
+    }
+
+    public Double getDoubleCharacteristicFilterMax() {
+        return doubleCharacteristicFilterMax;
+    }
+
+    public void setDoubleCharacteristicFilterMax(Double doubleCharacteristicFilterMax) {
+        this.doubleCharacteristicFilterMax = doubleCharacteristicFilterMax;
+    }
+
+    public Integer getIntegerCharacteristicFilterMin() {
+        return integerCharacteristicFilterMin;
+    }
+
+    public void setIntegerCharacteristicFilterMin(Integer integerCharacteristicFilterMin) {
+        this.integerCharacteristicFilterMin = integerCharacteristicFilterMin;
+    }
+
+    public Integer getIntegerCharacteristicFilterMax() {
+        return integerCharacteristicFilterMax;
+    }
+
+    public void setIntegerCharacteristicFilterMax(Integer integerCharacteristicFilterMax) {
+        this.integerCharacteristicFilterMax = integerCharacteristicFilterMax;
     }
 
 

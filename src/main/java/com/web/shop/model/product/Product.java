@@ -1,10 +1,12 @@
 package com.web.shop.model.product;
 
+import com.web.shop.model.enums.Sorting;
 import com.web.shop.model.order.OrderProduct;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
@@ -15,6 +17,22 @@ import java.util.List;
 @Entity
 @Table(name = "Product")
 public class Product implements Serializable {
+
+//    public Product() {
+//    }
+//
+//
+//    public Product(Product product, Long count) {
+//        this.id = product.getId();
+//        this.name = product.getName();
+//        this.characterCode = product.getCharacterCode();
+//        this.price = product.price;
+//        this.stockQuantity = product.getStockQuantity();
+//        this.productCategory = product.getProductCategory();
+//        this.productCharacteristicList = product.getProductCharacteristicList();
+//        this.orderProductList = product.orderProductList;
+//    }
+
 
     @Id
     @GeneratedValue(generator = "increment")
@@ -28,13 +46,20 @@ public class Product implements Serializable {
     private String name;
 
     @Column(name = "characterCode", length = 30)
-    @UniqueElements
     @Size(min = 3, max = 30)
     @NotBlank
     private String characterCode;
 
     @Column(name = "price", precision=10, scale=2)
     private BigDecimal price;
+
+    @Transient
+    private BigDecimal priceFilterMin;
+    @Transient
+    private BigDecimal priceFilterMax;
+    @Transient
+    private Sorting sort;
+
 
     @Column(name = "stockQuantity", length = 10)
 //    @Size(min = 1, max = 10)
@@ -45,11 +70,12 @@ public class Product implements Serializable {
     @JoinColumn(name = "productCategoryId")
     private ProductCategory productCategory;
 
+    @OrderBy("id asc")
     @OneToMany(mappedBy="product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<ProductCharacteristic> productCharacteristicList = new ArrayList<>();
+    private List<ProductCharacteristic> productCharacteristicList;
 
     @OneToMany(mappedBy="product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<OrderProduct> orderProductList = new ArrayList<>();
+    private List<OrderProduct> orderProductList;
 
     public Integer getId() {
         return id;
@@ -113,6 +139,30 @@ public class Product implements Serializable {
 
     public void setOrderProductList(List<OrderProduct> orderProductList) {
         this.orderProductList = orderProductList;
+    }
+
+    public BigDecimal getPriceFilterMin() {
+        return priceFilterMin;
+    }
+
+    public void setPriceFilterMin(BigDecimal priceFilterMin) {
+        this.priceFilterMin = priceFilterMin;
+    }
+
+    public BigDecimal getPriceFilterMax() {
+        return priceFilterMax;
+    }
+
+    public void setPriceFilterMax(BigDecimal priceFilterMax) {
+        this.priceFilterMax = priceFilterMax;
+    }
+
+    public Sorting getSort() {
+        return sort;
+    }
+
+    public void setSort(Sorting sort) {
+        this.sort = sort;
     }
 
 //    @OneToMany(mappedBy="product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

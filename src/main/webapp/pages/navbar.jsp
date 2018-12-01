@@ -11,13 +11,13 @@
 <div id='nuvebar'>
     <ul id="nuvigate">
         <li><a href='/'>Home</a></li>
-        <li class='rootCutalog'><a href='/productList/1/0'>Root</a>
+        <li class='rootCutalog'><a href='/catalog/1/1'>Root</a>
             <c:set var="level" value="${1}"/>
             <c:forEach items="${allProductsCategoryForNavBar}" var="productCategoryDTO">
             <c:choose>
             <c:when test="${productCategoryDTO.level == level + 1 }">
             <ul>
-                <li><a href='/productList/${productCategoryDTO.id}/0'>${productCategoryDTO.name}</a>
+                <li><a href='/catalog/${productCategoryDTO.id}/1'>${productCategoryDTO.name}</a>
                     <c:set var="level" value="${level + 1}"/>
             </c:when>
             <c:when test="${productCategoryDTO.level < level}">
@@ -27,11 +27,11 @@
                 </c:forEach>
                 <c:set var="level" value="${productCategoryDTO.level}"/>
                     </li>
-                 <li><a href='/productList/${productCategoryDTO.id}/0'>${productCategoryDTO.name}</a>
+                 <li><a href='/catalog/${productCategoryDTO.id}/1'>${productCategoryDTO.name}</a>
             </c:when>
             <c:when test="${productCategoryDTO.level == level}">
                 </li>
-            <li><a href='/productList/${productCategoryDTO.id}/0'>${productCategoryDTO.name}</a>
+            <li><a href='/catalog/${productCategoryDTO.id}/1'>${productCategoryDTO.name}</a>
             </c:when>
             </c:choose>
             </c:forEach>

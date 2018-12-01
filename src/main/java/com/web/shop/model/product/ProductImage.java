@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "Product")
+@Table(name = "ProductImage")
 public class ProductImage implements Serializable {
 
     @Id
@@ -19,9 +19,9 @@ public class ProductImage implements Serializable {
 //    @NotBlank
 //    private String imageUrl;
 
-    @ManyToOne
-    @JoinColumn(name = "productId", nullable = false)
-    private Product product;
+//    @ManyToOne
+//    @JoinColumn(name = "productId", nullable = false)
+//    private Product product;
 
     public Integer getId() {
         return id;
@@ -39,11 +39,11 @@ public class ProductImage implements Serializable {
 //        this.imageUrl = imageUrl;
 //    }
 
-    public Product getProduct() {
-        return product;
-    }
+//    public Product getProduct() {
+//        return product;
+//    }
 
-    public void setProduct(Product product) {
-        this.product = product;
-    }
+//    public void setProduct(Product product) {
+//        this.product = product;
+//    }
 }

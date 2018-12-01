@@ -1,6 +1,7 @@
 package com.web.shop.dao.product;
 
 import com.web.shop.dao.GenericDaoImpl;
+import com.web.shop.model.product.ProductCategory;
 import com.web.shop.model.product.ProductCharacteristicType;
 import org.springframework.stereotype.Repository;
 
@@ -22,11 +23,12 @@ public class ProductCharacteristicTypeDaoImpl extends GenericDaoImpl<ProductChar
     }
 
     @Override
-    public List<ProductCharacteristicType> findByCatalogId(Integer catalogId) {
+    public List<ProductCharacteristicType> findByCategory(ProductCategory productCategory) {
         try{
             return getEntityManager()
-                    .createQuery("SELECT u FROM ProductCharacteristicType u WHERE u.productCategory.id = :catalogId ORDER BY u.characteristicType")
-                    .setParameter("catalogId", catalogId)
+                    .createQuery("SELECT u FROM ProductCharacteristicType u WHERE u.productCategory.leftKey <= :leftKey AND u.productCategory.rightKey >= :rightKey ORDER BY u.id")
+                    .setParameter("leftKey", productCategory.getLeftKey())
+                    .setParameter("rightKey", productCategory.getRightKey())
                     .getResultList();
         }catch(NoResultException ex){
             return null;

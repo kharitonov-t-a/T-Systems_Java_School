@@ -1,6 +1,8 @@
 package com.web.shop.controler.order;
 
 import com.web.shop.dto.order.OrderDTO;
+import com.web.shop.model.enums.DeliveryType;
+import com.web.shop.model.enums.PaymentType;
 import com.web.shop.security.UserSecurityService;
 import com.web.shop.service.interfaces.order.OrderService;
 import com.web.shop.service.interfaces.user.UserService;

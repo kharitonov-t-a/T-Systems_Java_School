@@ -1,6 +1,7 @@
 package com.web.shop.model.product;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -26,7 +27,7 @@ public class ProductCharacteristic implements Serializable {
     private Product product;
 
     @OneToMany(mappedBy="productCharacteristic", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<ProductCharacteristicCheckboxValue> productCharacteristicCheckboxValueList = new ArrayList<>();;
+    private List<ProductCharacteristicCheckboxValue> productCharacteristicCheckboxValueList = new ArrayList<>();
 
     @Column(name = "booleanCharacteristicValue")
     private Boolean booleanCharacteristicValue;
@@ -34,8 +35,18 @@ public class ProductCharacteristic implements Serializable {
     @Column(name = "doubleCharacteristicValue")
     private Double doubleCharacteristicValue;
 
+    @Transient
+    private Double doubleCharacteristicFilterMin;
+    @Transient
+    private Double doubleCharacteristicFilterMax;
+
     @Column(name = "integerCharacteristicValue")
     private Integer integerCharacteristicValue;
+
+    @Transient
+    private Integer integerCharacteristicFilterMin;
+    @Transient
+    private Integer integerCharacteristicFilterMax;
 
     @Column(name = "stringCharacteristicValue")
     private String stringCharacteristicValue;
@@ -102,6 +113,38 @@ public class ProductCharacteristic implements Serializable {
 
     public void setStringCharacteristicValue(String stringCharacteristicValue) {
         this.stringCharacteristicValue = stringCharacteristicValue;
+    }
+
+    public Double getDoubleCharacteristicFilterMin() {
+        return doubleCharacteristicFilterMin;
+    }
+
+    public void setDoubleCharacteristicFilterMin(Double doubleCharacteristicFilterMin) {
+        this.doubleCharacteristicFilterMin = doubleCharacteristicFilterMin;
+    }
+
+    public Double getDoubleCharacteristicFilterMax() {
+        return doubleCharacteristicFilterMax;
+    }
+
+    public void setDoubleCharacteristicFilterMax(Double doubleCharacteristicFilterMax) {
+        this.doubleCharacteristicFilterMax = doubleCharacteristicFilterMax;
+    }
+
+    public Integer getIntegerCharacteristicFilterMin() {
+        return integerCharacteristicFilterMin;
+    }
+
+    public void setIntegerCharacteristicFilterMin(Integer integerCharacteristicFilterMin) {
+        this.integerCharacteristicFilterMin = integerCharacteristicFilterMin;
+    }
+
+    public Integer getIntegerCharacteristicFilterMax() {
+        return integerCharacteristicFilterMax;
+    }
+
+    public void setIntegerCharacteristicFilterMax(Integer integerCharacteristicFilterMax) {
+        this.integerCharacteristicFilterMax = integerCharacteristicFilterMax;
     }
 
 //    @Override

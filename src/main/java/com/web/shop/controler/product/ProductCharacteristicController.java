@@ -47,7 +47,6 @@ public class ProductCharacteristicController {
     public String getStartFormProductCharacteristicRetry(@Valid ProductDTO productDTO, BindingResult result, ModelMap model) {
 
         model.addAttribute("productCharacteristicTypeDTOList", productCharacteristicTypeService.findByCatalogId(productDTO.getProductCategory().getId()));
-
         return "administration/productCharacteristicForm";
     }
 

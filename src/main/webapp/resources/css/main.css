@@ -138,3 +138,7 @@ body{
 button.btn.btn-outline-secondary{
     padding: 4px;
 }
+
+.panel-heading h4{
+    margin: 0px;
+}

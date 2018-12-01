@@ -4,9 +4,15 @@ import com.web.shop.constants.CheckProductsCategoryExceptionMessage;
 import com.web.shop.dao.product.ProductCategoryDao;
 import com.web.shop.dao.product.ProductDao;
 import com.web.shop.dto.product.ProductCategoryDTO;
+import com.web.shop.dto.product.ProductCharacteristicDTO;
+import com.web.shop.dto.product.ProductCharacteristicTypeDTO;
+import com.web.shop.dto.product.ProductDTO;
 import com.web.shop.exceptions.CheckProductsCategoryException;
 import com.web.shop.exceptions.CreateDaoException;
+import com.web.shop.model.product.Product;
 import com.web.shop.model.product.ProductCategory;
+import com.web.shop.model.product.ProductCharacteristic;
+import com.web.shop.model.product.ProductCharacteristicType;
 import com.web.shop.service.interfaces.product.ProductCategoryService;
 import com.web.shop.service.GenericServiceImpl;
 import org.modelmapper.convention.MatchingStrategies;
@@ -91,13 +97,13 @@ public class ProductCategoryServiceImpl extends GenericServiceImpl<ProductCatego
         return modelMapper.mapListsEntityToDTO(dao.findCurrentBranch(productCategory.getLeftKey(), productCategory.getRightKey()), ProductCategoryDTO.class);
     }
 
-//    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
-//    public List<ProductCategoryDTO> findAll() {
-////        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-////        modelMapper.typeMap(ProductCategory.class, ProductCategoryDTO.class)
-////                .addMappings(m -> m.map(src -> src.getParent().getId(), ProductCategoryDTO::setParent));
-//        return modelMapper.mapListsEntityToDTO(dao.findAll(), ProductCategoryDTO.class);
-//    }
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    public List<ProductCategoryDTO> findAll() {
+//        modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+//        modelMapper.typeMap(ProductCharacteristicType.class, ProductCharacteristicTypeDTO.class)
+//                .addMappings(m -> m.map(src -> src.getProductCategory(), ProductCharacteristicTypeDTO::setProductCategory));
+        return modelMapper.mapListsEntityToDTO(dao.findAll(), ProductCategoryDTO.class);
+    }
 
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void create(ProductCategoryDTO productCategoryDTO) {

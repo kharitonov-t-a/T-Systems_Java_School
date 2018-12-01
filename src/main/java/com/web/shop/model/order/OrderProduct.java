@@ -18,11 +18,11 @@ public class OrderProduct implements Serializable {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "orderId", nullable = false)
+    @JoinColumn(name = "orderId")
     private Order order;
 
     @ManyToOne
-    @JoinColumn(name = "productId", nullable = false)
+    @JoinColumn(name = "productId")
     private Product product;
 
     @Column(name = "price", precision=10, scale=2)

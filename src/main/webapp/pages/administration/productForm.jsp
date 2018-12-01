@@ -57,12 +57,22 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 control-lable" for="name">Price</label>
+                        <label class="col-sm-2 control-lable" for="price">Price</label>
                         <div class="col-sm-10">
                             <form:input type="number" class="form-control" placeholder="Price"
-                                        autofocus="true" required="true" path="price"/>
+                                        required="true" path="price"/>
                             <div class="has-error">
                                 <form:errors path="price" class="help-inline"></form:errors>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 control-lable" for="stockQuantity">Stock quantity</label>
+                        <div class="col-sm-10">
+                            <form:input type="number" class="form-control" placeholder="Stock quantity"
+                                        required="true" path="stockQuantity"/>
+                            <div class="has-error">
+                                <form:errors path="stockQuantity" class="help-inline"></form:errors>
                             </div>
                         </div>
                     </div>

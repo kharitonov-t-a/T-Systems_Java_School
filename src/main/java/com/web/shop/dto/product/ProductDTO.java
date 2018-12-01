@@ -1,6 +1,7 @@
 package com.web.shop.dto.product;
 
 import com.web.shop.dto.order.OrderProductDTO;
+import com.web.shop.model.enums.Sorting;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.Column;
@@ -26,6 +27,10 @@ public class ProductDTO implements Serializable {
 
     @Digits(integer = 10, fraction = 2)
     private BigDecimal price;
+
+    private BigDecimal priceFilterMin;
+    private BigDecimal priceFilterMax;
+    private Sorting sort = Sorting.ASC_NAME;
 
     @Digits(integer = 10, fraction = 0)
     private Integer stockQuantity;
@@ -98,6 +103,30 @@ public class ProductDTO implements Serializable {
 
     public void setOrderProductList(List<OrderProductDTO> orderProductList) {
         this.orderProductList = orderProductList;
+    }
+
+    public BigDecimal getPriceFilterMin() {
+        return priceFilterMin;
+    }
+
+    public void setPriceFilterMin(BigDecimal priceFilterMin) {
+        this.priceFilterMin = priceFilterMin;
+    }
+
+    public BigDecimal getPriceFilterMax() {
+        return priceFilterMax;
+    }
+
+    public void setPriceFilterMax(BigDecimal priceFilterMax) {
+        this.priceFilterMax = priceFilterMax;
+    }
+
+    public Sorting getSort() {
+        return sort;
+    }
+
+    public void setSort(Sorting sort) {
+        this.sort = sort;
     }
 
 
