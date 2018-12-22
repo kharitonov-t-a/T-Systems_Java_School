@@ -77,12 +77,6 @@ public class ProductController {
     }
 
 
-    @RequestMapping(value = {"/list"}, method = RequestMethod.GET)
-    public String productList(ModelMap model) {
-        model.addAttribute("productDTOList", productService.findAll());
-        return "administration/productList";
-    }
-
     @RequestMapping(value = {"/{id}"}, method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteProduct(@PathVariable String id, ModelMap model) {
 
@@ -91,9 +85,10 @@ public class ProductController {
         return ResponseEntity.noContent().build();
     }
 
-//    @RequestMapping(value = {"/list"}, method = RequestMethod.GET)
-//    public String listProduct(ModelMap model) {
-//        model.addAttribute("productDTOList", productService.findAll());
-//        return "administration/listProductProfile";
-//    }
+    @RequestMapping(value = {"/list"}, method = RequestMethod.GET)
+    public String productList(ModelMap model) {
+        model.addAttribute("productDTOList", productService.findAll());
+        return "administration/productList";
+    }
+
 }

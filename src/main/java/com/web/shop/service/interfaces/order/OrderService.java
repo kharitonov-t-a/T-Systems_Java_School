@@ -9,10 +9,15 @@ import java.util.List;
 
 public interface OrderService extends GenericService<OrderDTO, Integer> {
 
-    default void addProductToOrder(OrderDTO orderDTO, Integer productId) throws NoProductsInStockException {return;}
+    default void addProductToOrder(OrderDTO orderDTO, Integer productId, Integer countProduct) throws NoProductsInStockException {return;}
+
+    default void changeCountProductInOrder(OrderDTO orderDTO, Integer productId, Integer countProduct) throws NoProductsInStockException {return;}
 
     List<OrderDTO> findByUserId(Integer userId);
 
-    Boolean checkoutOrder(OrderDTO orderSession, OrderDTO orderDTO, UserDTO userDTO);
+    Boolean checkoutOrder(OrderDTO orderSession, OrderDTO orderDTO);
 
+    void deleteProductInOrder(OrderDTO orderDTO, Integer productId);
+
+    void changeOrderStatus(Integer orderId, String orderStatus);
 }

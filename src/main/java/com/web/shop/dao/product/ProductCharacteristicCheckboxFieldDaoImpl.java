@@ -1,6 +1,7 @@
 package com.web.shop.dao.product;
 
 import com.web.shop.dao.GenericDaoImpl;
+import com.web.shop.dao.interfaces.product.ProductCharacteristicCheckboxFieldDao;
 import com.web.shop.model.product.ProductCharacteristicCheckboxField;
 import org.springframework.stereotype.Repository;
 

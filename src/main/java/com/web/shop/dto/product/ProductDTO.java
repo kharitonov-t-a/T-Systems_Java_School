@@ -41,6 +41,8 @@ public class ProductDTO implements Serializable {
 
     private List<OrderProductDTO> orderProductList = new ArrayList<>();
 
+    private Integer countSlaveCharacteristics;
+
     public Integer getId() {
         return id;
     }
@@ -130,16 +132,22 @@ public class ProductDTO implements Serializable {
     }
 
 
-//    @Override
-//    public String toString() {
-//        return "ProductDTO{" +
-//                "id=" + id +
-//                ", name='" + name + '\'' +
-//                ", price=" + price +
-//                ", productCategory=" + productCategory +
-//                ", stockQuantity=" + stockQuantity +
-//                ", productCharacteristicList=" + productCharacteristicList +
-//                ", orderProductList=" + orderProductList +
-//                '}';
-//    }
+    @Override
+    public String toString() {
+        return "ProductDTO{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", characterCode='" + characterCode + '\'' +
+                ", price=" + price +
+                ", stockQuantity=" + stockQuantity +
+                '}';
+    }
+
+    public Integer getCountSlaveCharacteristics() {
+        return countSlaveCharacteristics;
+    }
+
+    public void setCountSlaveCharacteristics(Integer countSlaveCharacteristics) {
+        this.countSlaveCharacteristics = countSlaveCharacteristics;
+    }
 }

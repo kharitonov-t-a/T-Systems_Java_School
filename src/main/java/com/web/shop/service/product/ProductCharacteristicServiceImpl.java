@@ -1,6 +1,6 @@
 package com.web.shop.service.product;
 
-import com.web.shop.dao.product.ProductCharacteristicDao;
+import com.web.shop.dao.interfaces.product.ProductCharacteristicDao;
 import com.web.shop.dto.product.*;
 import com.web.shop.model.product.*;
 import com.web.shop.service.interfaces.product.ProductCharacteristicService;

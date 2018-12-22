@@ -19,10 +19,11 @@ public class OrderProductDTO implements Serializable {
 
     private Integer count;
 
-    public OrderProductDTO(OrderDTO order, ProductDTO product, BigDecimal price) {
+    public OrderProductDTO(OrderDTO order, ProductDTO product, BigDecimal price, Integer count) {
         this.order = order;
         this.product = product;
         this.price = price;
+        this.count = count;
     }
 
     public OrderProductDTO() {

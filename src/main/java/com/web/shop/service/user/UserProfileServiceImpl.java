@@ -1,6 +1,6 @@
 package com.web.shop.service.user;
 
-import com.web.shop.dao.user.UserProfileDao;
+import com.web.shop.dao.interfaces.user.UserProfileDao;
 import com.web.shop.dto.user.UserProfileDTO;
 import com.web.shop.model.user.UserProfile;
 import com.web.shop.service.interfaces.user.UserProfileService;

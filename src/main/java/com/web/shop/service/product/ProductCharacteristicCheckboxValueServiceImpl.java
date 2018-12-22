@@ -1,6 +1,6 @@
 package com.web.shop.service.product;
 
-import com.web.shop.dao.product.ProductCharacteristicCheckboxValueDao;
+import com.web.shop.dao.interfaces.product.ProductCharacteristicCheckboxValueDao;
 import com.web.shop.dto.product.ProductCharacteristicCheckboxValueDTO;
 import com.web.shop.model.product.ProductCharacteristicCheckboxValue;
 import com.web.shop.service.interfaces.product.ProductCharacteristicCheckboxValueService;

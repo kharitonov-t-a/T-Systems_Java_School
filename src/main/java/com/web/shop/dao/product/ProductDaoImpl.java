@@ -1,17 +1,9 @@
 package com.web.shop.dao.product;
 
 import com.web.shop.dao.GenericDaoImpl;
-import com.web.shop.model.enums.CharacteristicType;
+import com.web.shop.dao.interfaces.product.ProductDao;
 import com.web.shop.model.order.OrderProduct;
 import com.web.shop.model.product.*;
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Conjunction;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Disjunction;
-import org.hibernate.criterion.Restrictions;
-import org.hibernate.query.criteria.internal.predicate.BetweenPredicate;
-import org.hibernate.query.criteria.internal.predicate.ComparisonPredicate;
-import org.hibernate.query.criteria.internal.predicate.ExistsPredicate;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.LockModeType;
@@ -32,7 +24,6 @@ public class ProductDaoImpl extends GenericDaoImpl<Product, Integer> implements 
         );
         ids.deleteCharAt(0);
         try {
-//            getEntityManager().find(id, Product.class, LockModeType.PESSIMISTIC_WRITE);
             return (List<Product>) getEntityManager()
                     .createQuery("SELECT u FROM Product u WHERE u.id IN (" + ids + ") AND u.stockQuantity < 1 FOR UPDATE")
                     .getResultList();
@@ -64,35 +55,14 @@ public class ProductDaoImpl extends GenericDaoImpl<Product, Integer> implements 
             CriteriaQuery<Product> criteriaQuery = criteriaBuilder.createQuery(Product.class);
             criteriaQuery.distinct(true);
             Root<Product> productRoot = criteriaQuery.from(Product.class);
-//            Root<ProductCharacteristic> productCharacteristicJoin = criteriaQuery.from(ProductCharacteristic.class);
 
             Join<Product, ProductCategory> productCategoryJoin = productRoot.join("productCategory", JoinType.LEFT);
-//            productCategoryJoin.on(criteriaBuilder.equal(productCategoryJoin.get("id"), productRoot.get("productCategory")));
 
             Join<Product, ProductCharacteristic> productCharacteristicJoin = productRoot.join("productCharacteristicList", JoinType.LEFT);
-//            productCharacteristicJoin.on(criteriaBuilder.equal(productCharacteristicJoin.get("product"), productRoot.get("id")));
 
             Join<Product, ProductCharacteristicCheckboxValue> productProductCharacteristicCheckboxValueJoin = productCharacteristicJoin.join("productCharacteristicCheckboxValueList", JoinType.LEFT);
-//            productProductCharacteristicCheckboxValueJoin.on(criteriaBuilder.equal(productProductCharacteristicCheckboxValueJoin.get("productCharacteristic"), productCharacteristicJoin.get("id")));
 
             List<Predicate> predicates = new ArrayList<>();
-
-
-//            predicates.add(criteriaBuilder.equal(productCharacteristicJoin.get("product"), productRoot.get("id")));
-
-//            predicates.add(cb.ge(productRoot.get("priceFilterMin"), product.getPriceFilterMin()));
-
-
-//            Criteria criteria = createEntityCriteria();
-//            criteria.add(Restrictions.le("", product.getPriceFilterMax()));
-
-//// Create CriteriaBuilder
-//            CriteriaBuilder builder = getEntityManager().getCriteriaBuilder();
-//
-//// Create CriteriaQuery
-//            CriteriaQuery<Product> criteria = builder.createQuery(Product.class);
-//            Criteria criteria = getSession().createCriteria(Product.class);
-
 
             if (product.getPriceFilterMax() != null) {
                 predicates.add(criteriaBuilder.le(productRoot.get("price"), product.getPriceFilterMax()));
@@ -104,8 +74,8 @@ public class ProductDaoImpl extends GenericDaoImpl<Product, Integer> implements 
                 predicates.add(criteriaBuilder.like(productRoot.get("name"), "%" + product.getName() + "%"));
             }
             if (product.getProductCategory().getLeftKey() != null && product.getProductCategory().getRightKey() != null) {
-                predicates.add(criteriaBuilder.le(productCategoryJoin.get("leftKey"), product.getProductCategory().getLeftKey()));
-                predicates.add(criteriaBuilder.ge(productCategoryJoin.get("rightKey"), product.getProductCategory().getRightKey()));
+                predicates.add(criteriaBuilder.ge(productCategoryJoin.get("leftKey"), product.getProductCategory().getLeftKey()));
+                predicates.add(criteriaBuilder.le(productCategoryJoin.get("rightKey"), product.getProductCategory().getRightKey()));
             }
 
             Integer counterCharacteristic = 0;
@@ -166,18 +136,23 @@ public class ProductDaoImpl extends GenericDaoImpl<Product, Integer> implements 
                             counterCharacteristic++;
                         break;
                     case CHECKBOX:
+                        Predicate disjunctionPredicateCheckboxValue = criteriaBuilder.disjunction();
                         for (ProductCharacteristicCheckboxValue productCharacteristicCheckboxValue : productCharacteristic.getProductCharacteristicCheckboxValueList()) {
 
                             if (productCharacteristicCheckboxValue.getProductCharacteristicCheckboxField().getId() != null){
-                                conjunctionPredicate = criteriaBuilder.and(
-                                        conjunctionPredicate,
+                                disjunctionPredicateCheckboxValue = criteriaBuilder.or(
+                                        disjunctionPredicateCheckboxValue,
                                         criteriaBuilder.equal(productProductCharacteristicCheckboxValueJoin.get("productCharacteristicCheckboxField"), productCharacteristicCheckboxValue.getProductCharacteristicCheckboxField().getId())
                                 );
+                                counterCharacteristic++;
                             }
 
                         }
-                        if(conjunctionPredicate.getExpressions().size()>1)
-                            counterCharacteristic++;
+                        if(disjunctionPredicateCheckboxValue.getExpressions().size()>0)
+                            conjunctionPredicate = criteriaBuilder.and(
+                                    conjunctionPredicate,
+                                    disjunctionPredicateCheckboxValue
+                            );
                         break;
                     default:
                 }
@@ -195,9 +170,8 @@ public class ProductDaoImpl extends GenericDaoImpl<Product, Integer> implements 
 
             criteriaQuery.select(productRoot).where(criteriaBuilder.and(predicates.toArray(new Predicate[]{})));
             criteriaQuery.groupBy(productRoot.get("id"));
-            if(counterCharacteristic == 0)
-                counterCharacteristic = product.getProductCategory().getProductCharacteristicTypeList().size() + 1;
-            criteriaQuery.having(criteriaBuilder.equal(criteriaBuilder.count(productRoot), counterCharacteristic));
+            if(counterCharacteristic > 0)
+                criteriaQuery.having(criteriaBuilder.equal(criteriaBuilder.count(productRoot), counterCharacteristic));
 
             switch (product.getSort()) {
                 case ASC_NAME:
@@ -223,9 +197,4 @@ public class ProductDaoImpl extends GenericDaoImpl<Product, Integer> implements 
         }
     }
 
-//
-//    @Override
-//    public void create(Product entity) {
-//        getEntityManager().merge(entity);
-//    }
 }

@@ -5,6 +5,7 @@ import java.util.Collection;
 import javax.persistence.NoResultException;
 
 import com.web.shop.dao.GenericDaoImpl;
+import com.web.shop.dao.interfaces.user.UserDao;
 import com.web.shop.model.user.User;
 import org.springframework.stereotype.Repository;
 

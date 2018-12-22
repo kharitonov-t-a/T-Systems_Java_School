@@ -61,8 +61,8 @@
                                     path="productCharacteristicList[${counter.count-1}].productCharacteristicType.id"
                                     hidden="true" value="${productCharacteristicTypeDTO.id}"/>
                             <%--<form:input--%>
-                                    <%--path="productCategory.id"--%>
-                                    <%--hidden="true" value="${categoryId}"/>--%>
+                            <%--path="productCategory.id"--%>
+                            <%--hidden="true" value="${categoryId}"/>--%>
 
                             <div class="form-group row">
                                 <label class="control-lable col-sm-10">${productCharacteristicTypeDTO.name}
@@ -225,9 +225,9 @@
                                     <div class="sort">
                                         <label>Sort By:</label>
                                         <form:select path="sort" multiple="false"><%--class="form-control input-sm"--%>
-                                        <form:options
-                                                items="${com.web.shop.model.enums.Sorting.values()}"
-                                                itemLabel="name"/>
+                                            <form:options
+                                                    items="${com.web.shop.model.enums.Sorting.values()}"
+                                                    itemLabel="name"/>
                                         </form:select>
                                     </div>
                                         <%--<div class="limit">--%>
@@ -304,14 +304,28 @@
                                                                         </button>
                                                                     </div>
                                                                     <div class="product-button-2">
-                                                                            <%--<a href="#" data-toggle="tooltip" title="Wishlist"><i class="fa fa-heart-o"></i></a>--%>
-                                                                            <%--<a href="#" data-toggle="tooltip" title="Compare"><i class="fa fa-signal"></i></a>--%>
-                                                                            <%--<a href="#" class="modal-view" data-toggle="modal" data-target="#productModal"><i class="fa fa-search-plus"></i></a>--%>
+                                                                        <div class="input-group mb-3 countProductAction">
+                                                                            <div class="input-group-prepend">
+                                                                                <button class="btn btn-outline-secondary reduceCountProduct"
+                                                                                        type="button">-
+                                                                                </button>
+                                                                            </div>
+                                                                            <input type="text" class="form-control countProductAdd"
+                                                                                   placeholder="" aria-label=""
+                                                                                   aria-describedby="basic-addon1" max="${product.stockQuantity}" min="1" value="1"
+                                                                                   autocomplete="off">
+                                                                            <div class="input-group-append">
+                                                                                <button class="btn btn-outline-secondary increaseCountProduct"
+                                                                                        type="button">+
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    <div class="tooltip-block"></div>
                                                     <!-- End Single-Product -->
                                                 </c:forEach>
                                                     <%--</div>--%>
@@ -325,7 +339,8 @@
                                                             <ul>
                                                                 <c:forEach var="counter" begin="1" end="${countPage}">
                                                                     <li class="${counter == currentPage ? "active" : ""}">
-                                                                        <a class="catalogPageNavigate" href="<c:out value="/catalog/${productDTO.productCategory.id}/${counter}"/>">${counter}</a>
+                                                                        <a class="catalogPageNavigate"
+                                                                           href="<c:out value="/catalog/${productDTO.productCategory.id}/${counter}"/>">${counter}</a>
                                                                     </li>
                                                                 </c:forEach>
                                                                     <%--<li class="active"><a href="#">1</a></li>--%>

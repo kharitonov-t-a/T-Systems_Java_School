@@ -1,7 +1,7 @@
 package com.web.shop.service.user;
 
 import com.web.shop.converter.UserRoleToUserProfileConverter;
-import com.web.shop.dao.user.UserDao;
+import com.web.shop.dao.interfaces.user.UserDao;
 import com.web.shop.dto.user.UserDTO;
 import com.web.shop.dto.user.UserProfileDTO;
 import com.web.shop.exceptions.SaveUserException;

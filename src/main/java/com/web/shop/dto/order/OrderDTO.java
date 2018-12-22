@@ -6,19 +6,22 @@ import com.web.shop.model.enums.DeliveryType;
 import com.web.shop.model.enums.OrderStatus;
 import com.web.shop.model.enums.PaymentType;
 import com.web.shop.model.enums.PaymentStatus;
+import org.springframework.validation.annotation.Validated;
 
 import javax.validation.Valid;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDTO implements Serializable {
 
     private Integer id;
 
+    @Valid
     private UserDTO user;
 
     @Valid
-    private UserAddressDTO address;
+    private UserAddressDTO userAddress;
 
     private PaymentType paymentType;
 
@@ -28,7 +31,7 @@ public class OrderDTO implements Serializable {
 
     private OrderStatus orderStatus;
 
-    private List<OrderProductDTO> orderProductList;
+    private List<OrderProductDTO> orderProductList = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -46,12 +49,12 @@ public class OrderDTO implements Serializable {
         this.user = user;
     }
 
-    public UserAddressDTO getAddress() {
-        return address;
+    public UserAddressDTO getUserAddress() {
+        return userAddress;
     }
 
-    public void setAddress(UserAddressDTO address) {
-        this.address = address;
+    public void setUserAddress(UserAddressDTO userAddress) {
+        this.userAddress = userAddress;
     }
 
     public PaymentType getPaymentType() {

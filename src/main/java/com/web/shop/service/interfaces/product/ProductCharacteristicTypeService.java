@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface ProductCharacteristicTypeService extends GenericService<ProductCharacteristicTypeDTO, Integer> {
     List<ProductCharacteristicTypeDTO> findByCatalogId(Integer catalogId);
+    List<ProductCharacteristicTypeDTO> findByCatalogIdForFilter(Integer catalogId);
 }

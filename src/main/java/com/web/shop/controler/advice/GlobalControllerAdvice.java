@@ -1,5 +1,6 @@
 package com.web.shop.controler.advice;
 
+import com.web.shop.dto.order.OrderDTO;
 import com.web.shop.dto.product.ProductCategoryDTO;
 import com.web.shop.service.interfaces.product.ProductCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,5 +26,16 @@ public class GlobalControllerAdvice {
 //        }
 
         return productCategoryDTO;
+    }
+
+    @ModelAttribute("orderSession")
+    public OrderDTO getListProducssstsCategoryDTO(HttpSession httpSession) {
+
+        OrderDTO orderSession = (OrderDTO) httpSession.getAttribute("shoppingCart");
+        if (orderSession == null) {
+            orderSession = new OrderDTO();
+            httpSession.setAttribute("shoppingCart", orderSession);
+        }
+        return orderSession;
     }
 }

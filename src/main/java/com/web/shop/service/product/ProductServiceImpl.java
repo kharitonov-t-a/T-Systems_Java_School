@@ -1,27 +1,29 @@
 package com.web.shop.service.product;
 
+import com.amazonaws.auth.AWSCredentials;
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
+import com.amazonaws.regions.Regions;
+import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.web.shop.converter.CustomModelMapper;
-import com.web.shop.dao.product.*;
+import com.web.shop.dao.interfaces.product.*;
 import com.web.shop.dto.product.ProductCharacteristicDTO;
 import com.web.shop.dto.product.ProductDTO;
+import com.web.shop.jms.JMSService;
 import com.web.shop.model.enums.CharacteristicType;
 import com.web.shop.model.product.Product;
 import com.web.shop.model.product.ProductCharacteristic;
 import com.web.shop.model.product.ProductCharacteristicCheckboxValue;
-import com.web.shop.model.product.ProductCharacteristicType;
-import com.web.shop.service.interfaces.product.ProductCategoryService;
 import com.web.shop.service.interfaces.product.ProductService;
 import com.web.shop.service.GenericServiceImpl;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service("productService")
 public class ProductServiceImpl extends GenericServiceImpl<ProductDTO, Integer, ProductDao, Product> implements ProductService {
@@ -44,6 +46,18 @@ public class ProductServiceImpl extends GenericServiceImpl<ProductDTO, Integer, 
 
     @Transactional(readOnly = false, propagation = Propagation.REQUIRED)
     public void create(ProductDTO productDTO) {
+
+//        AWSCredentials credentials = new BasicAWSCredentials(
+//                "wSl1eF2SyDCp45KQLZwhgd1v8V9p2RKidaJTQgMr",
+//                "VJ!|H3!Qk2YG"
+//        );
+//        AmazonS3 s3client = AmazonS3ClientBuilder
+//                .standard()
+//                .withCredentials(new AWSStaticCredentialsProvider(credentials))
+//                .withRegion(Regions.DEFAULT_REGION)
+//                .build();
+//        s3client.createBucket(bucketName);
+
         productDTO.getProductCharacteristicList().removeIf((i)->i.getProductCharacteristicType() == null);
         productDTO.getProductCharacteristicList().forEach((i)->i.getProductCharacteristicCheckboxValueList().removeIf((l)->l.getProductCharacteristicCheckboxField() == null));
         productDTO.getProductCharacteristicList().forEach((i)->i.getProductCharacteristicCheckboxValueList().removeIf((l)->l.getProductCharacteristicCheckboxField().getId() == null));
@@ -58,6 +72,8 @@ public class ProductServiceImpl extends GenericServiceImpl<ProductDTO, Integer, 
         product.setProductCategory(productCategoryDao.findById(product.getProductCategory().getId()));
 
         dao.create(product);
+
+        JMSService.sendQueue();
     }
 
     @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
@@ -72,8 +88,10 @@ public class ProductServiceImpl extends GenericServiceImpl<ProductDTO, Integer, 
 
         Product product = modelMapper.map(productDTO, Product.class);
 
-        product.getProductCharacteristicList().forEach(productCharacteristic -> productCharacteristic.setProductCharacteristicType(productCharacteristicTypeDao.findById(productCharacteristic.getProductCharacteristicType().getId())));
-
+        if(product.getProductCharacteristicList().size() > 0)
+            product.getProductCharacteristicList().forEach(productCharacteristic -> productCharacteristic.setProductCharacteristicType(productCharacteristicTypeDao.findById(productCharacteristic.getProductCharacteristicType().getId())));
+//        else
+//            product.setCountSlaveCharacteristics(productCharacteristicTypeDao.findCountByCategory(product.getProductCategory()));
         List<Product> productDTOList = dao.findByFilter(product);
         return  modelMapper.mapListsEntityToDTO(productDTOList, ProductDTO.class);
     }

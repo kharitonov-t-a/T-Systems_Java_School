@@ -1,4 +1,4 @@
-package com.web.shop.dao.product;
+package com.web.shop.dao.interfaces.product;
 
 import com.web.shop.dao.GenericDao;
 import com.web.shop.model.product.ProductCategory;
@@ -10,4 +10,6 @@ public interface ProductCharacteristicTypeDao extends GenericDao<ProductCharacte
     List<ProductCharacteristicType> findByType(String Type);
 
     List<ProductCharacteristicType> findByCategory(ProductCategory productCategory);
+    List<ProductCharacteristicType> findByCategoryFilter(ProductCategory productCategory);
+//    Integer findCountByCategory(ProductCategory productCategory);
 }

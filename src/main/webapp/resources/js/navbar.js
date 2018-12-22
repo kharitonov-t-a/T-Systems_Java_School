@@ -75,11 +75,13 @@
 })(jQuery);
 var flag = false;
 $(window).scroll(function () {
-    if (flag == false && $(this).scrollTop() > 46) {
+    if (flag == false && $(this).scrollTop() >= 46) {
         flag = true;
         $(".cd-cart-container").css({"top": "-15px"});
+        $(".shoppingCartShow").css({"top": "13px"});
     } else if (flag == true && $(this).scrollTop() < 46){
         flag = false;
         $(".cd-cart-container").css({"top": "0"});
+        $(".shoppingCartShow").css({"top": "29px"});
     }
 });

@@ -1,27 +1,18 @@
 package com.web.shop.service.product;
 
 import com.web.shop.constants.CheckProductsCategoryExceptionMessage;
-import com.web.shop.dao.product.ProductCategoryDao;
-import com.web.shop.dao.product.ProductDao;
+import com.web.shop.dao.interfaces.product.ProductCategoryDao;
+import com.web.shop.dao.interfaces.product.ProductDao;
 import com.web.shop.dto.product.ProductCategoryDTO;
-import com.web.shop.dto.product.ProductCharacteristicDTO;
-import com.web.shop.dto.product.ProductCharacteristicTypeDTO;
-import com.web.shop.dto.product.ProductDTO;
 import com.web.shop.exceptions.CheckProductsCategoryException;
-import com.web.shop.exceptions.CreateDaoException;
-import com.web.shop.model.product.Product;
 import com.web.shop.model.product.ProductCategory;
-import com.web.shop.model.product.ProductCharacteristic;
-import com.web.shop.model.product.ProductCharacteristicType;
 import com.web.shop.service.interfaces.product.ProductCategoryService;
 import com.web.shop.service.GenericServiceImpl;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service("productCategoryService")

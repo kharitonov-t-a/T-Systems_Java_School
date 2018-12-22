@@ -3,7 +3,7 @@ package com.web.shop.model.enums;
 public enum OrderStatus {
 
     AWAITING_PAID("Awaiting paid"),
-    AWAITING_SHIPMENT("Awaiting shipment"),
+    AWAITING_SHIPMENT("Awaiting shipment / Paid"),
     SHIPPED("Shipped"),
     DELIVERED("Delivered");
 

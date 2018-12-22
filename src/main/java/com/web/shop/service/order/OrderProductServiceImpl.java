@@ -1,6 +1,6 @@
 package com.web.shop.service.order;
 
-import com.web.shop.dao.order.OrderProductDao;
+import com.web.shop.dao.interfaces.order.OrderProductDao;
 import com.web.shop.dto.order.OrderProductDTO;
 import com.web.shop.model.product.Product;
 import com.web.shop.service.interfaces.order.OrderProductService;

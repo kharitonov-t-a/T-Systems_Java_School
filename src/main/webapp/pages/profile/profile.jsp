@@ -17,6 +17,8 @@
     <script src="<c:url value="/resources/js/productCharacteristicType.js" />"></script>
     <script src="<c:url value="/resources/js/user.js" />"></script>
     <script src="<c:url value="/resources/js/product.js" />"></script>
+    <script src="<c:url value="/resources/js/userAddress.js" />"></script>
+    <script src="<c:url value="/resources/js/order.js" />"></script>
 </head>
 <body>
 <%@ include file="/pages/navbar.jsp" %>
@@ -47,12 +49,13 @@
                                 <li><a href="<c:url value="/user/password" />" class="list-group-item">
                                     Edit password
                                 </a></li>
-                                <%--<li><a href="<c:url value="/orderList" />" class="list-group-item">--%>
-                                    <%--Orders list--%>
-                                <%--</a></li>--%>
-                                <%--<li><a href="<c:url value="/allOrders" />" class="list-group-item">--%>
-                                    <%--All orderList--%>
-                                <%--</a></li>--%>
+                                <li><a href="<c:url value="/user/address/list" />" class="list-group-item">
+                                    Edit address
+                                </a></li>
+                                <li><a href="<c:url value="/order/list" />" class="list-group-item">
+                                    Orders
+                                </a></li>
+                                <sec:authorize access="hasRole('ADMIN') or hasRole('MANAGER')">
                                 <li><a href="<c:url value="/productCategory/list" />" class="list-group-item">
                                     Products category
                                 </a></li>
@@ -62,9 +65,13 @@
                                 <li><a href="<c:url value="/product/list" />" class="list-group-item">
                                     Products
                                 </a></li>
+                                <li><a href="<c:url value="/order/list/all" />" class="list-group-item">
+                                    All orders
+                                </a></li>
                                 <li><a href="<c:url value="/user/list" />" class="list-group-item list-group-item-action">
                                     Users list for admin
                                 </a></li>
+                                </sec:authorize>
                             </ul>
                         </div>
                     </div>

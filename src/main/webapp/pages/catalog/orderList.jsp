@@ -7,6 +7,8 @@
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>
 <html>
 <head>
@@ -32,12 +34,15 @@
                             <thead>
                             <tr>
                                 <%--<td class="text-center">Image</td>--%>
-                                <td class="text-left">id</td>
-                                <td class="text-left">deliveryType</td>
-                                <td class="text-left">paymentType</td>
-                                <td class="text-left">order status</td>
-                                <td class="text-left">paymentType status</td>
-                                <td class="text-left">products</td>
+                                <td class="text-left">User id</td>
+                                <td class="text-left">Delivery type</td>
+                                <td class="text-left">Payment type</td>
+                                <td class="text-left">Order status</td>
+                                <td class="text-left">Payment status</td>
+                                <td class="text-left">Products</td>
+                                <sec:authorize access="hasRole('ADMIN') or hasRole('MANAGER')">
+                                    <td class="text-left"></td>
+                                </sec:authorize>
                                 <%--<td class="text-left">Quantity</td>--%>
                                 <%--<td class="text-right">products</td>--%>
                                 <%--<td class="text-right">Total</td>--%>
@@ -47,25 +52,36 @@
                             <c:forEach items="${orderList}" var="order">
                                 <tr>
                                     <td class="text-left">
-                                        <a href="#">${order.id}</a>
+                                        ${order.user.id}
                                     </td>
                                     <td class="text-left">
-                                        <a href="#">${order.deliveryType.getDelivery()}</a>
+                                        ${order.deliveryType.getDelivery()}
                                     </td>
                                     <td class="text-left">
-                                        <a href="#">${order.paymentType.getPayment()}</a>
+                                        ${order.paymentType.getPayment()}
                                     </td>
                                     <td class="text-left">
-                                        <a href="#">${order.orderStatus.getOrderStatus()}</a>
+                                        ${order.orderStatus.getOrderStatus()}
                                     </td>
                                     <td class="text-left">
-                                        <a href="#">${order.paymentStatus.getPaymentStatus()}</a>
+                                        ${order.paymentStatus.getPaymentStatus()}
                                     </td>
                                     <td class="text-left">
                                         <c:forEach items="${order.orderProductList}" var="orderProductList">
-                                            <a href="#">${orderProductList.product.name} by $${orderProductList.price}</a> /
+                                            ${orderProductList.product.name} by $${orderProductList.price} /
                                         </c:forEach>
                                     </td>
+                                    <sec:authorize access="hasRole('ADMIN') or hasRole('MANAGER')">
+                                        <td>
+                                            <div class="btn-group btn-group-toggle btn-group-vertical orderStatusSelect" data-toggle="buttons">
+                                                <c:forEach items="${orderStatusList}" var="orderStatus">
+                                                    <label class="orderStatusLabel btn btn-secondary ${order.orderStatus == orderStatus ? "active" : ""}">
+                                                        <input type="radio" name="orderStatus" id="${order.id}" value="${orderStatus.name()}" autocomplete="off" ${order.orderStatus == orderStatus ? "checked='true'" : ""}> ${orderStatus.orderStatus}
+                                                    </label>
+                                                </c:forEach>
+                                            </div>
+                                        </td>
+                                    </sec:authorize>
                                 </tr>
                             </c:forEach>
                             </tbody>

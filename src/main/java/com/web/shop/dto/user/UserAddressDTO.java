@@ -4,41 +4,45 @@ import com.web.shop.dto.order.OrderDTO;
 
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
-//@Setter
-//@Getter
 public class UserAddressDTO implements Serializable {
+
+    public interface ValidationAddress {
+    }
 
     private Integer id;
 
-    @Size(min = 3, max = 30)
-    @NotBlank
+    @Size(min = 3, max = 30, groups = {ValidationAddress.class})
+    @NotBlank(groups = {ValidationAddress.class})
     private String country;
 
-    @Size(min = 3, max = 30)
-    @NotBlank
+    @Size(min = 3, max = 30, groups = {ValidationAddress.class})
+    @NotBlank(groups = {ValidationAddress.class})
     private String city;
 
-    @Digits(integer = 6, fraction = 0)
-    @NotNull
+    @Digits(integer = 6, fraction = 0, groups = {ValidationAddress.class})
+    @NotNull(groups = {ValidationAddress.class})
     private Integer zip;
 
-    @Size(min = 3, max = 30)
-    @NotBlank
+    @Size(min = 3, max = 30, groups = {ValidationAddress.class})
+    @NotBlank(groups = {ValidationAddress.class})
     private String street;
 
-    @Digits(integer = 3, fraction = 0)
-    @NotNull
+    @Digits(integer = 3, fraction = 0, groups = {ValidationAddress.class})
+    @NotNull(groups = {ValidationAddress.class})
     private Integer house;
 
-    @Digits(integer = 5, fraction = 0)
-    @NotNull
+    @Digits(integer = 5, fraction = 0, groups = {ValidationAddress.class})
+    @NotNull(groups = {ValidationAddress.class})
     private Integer flat;
 
     private UserDTO user;
 
-    private List<OrderDTO> orderList;
+    private List<OrderDTO> orderList = new ArrayList<>();;
+
+    private String fullAddress;
 
     public UserAddressDTO() {
     }
@@ -113,6 +117,20 @@ public class UserAddressDTO implements Serializable {
 
     public void setOrderList(List<OrderDTO> orderList) {
         this.orderList = orderList;
+    }
+
+    public String getFullAddress() {
+        return new StringBuilder(country)
+                .append(", ").append(city)
+                .append(", ").append(street)
+                .append(", ").append(house)
+                .append(", ").append(flat)
+                .append(", ").append(zip)
+                .toString();
+    }
+
+    public void setFullAddress(String fullAddress) {
+        this.fullAddress = fullAddress;
     }
 
 //    @Override

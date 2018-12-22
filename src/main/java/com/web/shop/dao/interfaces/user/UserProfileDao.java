@@ -1,4 +1,4 @@
-package com.web.shop.dao.user;
+package com.web.shop.dao.interfaces.user;
 
 import com.web.shop.dao.GenericDao;
 import com.web.shop.model.user.UserProfile;

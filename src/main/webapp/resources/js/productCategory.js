@@ -107,7 +107,8 @@ function getProductCategoryAjax(url) {
     });
 }
 
-function postProductCategoryAjax(url, attr, form_data) {
+function postProductCategoryAjax(url, form_data) {
+    var attr=$("div#content-productCategory");
     $.ajax({
         url: url,
         type: 'POST',

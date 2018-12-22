@@ -20,7 +20,7 @@ function postCatalogAjax(url, form_data) {
         data: form_data,
         success: function (data) {
             if ($(data).find('div#catalogBox').length > 0) {
-                $('div#catalogBox').html($(data).find('div#catalogBox'));
+                $('div#catalogBox').html($(data).find('div#catalogBox').html());
             }
         },
         error: function (data) {

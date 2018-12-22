@@ -59,6 +59,8 @@ public class Product implements Serializable {
     private BigDecimal priceFilterMax;
     @Transient
     private Sorting sort;
+    @Transient
+    private Integer countSlaveCharacteristics;
 
 
     @Column(name = "stockQuantity", length = 10)
@@ -163,6 +165,14 @@ public class Product implements Serializable {
 
     public void setSort(Sorting sort) {
         this.sort = sort;
+    }
+
+    public Integer getCountSlaveCharacteristics() {
+        return countSlaveCharacteristics;
+    }
+
+    public void setCountSlaveCharacteristics(Integer countSlaveCharacteristics) {
+        this.countSlaveCharacteristics = countSlaveCharacteristics;
     }
 
 //    @OneToMany(mappedBy="product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

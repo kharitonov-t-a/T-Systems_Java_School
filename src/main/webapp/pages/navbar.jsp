@@ -11,7 +11,7 @@
 <div id='nuvebar'>
     <ul id="nuvigate">
         <li><a href='/'>Home</a></li>
-        <li class='rootCutalog'><a href='/catalog/1/1'>Root</a>
+        <li class='rootCutalog'><a href='/catalog/1/1'>Catalog</a>
             <c:set var="level" value="${1}"/>
             <c:forEach items="${allProductsCategoryForNavBar}" var="productCategoryDTO">
             <c:choose>
@@ -19,29 +19,29 @@
             <ul>
                 <li><a href='/catalog/${productCategoryDTO.id}/1'>${productCategoryDTO.name}</a>
                     <c:set var="level" value="${level + 1}"/>
-            </c:when>
-            <c:when test="${productCategoryDTO.level < level}">
-                <c:forEach begin="${productCategoryDTO.level}" end="${level - 1}">
-                    </li>
-                </ul>
-                </c:forEach>
-                <c:set var="level" value="${productCategoryDTO.level}"/>
-                    </li>
-                 <li><a href='/catalog/${productCategoryDTO.id}/1'>${productCategoryDTO.name}</a>
+                    </c:when>
+                    <c:when test="${productCategoryDTO.level < level}">
+                    <c:forEach begin="${productCategoryDTO.level}" end="${level - 1}">
+                </li>
+            </ul>
+            </c:forEach>
+            <c:set var="level" value="${productCategoryDTO.level}"/>
+        </li>
+        <li><a href='/catalog/${productCategoryDTO.id}/1'>${productCategoryDTO.name}</a>
             </c:when>
             <c:when test="${productCategoryDTO.level == level}">
-                </li>
-            <li><a href='/catalog/${productCategoryDTO.id}/1'>${productCategoryDTO.name}</a>
+        </li>
+        <li><a href='/catalog/${productCategoryDTO.id}/1'>${productCategoryDTO.name}</a>
             </c:when>
             </c:choose>
             </c:forEach>
 
             <c:if test="${level > 0}">
             <c:forEach begin="${2}" end="${level}">
-                </li>
-            </ul>
-            </c:forEach>
-            </c:if>
+        </li>
+    </ul>
+    </c:forEach>
+    </c:if>
     </li>
     <li><a href='#'>Delivery</a></li>
     <li><a href='#'>Payment</a></li>
@@ -68,5 +68,6 @@
     </ul>
 
 </div>
-<a href="/checkoutOrder" class="cd-cart-container"><img src="<c:url value="/resources/images/cart.png" />" alt=""></a>
-
+<a href="<c:url value="/checkoutOrder" />" class="cd-cart-container"><img
+        src="<c:url value="/resources/images/cart.png" />" alt=""></a>
+<%@ include file="catalog/smallShoppingCart.jsp" %>

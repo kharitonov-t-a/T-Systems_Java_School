@@ -1,11 +1,10 @@
 package com.web.shop.service.product;
 
-import com.web.shop.dao.product.ProductCategoryDao;
-import com.web.shop.dao.product.ProductCharacteristicCheckboxFieldDao;
-import com.web.shop.dao.product.ProductCharacteristicTypeDao;
+import com.web.shop.dao.interfaces.product.ProductCategoryDao;
+import com.web.shop.dao.interfaces.product.ProductCharacteristicCheckboxFieldDao;
+import com.web.shop.dao.interfaces.product.ProductCharacteristicTypeDao;
 import com.web.shop.dto.product.ProductCharacteristicTypeDTO;
 import com.web.shop.model.product.ProductCategory;
-import com.web.shop.model.product.ProductCharacteristicCheckboxField;
 import com.web.shop.model.product.ProductCharacteristicType;
 import com.web.shop.service.interfaces.product.ProductCharacteristicTypeService;
 import com.web.shop.service.GenericServiceImpl;
@@ -79,6 +78,19 @@ public class ProductCharacteristicTypeServiceImpl extends GenericServiceImpl<Pro
     public List<ProductCharacteristicTypeDTO> findByCatalogId(Integer catalogId) {
         ProductCategory productCategory = productCategoryDao.findById(catalogId);
         List<ProductCharacteristicType> productCharacteristicType =dao.findByCategory(productCategory);
+//        productCharacteristicType.forEach(i->{
+//            if(i.getProductCharacteristicCheckboxFieldList().isEmpty())
+//                i.getProductCharacteristicCheckboxFieldList().isEmpty();
+//            if(i.getProductCharacteristicList().isEmpty())
+//                i.getProductCharacteristicList().isEmpty();
+//        });
+        return modelMapper.mapListsEntityToDTO(productCharacteristicType, ProductCharacteristicTypeDTO.class);
+    }
+    
+    @Transactional(readOnly = true, propagation = Propagation.REQUIRED)
+    public List<ProductCharacteristicTypeDTO> findByCatalogIdForFilter(Integer catalogId) {
+        ProductCategory productCategory = productCategoryDao.findById(catalogId);
+        List<ProductCharacteristicType> productCharacteristicType =dao.findByCategoryFilter(productCategory);
 //        productCharacteristicType.forEach(i->{
 //            if(i.getProductCharacteristicCheckboxFieldList().isEmpty())
 //                i.getProductCharacteristicCheckboxFieldList().isEmpty();

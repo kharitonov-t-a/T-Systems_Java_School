@@ -1,6 +1,7 @@
 package com.web.shop.dao.product;
 
 import com.web.shop.dao.GenericDaoImpl;
+import com.web.shop.dao.interfaces.product.ProductCharacteristicTypeDao;
 import com.web.shop.model.product.ProductCategory;
 import com.web.shop.model.product.ProductCharacteristicType;
 import org.springframework.stereotype.Repository;
@@ -34,5 +35,29 @@ public class ProductCharacteristicTypeDaoImpl extends GenericDaoImpl<ProductChar
             return null;
         }
     }
+    @Override
+    public List<ProductCharacteristicType> findByCategoryFilter(ProductCategory productCategory) {
+        try{
+            return getEntityManager()
+                    .createQuery("SELECT u FROM ProductCharacteristicType u WHERE u.productCategory.leftKey >= :leftKey AND u.productCategory.rightKey <= :rightKey ORDER BY u.id")
+                    .setParameter("leftKey", productCategory.getLeftKey())
+                    .setParameter("rightKey", productCategory.getRightKey())
+                    .getResultList();
+        }catch(NoResultException ex){
+            return null;
+        }
+    }
+
+//    @Override
+//    public Integer findCountByCategory(ProductCategory productCategory) {
+//        try{
+//            return Math.toIntExact((Long) getEntityManager()
+//                    .createQuery("SELECT count(u) FROM ProductCharacteristicType u WHERE u.productCategory.leftKey >= :leftKey AND u.productCategory.rightKey <= :rightKey ORDER BY u.id")
+//                    .setParameter("leftKey", productCategory.getLeftKey())
+//                    .setParameter("rightKey", productCategory.getRightKey()).getSingleResult());
+//        }catch(NoResultException ex){
+//            return 0;
+//        }
+//    }
 
 }

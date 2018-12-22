@@ -49,7 +49,7 @@ public class CatalogProductController {
         Integer countPage = productDTOList.size() / 12 + 1;
 
         model.addAttribute("listProductsDTO", productDTOList.subList(page*12, rightNumber));
-        model.addAttribute("ProductCharacteristicTypeDTOList", productCharacteristicTypeService.findByCatalogId(Integer.valueOf(categoryId)));
+        model.addAttribute("ProductCharacteristicTypeDTOList", productCharacteristicTypeService.findByCatalogIdForFilter(Integer.valueOf(categoryId)));
         model.addAttribute("productDTO", productDTO);
         model.addAttribute("countPage", countPage);
         model.addAttribute("currentPage", page + 1);
@@ -85,7 +85,7 @@ public class CatalogProductController {
         Integer countPage = productDTOList.size() / 12 + 1;
 
         model.addAttribute("listProductsDTO", productDTOList.subList(page*12, rightNumber));
-        model.addAttribute("ProductCharacteristicTypeDTOList", productCharacteristicTypeService.findByCatalogId(Integer.valueOf(categoryId)));
+        model.addAttribute("ProductCharacteristicTypeDTOList", productCharacteristicTypeService.findByCatalogIdForFilter(Integer.valueOf(categoryId)));
         model.addAttribute("productDTO", productDTO);
         model.addAttribute("countPage", countPage);
         model.addAttribute("currentPage", page + 1);
@@ -112,7 +112,7 @@ public class CatalogProductController {
         Integer countPage = productDTOList.size() / 12 + 1;
 
         model.addAttribute("listProductsDTO", productDTOList.subList(page*12, rightNumber));
-        model.addAttribute("ProductCharacteristicTypeDTOList", productCharacteristicTypeService.findByCatalogId(productDTO.getProductCategory().getId()));
+        model.addAttribute("ProductCharacteristicTypeDTOList", productCharacteristicTypeService.findByCatalogIdForFilter(productDTO.getProductCategory().getId()));
         model.addAttribute("productDTO", productDTO);
         model.addAttribute("countPage", countPage);
         model.addAttribute("currentPage", page + 1);
